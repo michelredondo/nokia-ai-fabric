@@ -2,7 +2,7 @@
 
 This lab provides a AI Fabric reference topology using EDA, SR Linux and Containerlab.
 
-Pleas read [QUICKSTART.md](QUICKSTART.md).
+Please read the [QUICKSTART.md](QUICKSTART.md).
 
 ## Platform & Prerequisites
 

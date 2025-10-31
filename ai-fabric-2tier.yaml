@@ -122,7 +122,7 @@ topology:
         graph-level: "4"
         graph-groupLabelPos: bottom-center
       kind: juniper_vjunosswitch
-      startup-config: juniper-configs/juniper.partial.txt
+      startup-config: configs/juniper.partial.txt
 
     # 2 x GPU Servers in Backend Network
     2tier-gpu-svr-01:
