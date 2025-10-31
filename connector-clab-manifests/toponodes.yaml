@@ -1,0 +1,125 @@
+apiVersion: core.eda.nokia.com/v1
+kind: TopoNode
+metadata:
+  name: 2tier-beleaf-01
+  labels:
+    eda.nokia.com/role: leaf
+    eda-connector.nokia.com/topology: ai-fabric-2tier
+    eda-connector.nokia.com/role: ai-fabric-2tier-leaf
+    eda.nokia.com/security-profile: managed
+    containerlab: managedSrl
+  namespace: ai-fabric-be
+spec:
+  
+  nodeProfile: ai-fabric-2tier-srlinux-25.7.2
+  operatingSystem: srl
+  platform: 7220 IXR-H5-64O
+  version: 25.7.2
+  productionAddress:
+    ipv4: 192.168.100.11
+    ipv6: ''
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoNode
+metadata:
+  name: 2tier-beleaf-02
+  labels:
+    eda.nokia.com/role: leaf
+    eda-connector.nokia.com/topology: ai-fabric-2tier
+    eda-connector.nokia.com/role: ai-fabric-2tier-leaf
+    eda.nokia.com/security-profile: managed
+    containerlab: managedSrl
+  namespace: ai-fabric-be
+spec:
+  
+  nodeProfile: ai-fabric-2tier-srlinux-25.7.2
+  operatingSystem: srl
+  platform: 7220 IXR-H5-64O
+  version: 25.7.2
+  productionAddress:
+    ipv4: 192.168.100.12
+    ipv6: ''
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoNode
+metadata:
+  name: 2tier-bespine-01
+  labels:
+    eda.nokia.com/role: spine
+    eda-connector.nokia.com/topology: ai-fabric-2tier
+    eda-connector.nokia.com/role: ai-fabric-2tier-spine
+    eda.nokia.com/security-profile: managed
+    containerlab: managedSrl
+  namespace: ai-fabric-be
+spec:
+  
+  nodeProfile: ai-fabric-2tier-srlinux-25.7.2
+  operatingSystem: srl
+  platform: 7220 IXR-H5-64O
+  version: 25.7.2
+  productionAddress:
+    ipv4: 192.168.100.10
+    ipv6: ''
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoNode
+metadata:
+  name: 2tier-feleaf-01
+  labels:
+    eda.nokia.com/role: leaf
+    eda-connector.nokia.com/topology: ai-fabric-2tier
+    eda-connector.nokia.com/role: ai-fabric-2tier-leaf
+    eda.nokia.com/security-profile: managed
+    containerlab: managedSrl
+  namespace: ai-fabric-fe
+spec:
+  
+  nodeProfile: ai-fabric-2tier-srlinux-25.7.2
+  operatingSystem: srl
+  platform: 7220 IXR-D3L
+  version: 25.7.2
+  productionAddress:
+    ipv4: 192.168.100.13
+    ipv6: ''
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoNode
+metadata:
+  name: 2tier-feleaf-02
+  labels:
+    eda.nokia.com/role: leaf
+    eda-connector.nokia.com/topology: ai-fabric-2tier
+    eda-connector.nokia.com/role: ai-fabric-2tier-leaf
+    eda.nokia.com/security-profile: managed
+    containerlab: managedSrl
+  namespace: ai-fabric-fe
+spec:
+  
+  nodeProfile: ai-fabric-2tier-srlinux-25.7.2
+  operatingSystem: srl
+  platform: 7220 IXR-D3L
+  version: 25.7.2
+  productionAddress:
+    ipv4: 192.168.100.14
+    ipv6: ''
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoNode
+metadata:
+  name: 2tier-fespine-01
+  labels:
+    eda.nokia.com/role: spine
+    eda-connector.nokia.com/topology: ai-fabric-2tier
+    eda-connector.nokia.com/role: ai-fabric-2tier-spine
+    eda.nokia.com/security-profile: managed
+    containerlab: managedSrl
+  namespace: ai-fabric-fe
+spec:
+  
+  nodeProfile: ai-fabric-2tier-srlinux-25.7.2
+  operatingSystem: srl
+  platform: 7220 IXR-D3L
+  version: 25.7.2
+  productionAddress:
+    ipv4: 192.168.100.15
+    ipv6: ''

@@ -1,0 +1,29 @@
+apiVersion: bootstrap.eda.nokia.com/v1alpha1
+kind: Init
+metadata:
+  name: init-base
+  namespace: ai-fabric-fe
+spec:
+  commitSave: true
+  mgmt:
+    ipv4DHCP: true
+    ipv6DHCP: true
+  nodeSelector:
+    - containerlab=managedSrl
+    - containerlab=managedSros
+---
+apiVersion: bootstrap.eda.nokia.com/v1alpha1
+kind: Init
+metadata:
+  name: init-base-ceos
+  namespace: ai-fabric-fe
+spec:
+  commitSave: true
+  mgmt:
+    ipv4DHCP: true
+    ipv6DHCP: true
+    staticRoutes:
+    - nextHop: 192.168.100.1
+      prefix: 0.0.0.0/0
+  nodeSelector:
+    - containerlab=managedEos

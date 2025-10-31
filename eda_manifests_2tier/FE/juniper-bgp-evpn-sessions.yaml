@@ -1,0 +1,142 @@
+apiVersion: routingpolicies.eda.nokia.com/v1alpha1
+kind: Policy
+metadata:
+  namespace: ai-fabric-fe
+  name: export-bgpgroup-juniper-overlay
+spec:
+  defaultAction:
+    policyResult: reject
+  statement:
+    - name: '25'
+      match:
+        bgp:
+          evpnRouteType:
+            - 1
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '30'
+      match:
+        bgp:
+          evpnRouteType:
+            - 2
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '35'
+      match:
+        bgp:
+          evpnRouteType:
+            - 3
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '40'
+      match:
+        bgp:
+          evpnRouteType:
+            - 4
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '45'
+      match:
+        bgp:
+          evpnRouteType:
+            - 5
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+---
+apiVersion: routingpolicies.eda.nokia.com/v1alpha1
+kind: Policy
+metadata:
+  namespace: ai-fabric-fe
+  name: import-bgpgroup-juniper-overlay
+spec:
+  defaultAction:
+    policyResult: reject
+  statement:
+    - name: '25'
+      match:
+        bgp:
+          evpnRouteType:
+            - 1
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '30'
+      match:
+        bgp:
+          evpnRouteType:
+            - 2
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '35'
+      match:
+        bgp:
+          evpnRouteType:
+            - 3
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '40'
+      match:
+        bgp:
+          evpnRouteType:
+            - 4
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '45'
+      match:
+        bgp:
+          evpnRouteType:
+            - 5
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPGroup
+metadata:
+  name: bgpgroup-juniper-overlay
+  namespace: ai-fabric-fe
+spec:
+  exportPolicy:
+    - export-bgpgroup-juniper-overlay
+  importPolicy:
+    - import-bgpgroup-juniper-overlay
+  ipv4Unicast:
+    enabled: false
+  l2VPNEVPN:
+    enabled: true
+  multiHopMaxHop: 2
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPPeer
+metadata:
+  name: spine1-juniper-overlay
+  namespace: ai-fabric-fe
+spec:
+  dynamicNeighbor: false
+  group: bgpgroup-juniper-overlay
+  interface: 2tier-fespine-01-system0
+  interfaceKind: SYSTEMINTERFACE
+  peerAS:
+    autonomousSystem: 4200000041
+  peerIP: 10.13.58.41
+  ipv6Unicast:
+    enabled: false
+---

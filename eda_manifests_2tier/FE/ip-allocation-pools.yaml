@@ -1,0 +1,19 @@
+apiVersion: core.eda.nokia.com/v1
+kind: IPAllocationPool
+metadata:
+  labels:
+    eda.nokia.com/bootstrap: 'true'
+  name: systemipv4-pool
+  namespace: ai-fabric-fe
+spec:
+  segments:
+    - allocateBroadcastAddress: true
+      allocateNetworkAddress: true
+      allocations:
+        - name: ai-frontend-fabric-leaf-2tier-feleaf-01
+          value: 10.13.58.21
+        - name: ai-frontend-fabric-leaf-2tier-feleaf-02
+          value: 10.13.58.22
+        - name: ai-frontend-fabric-spine-2tier-fespine-01
+          value: 10.13.58.11
+      subnet: 10.13.58.0/24

@@ -1,0 +1,54 @@
+apiVersion: qos.eda.nokia.com/v1
+kind: Queue
+metadata:
+  name: pfc-3
+  namespace: ai-fabric-be
+spec:
+  queueID: 3
+  queueType: Pfc
+  trafficType: Unicast
+  
+---
+apiVersion: qos.eda.nokia.com/v1
+kind: Queue
+metadata:
+  name: pfc-6
+  namespace: ai-fabric-be
+
+spec:
+  queueID: 6
+  queueType: Pfc
+  trafficType: Unicast
+
+---
+apiVersion: qos.eda.nokia.com/v1
+kind: Queue
+metadata:
+  name: unicast-0
+  namespace: ai-fabric-be
+spec:
+  queueID: 0
+  queueType: Normal
+  trafficType: Unicast
+
+---
+apiVersion: qos.eda.nokia.com/v1
+kind: Queue
+metadata:
+  name: unicast-3
+  namespace: ai-fabric-be
+spec:
+  queueID: 3
+  queueType: Normal
+  trafficType: Unicast
+
+---
+apiVersion: qos.eda.nokia.com/v1
+kind: Queue
+metadata:
+  name: unicast-6
+  namespace: ai-fabric-be
+spec:
+  queueID: 6
+  queueType: Normal
+  trafficType: Unicast

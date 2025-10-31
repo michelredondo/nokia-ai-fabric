@@ -1,0 +1,223 @@
+---
+apiVersion: core.eda.nokia.com/v1
+kind: IndexAllocationPool
+metadata:
+  name: asn-pool
+  namespace: ai-fabric-be
+spec:
+  segments:
+    - size: 3000
+      start: 100
+
+---
+metadata:
+  name:         asn-pool-spine
+  namespace:      ai-fabric-be
+  labels:       
+    eda.nokia.com/bootstrap: "true"
+apiVersion:  core.eda.nokia.com/v1
+kind: IndexAllocationPool
+spec:
+  segments:
+    - size:   255
+      start:  64600
+---
+metadata:
+  name:         asn-pool-leaf
+  namespace:      ai-fabric-be
+  labels:       
+    eda.nokia.com/bootstrap: "true"
+apiVersion:  core.eda.nokia.com/v1
+kind: IndexAllocationPool
+spec:
+  segments:
+    - size:   255
+      start:  65000
+---
+metadata:
+  name:         demo-subif-pool
+  namespace:      ai-fabric-be
+  labels:       
+    eda.nokia.com/bootstrap: "true"
+apiVersion:  core.eda.nokia.com/v1
+kind: IndexAllocationPool
+spec:
+  segments:
+    - size:   1000
+      start:  100
+
+---
+metadata:
+  name:         es-index-pool
+  namespace:    ai-fabric-be
+  labels:       
+    eda.nokia.com/bootstrap: "true"
+apiVersion:  core.eda.nokia.com/v1
+kind: IndexAllocationPool
+spec:
+  segments:
+    - size:   16777216
+      start:  1
+
+---
+metadata:
+  name:         evi-pool
+  namespace:    ai-fabric-be
+  labels:
+    eda.nokia.com/bootstrap: "true"
+apiVersion:  core.eda.nokia.com/v1
+kind: IndexAllocationPool
+spec:
+  segments:
+    - size:   1000
+      start:  100
+
+---
+metadata:
+  name:         irb-subif-pool
+  namespace:    ai-fabric-be
+  labels:       
+    eda.nokia.com/bootstrap: "true"
+apiVersion:  core.eda.nokia.com/v1
+kind: IndexAllocationPool
+spec:
+  segments:
+    - size:   1000
+      start:  0
+
+---
+metadata:
+  name:         lag-admin-key-pool
+  namespace:    ai-fabric-be
+  labels:       
+    eda.nokia.com/bootstrap: "true"
+apiVersion:  core.eda.nokia.com/v1
+kind: IndexAllocationPool
+spec:
+  segments:
+    - size:   65535  
+      start:  1
+
+---
+metadata:
+  name:         lagid-pool
+  namespace:    ai-fabric-be
+  labels:       
+    eda.nokia.com/bootstrap: "true"
+apiVersion:  core.eda.nokia.com/v1
+kind: IndexAllocationPool
+spec:
+  segments:
+    - size:   255
+      start:  1
+
+---
+# metadata:
+#   name:         leafindex-pool
+#   namespace:    ai-fabric-be
+#   labels:       
+#     eda.nokia.com/bootstrap: "true"
+# apiVersion:  core.eda.nokia.com/v1
+# kind: IndexAllocationPool
+# spec:
+#   segments:
+#     - size:   1000
+#       start:  1
+
+apiVersion: core.eda.nokia.com/v1
+kind: IndexAllocationPool
+metadata:
+  labels:
+    eda.nokia.com/bootstrap: 'true'
+  name: leafindex-pool
+  namespace: ai-fabric-be
+  annotations: {}
+spec:
+  segments:
+    - size: 10
+      start: 1
+      allocations:
+        - name: 2tier-beleaf-01
+          value: 1
+        - name: 2tier-beleaf-02
+          value: 2
+      reservations: []
+  publishAllocations: true
+
+---
+metadata:
+  name:         loopback-id-pool
+  namespace:    ai-fabric-be
+  labels:       
+    eda.nokia.com/bootstrap: "true"
+apiVersion:  core.eda.nokia.com/v1
+kind: IndexAllocationPool
+spec:
+  segments:
+    - size:   255
+      start:  0
+
+---
+metadata:
+  name:         mirror-sdp-pool
+  namespace:    ai-fabric-be
+  labels:       
+    eda.nokia.com/bootstrap: "true"
+apiVersion:  core.eda.nokia.com/v1
+kind: IndexAllocationPool
+spec:
+  segments:
+    - size:   1000
+      start:  1
+
+---
+metadata:
+  name:         subif-pool
+  namespace:    ai-fabric-be
+  labels:       
+    eda.nokia.com/bootstrap: "true"
+apiVersion:  core.eda.nokia.com/v1
+kind: IndexAllocationPool
+spec:
+  segments:
+    - size:   1000
+      start:  0
+
+---
+metadata:
+  name:         tunnel-index-pool
+  namespace:    ai-fabric-be
+  labels:       
+    eda.nokia.com/bootstrap: "true"
+apiVersion:  core.eda.nokia.com/v1
+kind: IndexAllocationPool
+spec:
+  segments:
+    - size:   1000
+      start:  100
+
+---
+metadata:
+  name:         vlan-pool
+  namespace:    ai-fabric-be
+  labels:       
+    eda.nokia.com/bootstrap: "true"
+apiVersion:  core.eda.nokia.com/v1
+kind: IndexAllocationPool
+spec:
+  segments:
+    - size:   4000
+      start:  100
+
+---
+metadata:
+  name:         vni-pool
+  namespace:    ai-fabric-be
+  labels:       
+    eda.nokia.com/bootstrap: "true"
+apiVersion:  core.eda.nokia.com/v1
+kind: IndexAllocationPool
+spec:
+  segments:
+    - size:   4000
+      start:  100 

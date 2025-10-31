@@ -1,0 +1,10 @@
+apiVersion: artifacts.eda.nokia.com/v1
+kind: Artifact
+metadata:
+  name: clab-srlinux-25.7.2
+  namespace: eda-system
+spec:
+  filePath: srlinux-25.7.2.zip
+  remoteFileUrl:
+    fileUrl: "https://github.com/nokia-eda/schema-profiles/releases/download/nokia-srl-25.7.2/srlinux-25.7.2-266.zip"
+  repo: clab-schemaprofiles

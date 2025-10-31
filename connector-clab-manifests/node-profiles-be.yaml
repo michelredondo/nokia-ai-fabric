@@ -1,0 +1,27 @@
+---
+apiVersion: core.eda.nokia.com/v1
+kind: NodeProfile
+metadata:
+  name: ai-fabric-2tier-srlinux-25.7.2
+  namespace: ai-fabric-be
+spec:
+  port: 57410
+  annotate: true
+  operatingSystem: srl
+  version: 25.7.2
+
+  versionPath: .system.information.version
+
+
+  versionMatch: v25\.7\.2.*
+
+  yang: https://eda-asvr.eda-system.svc/eda-system/clab-schemaprofiles/clab-srlinux-25.7.2/srlinux-25.7.2.zip
+  nodeUser: admin
+  onboardingPassword: NokiaSrl1!
+  onboardingUsername: admin
+  images:
+  - image: fake.bin
+    imageMd5: fake.bin.md5
+
+
+  llmDb: https://eda-asvr.eda-system.svc/eda-system/llm-dbs/llm-db-srlinux-ghcr-25.7.2/llm-embeddings-srl-25.7.2.tar.gz

@@ -1,0 +1,190 @@
+apiVersion: routingpolicies.eda.nokia.com/v1alpha1
+kind: Policy
+metadata:
+  namespace: ai-fabric-fe
+  name: export-bgpgroup-frr-overlay
+spec:
+  defaultAction:
+    policyResult: reject
+  statement:
+    - name: '25'
+      match:
+        bgp:
+          evpnRouteType:
+            - 1
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '30'
+      match:
+        bgp:
+          evpnRouteType:
+            - 2
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '35'
+      match:
+        bgp:
+          evpnRouteType:
+            - 3
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '40'
+      match:
+        bgp:
+          evpnRouteType:
+            - 4
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '45'
+      match:
+        bgp:
+          evpnRouteType:
+            - 5
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+---
+apiVersion: routingpolicies.eda.nokia.com/v1alpha1
+kind: Policy
+metadata:
+  namespace: ai-fabric-fe
+  name: import-bgpgroup-frr-overlay
+spec:
+  defaultAction:
+    policyResult: reject
+  statement:
+    - name: '25'
+      match:
+        bgp:
+          evpnRouteType:
+            - 1
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '30'
+      match:
+        bgp:
+          evpnRouteType:
+            - 2
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '35'
+      match:
+        bgp:
+          evpnRouteType:
+            - 3
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '40'
+      match:
+        bgp:
+          evpnRouteType:
+            - 4
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+    - name: '45'
+      match:
+        bgp:
+          evpnRouteType:
+            - 5
+      action:
+        policyResult: accept
+        bgp:
+          localPreference: 100
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPGroup
+metadata:
+  name: bgpgroup-frr-overlay
+  namespace: ai-fabric-fe
+spec:
+  exportPolicy:
+    - export-bgpgroup-frr-overlay
+  importPolicy:
+    - import-bgpgroup-frr-overlay
+  ipv4Unicast:
+    enabled: false
+  l2VPNEVPN:
+    enabled: true
+  multiHopMaxHop: 2
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPPeer
+metadata:
+  name: leaf1-gpu-svr-01-overlay
+  namespace: ai-fabric-fe
+spec:
+  dynamicNeighbor: false
+  group: bgpgroup-frr-overlay
+  interface: 2tier-feleaf-01-system0
+  interfaceKind: SYSTEMINTERFACE
+  peerAS:
+    autonomousSystem: 4200000031
+  peerIP: 10.13.58.31
+  ipv6Unicast:
+    enabled: false
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPPeer
+metadata:
+  name: leaf1-gpu-svr-02-overlay
+  namespace: ai-fabric-fe
+spec:
+  dynamicNeighbor: false
+  group: bgpgroup-frr-overlay
+  interface: 2tier-feleaf-01-system0
+  interfaceKind: SYSTEMINTERFACE
+  peerAS:
+    autonomousSystem: 4200000032
+  peerIP: 10.13.58.32
+  ipv6Unicast:
+    enabled: false
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPPeer
+metadata:
+  name: leaf2-gpu-svr-01-overlay
+  namespace: ai-fabric-fe
+spec:
+  dynamicNeighbor: false
+  group: bgpgroup-frr-overlay
+  interface: 2tier-feleaf-02-system0
+  interfaceKind: SYSTEMINTERFACE
+  peerAS:
+    autonomousSystem: 4200000031
+  peerIP: 10.13.58.31
+  ipv6Unicast:
+    enabled: false
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPPeer
+metadata:
+  name: leaf2-gpu-svr-02-overlay
+  namespace: ai-fabric-fe
+spec:
+  dynamicNeighbor: false
+  group: bgpgroup-frr-overlay
+  interface: 2tier-feleaf-02-system0
+  interfaceKind: SYSTEMINTERFACE
+  peerAS:
+    autonomousSystem: 4200000032
+  peerIP: 10.13.58.32
+  ipv6Unicast:
+    enabled: false
+---

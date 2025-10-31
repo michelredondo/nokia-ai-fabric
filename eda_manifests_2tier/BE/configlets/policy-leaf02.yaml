@@ -1,0 +1,60 @@
+apiVersion: config.eda.nokia.com/v1alpha1
+kind: Configlet
+metadata:
+  name: policy-leaf02
+  namespace: ai-fabric-be
+spec:
+  configs:
+  - config: |
+      {
+        "name": "20",
+        "match": {
+          "protocol": "arp-nd"
+        },
+        "action": {
+          "policy-result": "accept"
+        }
+      }
+    operation: Create
+    path: .routing-policy.policy{.name=="export-routeleak-islgrp5-ai-backend-fabric"}.statement{.name=="20"}
+  - config: |
+      {
+        "name": "20",
+        "match": {
+          "protocol": "arp-nd"
+        },
+        "action": {
+          "policy-result": "accept"
+        }
+      }
+    operation: Create
+    path: .routing-policy.policy{.name=="export-routeleak-islgrp6-ai-backend-fabric"}.statement{.name=="20"}
+  - config: |-
+      {
+        "name": "20",
+        "match": {
+          "protocol": "arp-nd"
+        },
+        "action": {
+          "policy-result": "accept"
+        }
+      }
+    operation: Create
+    path: .routing-policy.policy{.name=="export-routeleak-islgrp7-ai-backend-fabric"}.statement{.name=="20"}
+  - config: |-
+      {
+        "name": "20",
+        "match": {
+          "protocol": "arp-nd"
+        },
+        "action": {
+          "policy-result": "accept"
+        }
+      }
+    operation: Create
+    path: .routing-policy.policy{.name=="export-routeleak-islgrp8-ai-backend-fabric"}.statement{.name=="20"}
+  endpoints:
+  - 2tier-beleaf-02
+  operatingSystem: srl
+  priority: 100
+  version: 25.7.2

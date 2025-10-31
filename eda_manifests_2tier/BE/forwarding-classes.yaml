@@ -1,0 +1,17 @@
+apiVersion: qos.eda.nokia.com/v1
+kind: ForwardingClass
+metadata:
+  name: fc0
+  namespace: ai-fabric-be
+---
+apiVersion: qos.eda.nokia.com/v1
+kind: ForwardingClass
+metadata:
+  name: fc3
+  namespace: ai-fabric-be
+---
+apiVersion: qos.eda.nokia.com/v1
+kind: ForwardingClass
+metadata:
+  name: fc6
+  namespace: ai-fabric-be

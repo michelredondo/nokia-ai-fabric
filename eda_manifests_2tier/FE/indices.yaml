@@ -1,0 +1,47 @@
+apiVersion: core.eda.nokia.com/v1
+kind: IndexAllocationPool
+metadata:
+  labels:
+    eda.nokia.com/bootstrap: 'true'
+  name: evi-pool
+  namespace: ai-fabric-fe
+spec:
+  segments:
+    - size: 4000
+      start: 500
+---
+apiVersion: core.eda.nokia.com/v1
+kind: IndexAllocationPool
+metadata:
+  labels:
+    eda.nokia.com/bootstrap: 'true'
+  name: vni-pool
+  namespace: ai-fabric-fe
+spec:
+  segments:
+    - size: 4000
+      start: 500
+---
+apiVersion: core.eda.nokia.com/v1
+kind: IndexAllocationPool
+metadata:
+  labels:
+    eda.nokia.com/bootstrap: 'true'
+  name: tunnel-index-pool
+  namespace: ai-fabric-fe
+spec:
+  segments:
+    - size: 4000
+      start: 500
+---
+apiVersion: core.eda.nokia.com/v1
+kind: IndexAllocationPool
+metadata:
+  labels:
+    eda.nokia.com/bootstrap: 'true'
+  name: irb-subif-pool
+  namespace: ai-fabric-fe
+spec:
+  segments:
+    - size: 4000
+      start: 0

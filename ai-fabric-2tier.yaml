@@ -1,0 +1,359 @@
+name: ai-fabric-2tier
+prefix: ""
+
+mgmt:
+  network: mgmt-net
+  ipv4-subnet: 192.168.100.0/24
+
+topology:
+  kinds:
+    nokia_srlinux:
+      image: ghcr.io/nokia/srlinux:25.7.2
+      type: ixr-h5-64o
+    linux:
+      image: quay.io/frrouting/frr:10.1.3
+      type: linux
+    juniper_vjunosswitch:
+      #image: juniper_vjunos-switch:24.4R1.9
+      image: registry.srlinux.dev/pub/juniper_vjunos-switch:24.4R1.9
+
+  nodes:
+    # 3xIXR H5 switches are members of AI Backend Fabric
+    2tier-bespine-01:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.10
+      labels:
+        topoViewer-role: spine
+        topoViewer-group: "Backend Data Center Spines"
+        topoViewer-groupLevel: 2
+        graph-posX: "95"
+        graph-posY: "175"
+        graph-group: Backend Data Center Spines
+        graph-level: "2"
+        graph-groupLabelPos: top-center
+      image: ghcr.io/nokia/srlinux:25.7.2
+      type: ixr-h5-64o
+
+    2tier-beleaf-01:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.11
+      labels:
+        topoViewer-role: leaf
+        topoViewer-group: "Backend Data Center Stripe-01"
+        topoViewer-groupLevel: 2
+        graph-posX: "-55"
+        graph-posY: "245"
+        graph-group: Backend Data Center Stripe-01
+        graph-level: "2"
+        graph-groupLabelPos: top-center
+      image: ghcr.io/nokia/srlinux:25.7.2
+      type: ixr-h5-64o
+
+    2tier-beleaf-02:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.12
+      labels:
+        topoViewer-role: leaf
+        topoViewer-group: "Backend Data Center Stripe-01"
+        topoViewer-groupLevel: 2
+        graph-posX: "265"
+        graph-posY: "255"
+        graph-group: Backend Data Center Stripe-01
+        graph-level: "2"
+        graph-groupLabelPos: top-center
+      image: ghcr.io/nokia/srlinux:25.7.2
+      type: ixr-h5-64o
+
+    # 3xIXR D3L switches are members of FE Fabric
+    2tier-feleaf-01:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.13
+      labels:
+        topoViewer-role: leaf
+        topoViewer-group: "Frontend Data Center"
+        topoViewer-groupLevel: 2
+        graph-posX: "15"
+        graph-posY: "415"
+        graph-group: GPU Servers
+        graph-level: "4"
+        graph-groupLabelPos: bottom-center
+      image: ghcr.io/nokia/srlinux:25.7.2
+      type: ixr-d3l
+
+    2tier-feleaf-02:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.14
+      labels:
+        topoViewer-role: leaf
+        topoViewer-group: "Frontend Data Center"
+        topoViewer-groupLevel: 2
+        graph-posX: "105"
+        graph-posY: "415"
+        graph-group: GPU Servers
+        graph-level: "4"
+        graph-groupLabelPos: bottom-center
+      image: ghcr.io/nokia/srlinux:25.7.2
+      type: ixr-d3l
+
+    2tier-fespine-01:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.15
+      labels:
+        topoViewer-role: leaf
+        topoViewer-group: "Frontend Data Center2"
+        topoViewer-groupLevel: 2
+        graph-posX: "85"
+        graph-posY: "465"
+        graph-group: GPU Servers
+        graph-level: "4"
+        graph-groupLabelPos: bottom-center
+      image: ghcr.io/nokia/srlinux:25.7.2
+      type: ixr-d3l
+
+    # 1x juniper switch to test interop
+    2tier-juniper:
+      mgmt-ipv4: 192.168.100.16
+      labels:
+        topoViewer-role: leaf
+        topoViewer-group: "Frontend Data Center2"
+        topoViewer-groupLevel: 2
+        graph-posX: "95"
+        graph-posY: "515"
+        graph-group: GPU Servers
+        graph-level: "4"
+        graph-groupLabelPos: bottom-center
+      kind: juniper_vjunosswitch
+      startup-config: juniper-configs/juniper.partial.txt
+
+    # 2 x GPU Servers in Backend Network
+    2tier-gpu-svr-01:
+      kind: linux
+      mgmt-ipv4: 192.168.100.21
+      group: AI GPU Server01
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+        - server-base-configs/gpu-svr-01-frr.conf:/etc/frr/frr.conf
+      exec:
+        - bash /config/gpu-svr-01.sh
+      labels:
+        topoViewer-role: gpu
+        topoViewer-group: "GPU Servers"
+        topoViewer-groupLevel: 4
+        graph-posX: "-25"
+        graph-posY: "355"
+        graph-group: GPU Servers
+        graph-level: "4"
+        graph-groupLabelPos: bottom-center
+
+    2tier-gpu-svr-02:
+      kind: linux
+      mgmt-ipv4: 192.168.100.22
+      group: AI GPU Server02
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+        - server-base-configs/gpu-svr-02-frr.conf:/etc/frr/frr.conf
+      exec:
+        - bash /config/gpu-svr-02.sh
+      labels:
+        topoViewer-role: gpu
+        topoViewer-group: "GPU Servers"
+        topoViewer-groupLevel: 4
+        graph-posX: "125"
+        graph-posY: "355"
+        graph-group: GPU Servers
+        graph-level: "4"
+        graph-groupLabelPos: bottom-center
+
+    # 6 x Servers in Frontend Network
+    2tier-fe-svr-03:
+      kind: linux
+      mgmt-ipv4: 192.168.100.23
+      group: AI GPU Server01
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+      exec:
+        - bash /config/fe-svr-03.sh
+      labels:
+        topoViewer-role: gpu
+        topoViewer-group: "FE Servers"
+        topoViewer-groupLevel: 4
+        graph-posX: "-95"
+        graph-posY: "395"
+        graph-group: FE Servers
+        graph-level: "4"
+        graph-groupLabelPos: bottom-center
+
+    2tier-fe-svr-04:
+      kind: linux
+      mgmt-ipv4: 192.168.100.24
+      group: AI GPU Server01
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+      exec:
+        - bash /config/fe-svr-04.sh
+      labels:
+        topoViewer-role: gpu
+        topoViewer-group: "FE Servers"
+        topoViewer-groupLevel: 4
+        graph-posX: "195"
+        graph-posY: "395"
+        graph-group: FE Servers
+        graph-level: "4"
+        graph-groupLabelPos: bottom-center
+
+    2tier-fe-svr-05:
+      kind: linux
+      mgmt-ipv4: 192.168.100.25
+      group: AI GPU Server01
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+      exec:
+        - bash /config/fe-svr-05.sh
+      labels:
+        topoViewer-role: gpu
+        topoViewer-group: "GPU Servers"
+        topoViewer-groupLevel: 4
+        graph-posX: "-55"
+        graph-posY: "425"
+        graph-group: FE Servers
+        graph-level: "4"
+        graph-groupLabelPos: bottom-center
+
+    2tier-fe-svr-06:
+      kind: linux
+      mgmt-ipv4: 192.168.100.26
+      group: AI GPU Server01
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+      exec:
+        - bash /config/fe-svr-06.sh
+      labels:
+        topoViewer-role: gpu
+        topoViewer-group: "GPU Servers"
+        topoViewer-groupLevel: 4
+        graph-posX: "205"
+        graph-posY: "435"
+        graph-group: FE Servers
+        graph-level: "4"
+        graph-groupLabelPos: bottom-center
+
+    2tier-fe-svr-07:
+      kind: linux
+      mgmt-ipv4: 192.168.100.27
+      group: AI GPU Server01
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+      exec:
+        - bash /config/fe-svr-07.sh
+      labels:
+        topoViewer-role: gpu
+        topoViewer-group: "GPU Servers"
+        topoViewer-groupLevel: 4
+        graph-posX: "-25"
+        graph-posY: "515"
+        graph-group: GPU Servers
+        graph-level: "4"
+        graph-groupLabelPos: bottom-center
+
+    2tier-fe-svr-08:
+      kind: linux
+      mgmt-ipv4: 192.168.100.28
+      group: AI GPU Server01
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+      exec:
+        - bash /config/fe-svr-08.sh
+      labels:
+        topoViewer-role: gpu
+        topoViewer-group: "GPU Servers"
+        topoViewer-groupLevel: 4
+        graph-posX: "205"
+        graph-posY: "515"
+        graph-group: GPU Servers
+        graph-level: "4"
+        graph-groupLabelPos: bottom-center
+
+  links:
+    # BE Spine to Leaf 01/02
+    - endpoints: [ 2tier-bespine-01:ethernet-1/1, 2tier-beleaf-01:ethernet-1/33 ]
+    - endpoints: [ 2tier-bespine-01:ethernet-1/2, 2tier-beleaf-01:ethernet-1/34 ]
+    - endpoints: [ 2tier-bespine-01:ethernet-1/3, 2tier-beleaf-01:ethernet-1/35 ]
+    - endpoints: [ 2tier-bespine-01:ethernet-1/4, 2tier-beleaf-01:ethernet-1/36 ]
+    - endpoints: [ 2tier-bespine-01:ethernet-1/5, 2tier-beleaf-01:ethernet-1/37 ]
+    - endpoints: [ 2tier-bespine-01:ethernet-1/6, 2tier-beleaf-01:ethernet-1/38 ]
+    - endpoints: [ 2tier-bespine-01:ethernet-1/7, 2tier-beleaf-01:ethernet-1/39 ]
+    - endpoints: [ 2tier-bespine-01:ethernet-1/8, 2tier-beleaf-01:ethernet-1/40 ]
+
+    - endpoints: [ 2tier-bespine-01:ethernet-1/33, 2tier-beleaf-02:ethernet-1/33 ]
+    - endpoints: [ 2tier-bespine-01:ethernet-1/34, 2tier-beleaf-02:ethernet-1/34 ]
+    - endpoints: [ 2tier-bespine-01:ethernet-1/35, 2tier-beleaf-02:ethernet-1/35 ]
+    - endpoints: [ 2tier-bespine-01:ethernet-1/36, 2tier-beleaf-02:ethernet-1/36 ]
+    - endpoints: [ 2tier-bespine-01:ethernet-1/37, 2tier-beleaf-02:ethernet-1/37 ]
+    - endpoints: [ 2tier-bespine-01:ethernet-1/38, 2tier-beleaf-02:ethernet-1/38 ]
+    - endpoints: [ 2tier-bespine-01:ethernet-1/39, 2tier-beleaf-02:ethernet-1/39 ]
+    - endpoints: [ 2tier-bespine-01:ethernet-1/40, 2tier-beleaf-02:ethernet-1/40 ]
+
+    # BE Leaf 01 to GPU Servers
+    - endpoints: [ 2tier-beleaf-01:ethernet-1/1, 2tier-gpu-svr-01:eth1 ]
+    - endpoints: [ 2tier-beleaf-01:ethernet-1/2, 2tier-gpu-svr-01:eth2 ]
+    - endpoints: [ 2tier-beleaf-01:ethernet-1/3, 2tier-gpu-svr-01:eth3 ]
+    - endpoints: [ 2tier-beleaf-01:ethernet-1/4, 2tier-gpu-svr-01:eth4 ]
+
+    - endpoints: [ 2tier-beleaf-01:ethernet-1/5, 2tier-gpu-svr-02:eth1 ]
+    - endpoints: [ 2tier-beleaf-01:ethernet-1/6, 2tier-gpu-svr-02:eth2 ]
+    - endpoints: [ 2tier-beleaf-01:ethernet-1/7, 2tier-gpu-svr-02:eth3 ]
+    - endpoints: [ 2tier-beleaf-01:ethernet-1/8, 2tier-gpu-svr-02:eth4 ]
+
+    # BE Leaf 02 to GPU Servers
+    - endpoints: [ 2tier-beleaf-02:ethernet-1/1, 2tier-gpu-svr-01:eth5 ]
+    - endpoints: [ 2tier-beleaf-02:ethernet-1/2, 2tier-gpu-svr-01:eth6 ]
+    - endpoints: [ 2tier-beleaf-02:ethernet-1/3, 2tier-gpu-svr-01:eth7 ]
+    - endpoints: [ 2tier-beleaf-02:ethernet-1/4, 2tier-gpu-svr-01:eth8 ]
+
+    - endpoints: [ 2tier-beleaf-02:ethernet-1/5, 2tier-gpu-svr-02:eth5 ]
+    - endpoints: [ 2tier-beleaf-02:ethernet-1/6, 2tier-gpu-svr-02:eth6 ]
+    - endpoints: [ 2tier-beleaf-02:ethernet-1/7, 2tier-gpu-svr-02:eth7 ]
+    - endpoints: [ 2tier-beleaf-02:ethernet-1/8, 2tier-gpu-svr-02:eth8 ]
+
+    # GPU Server1 FE connections
+    - endpoints: [ 2tier-feleaf-01:ethernet-1/1, 2tier-gpu-svr-01:eth9 ]
+    - endpoints: [ 2tier-feleaf-02:ethernet-1/1, 2tier-gpu-svr-01:eth10 ]
+    - endpoints: [ 2tier-feleaf-01:ethernet-1/3, 2tier-gpu-svr-01:eth11 ]
+    - endpoints: [ 2tier-feleaf-02:ethernet-1/3, 2tier-gpu-svr-01:eth12 ]
+    # GPU Server2 FE connections
+    - endpoints: [ 2tier-feleaf-01:ethernet-1/2, 2tier-gpu-svr-02:eth9 ]
+    - endpoints: [ 2tier-feleaf-02:ethernet-1/2, 2tier-gpu-svr-02:eth10 ]
+    - endpoints: [ 2tier-feleaf-01:ethernet-1/4, 2tier-gpu-svr-02:eth11 ]
+    - endpoints: [ 2tier-feleaf-02:ethernet-1/4, 2tier-gpu-svr-02:eth12 ]
+    # FE Nokia Fabric
+    - endpoints: [ 2tier-feleaf-01:ethernet-1/31, 2tier-fespine-01:ethernet-1/1 ]
+    - endpoints: [ 2tier-feleaf-02:ethernet-1/31, 2tier-fespine-01:ethernet-1/2 ]
+
+    # FE Nokia-Juniper
+    - endpoints: [ 2tier-fespine-01:ethernet-1/31, 2tier-juniper:eth1 ]
+
+    # Servers connected to FE Nokia Fabric
+    - endpoints: [ 2tier-feleaf-01:ethernet-1/16, 2tier-fe-svr-03:eth1 ]
+    - endpoints: [ 2tier-feleaf-01:ethernet-1/17, 2tier-fe-svr-05:eth1 ]
+    - endpoints: [ 2tier-feleaf-02:ethernet-1/16, 2tier-fe-svr-04:eth1 ]
+    - endpoints: [ 2tier-feleaf-02:ethernet-1/17, 2tier-fe-svr-06:eth1 ]
+
+    # Servers connected to FE Juniper Fabric
+    - endpoints: [ 2tier-juniper:eth2, 2tier-fe-svr-07:eth1 ]
+    - endpoints: [ 2tier-juniper:eth3, 2tier-fe-svr-08:eth1 ]

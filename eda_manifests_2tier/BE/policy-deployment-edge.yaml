@@ -1,0 +1,15 @@
+apiVersion: v1
+items:
+- apiVersion: qos.eda.nokia.com/v1
+  kind: PolicyDeployment
+  metadata:
+    name: policy-deployment-edge
+    namespace: ai-fabric-be
+  spec:
+    egressPolicy: egress-backend-ai-backend-fabric
+    ingressPolicy: ingress-backend-ai-backend-fabric
+    interfaceSelector:
+    - eda.nokia.com/role=edge
+kind: List
+metadata:
+  resourceVersion: ""

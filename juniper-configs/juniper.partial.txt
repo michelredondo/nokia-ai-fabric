@@ -1,0 +1,278 @@
+
+interfaces {
+    ge-0/0/0 {
+        vlan-tagging;
+        mtu 9192;
+        unit 0 {
+            vlan-id 1;
+            family inet;
+            family inet6;
+        }
+    }
+    ge-0/0/1 {
+        vlan-tagging;
+        encapsulation flexible-ethernet-services;
+        unit 10 {
+            encapsulation vlan-bridge;
+            vlan-id 10;
+        }
+    }
+    ge-0/0/2 {
+        vlan-tagging;
+        encapsulation flexible-ethernet-services;
+        unit 1 {
+            encapsulation vlan-bridge;
+            vlan-id 1;
+        }
+        unit 2 {
+            encapsulation vlan-bridge;
+            vlan-id 2;
+        }
+        unit 3 {
+            encapsulation vlan-bridge;
+            vlan-id 3;
+        }
+    }
+    irb {
+        unit 1 {
+            family inet {
+                address 10.1.1.254/24;
+            }
+        }
+        unit 2 {
+            family inet {
+                address 10.2.1.254/24;
+            }
+        }
+        unit 3 {
+            family inet {
+                address 10.3.1.254/24;
+            }
+        }
+        unit 10 {
+            family inet {
+                address 10.1.2.254/24;
+            }
+        }
+    }
+    lo0 {
+        unit 0 {
+            family inet {
+                address 10.13.58.41/32;
+            }
+        }
+    }
+}
+policy-options {
+    policy-statement DIRECT-RTS {
+        from protocol direct;
+        then accept;
+    }
+    as-list as-list members 4200000011;
+}
+routing-instances {
+    ip-vrf-internet {
+        instance-type vrf;
+        protocols {
+            evpn {
+                irb-symmetric-routing {
+                    vni 102;
+                }
+                ip-prefix-routes {
+                    advertise direct-nexthop;
+                    encapsulation vxlan;
+                    vni 102;
+                }
+            }
+        }
+        interface irb.2;
+        route-distinguisher 10.13.58.41:102;
+        vrf-target target:4266666666L:102;
+    }
+    ip-vrf-mgmt {
+        instance-type vrf;
+        protocols {
+            evpn {
+                irb-symmetric-routing {
+                    vni 101;
+                }
+                ip-prefix-routes {
+                    advertise direct-nexthop;
+                    encapsulation vxlan;
+                    vni 101;
+                }
+            }
+        }
+        interface irb.1;
+        interface irb.10;
+        route-distinguisher 10.13.58.41:101;
+        vrf-target target:4266666666L:101;
+    }
+    ip-vrf-private {
+        instance-type vrf;
+        protocols {
+            evpn {
+                irb-symmetric-routing {
+                    vni 103;
+                }
+                ip-prefix-routes {
+                    advertise direct-nexthop;
+                    encapsulation vxlan;
+                    vni 103;
+                }
+            }
+        }
+        interface irb.3;
+        route-distinguisher 10.13.58.41:103;
+        vrf-target target:4266666666L:103;
+    }
+    mac-vrf-internet {
+        instance-type mac-vrf;
+        protocols {
+            evpn {
+                encapsulation vxlan;
+                default-gateway do-not-advertise;
+                extended-vni-list all;
+            }
+        }
+        vtep-source-interface lo0.0;
+        service-type vlan-based;
+        route-distinguisher 10.13.58.41:2;
+        vrf-target target:4266666666L:2;
+        vlans {
+            vlan2 {
+                vlan-id 2;
+                interface ge-0/0/2.2;
+                l3-interface irb.2;
+                vxlan {
+                    vni 2;
+                }
+            }
+        }
+    }
+    mac-vrf-mgmt {
+        instance-type mac-vrf;
+        protocols {
+            evpn {
+                encapsulation vxlan;
+                default-gateway do-not-advertise;
+                extended-vni-list all;
+            }
+        }
+        vtep-source-interface lo0.0;
+        service-type vlan-based;
+        route-distinguisher 10.13.58.41:1;
+        vrf-target target:4266666666L:1;
+        vlans {
+            vlan1 {
+                vlan-id 1;
+                interface ge-0/0/2.1;
+                l3-interface irb.1;
+                vxlan {
+                    vni 1;
+                }
+            }
+        }
+    }
+    mac-vrf-mgmt2 {
+        instance-type mac-vrf;
+        protocols {
+            evpn {
+                encapsulation vxlan;
+                default-gateway do-not-advertise;
+                extended-vni-list all;
+            }
+        }
+        vtep-source-interface lo0.0;
+        service-type vlan-based;
+        route-distinguisher 10.13.58.41:11;
+        vrf-target target:4266666666L:11;
+        vlans {
+            vlan10 {
+                vlan-id 10;
+                interface ge-0/0/1.10;
+                l3-interface irb.10;
+                vxlan {
+                    vni 11;
+                }
+            }
+        }
+    }
+    mac-vrf-private {
+        instance-type mac-vrf;
+        protocols {
+            evpn {
+                encapsulation vxlan;
+                default-gateway do-not-advertise;
+                extended-vni-list all;
+            }
+        }
+        vtep-source-interface lo0.0;
+        service-type vlan-based;
+        route-distinguisher 10.13.58.41:3;
+        vrf-target target:4266666666L:3;
+        vlans {
+            vlan3 {
+                vlan-id 3;
+                interface ge-0/0/2.3;
+                l3-interface irb.3;
+                vxlan {
+                    vni 3;
+                }
+            }
+        }
+    }
+}
+routing-options {
+    router-id 10.13.58.41;
+    autonomous-system 4200000041;
+}
+protocols {
+    router-advertisement {
+        interface ge-0/0/0.0 {
+            max-advertisement-interval 10;
+            min-advertisement-interval 4;
+        }
+    }
+    bgp {
+        group auto-disc {
+            family inet {
+                unicast {
+                    extended-nexthop;
+                }
+            }
+            family inet6 {
+                unicast;
+            }
+            export DIRECT-RTS;
+            local-as 4200000041;
+            multipath {
+                multiple-as;
+            }
+            dynamic-neighbor FABRIC {
+                peer-auto-discovery {
+                    family inet6 {
+                        ipv6-nd;
+                    }
+                    interface ge-0/0/0.0;
+                }
+            }
+            peer-as-list as-list;
+        }
+        group OVERLAY {
+            type external;
+            multihop {
+                no-nexthop-change;
+            }
+            local-address 10.13.58.41;
+            family evpn {
+                signaling;
+            }
+            peer-as 4200000011;
+            local-as 4200000041;
+            multipath;
+            neighbor 10.13.58.11;
+            vpn-apply-export;
+        }
+    }
+}

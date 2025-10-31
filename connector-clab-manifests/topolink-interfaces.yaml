@@ -1,0 +1,1493 @@
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-1
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-1
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-33
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-33
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-2
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-2
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-34
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-34
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-3
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-3
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-35
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-35
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-4
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-4
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-36
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-36
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-5
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-5
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-37
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-37
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-6
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-6
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-38
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-38
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-7
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-7
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-39
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-39
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-8
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-8
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-40
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-40
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-33
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-33
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-33
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-33
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-34
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-34
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-34
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-34
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-35
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-35
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-35
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-35
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-36
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-36
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-36
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-36
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-37
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-37
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-37
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-37
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-38
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-38
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-38
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-38
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-39
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-39
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-39
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-39
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-bespine-01-ethernet-1-40
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-40
+      lacpPortPriority: 32768
+      node: 2tier-bespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-beleaf-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-40
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-40
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'interSwitch link to 2tier-bespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-1
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-1
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-2
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-2
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-3
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-3
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-4
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-4
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-5
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-5
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-6
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-6
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-7
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-7
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-01-ethernet-1-8
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-8
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-01
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-1
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-1
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-2
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-2
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-3
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-3
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-4
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-4
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-5
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-5
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-6
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-6
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-7
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-7
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-beleaf-02-ethernet-1-8
+  namespace: ai-fabric-be
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-8
+      lacpPortPriority: 32768
+      node: 2tier-beleaf-02
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-feleaf-01-ethernet-1-1
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-1
+      lacpPortPriority: 32768
+      node: 2tier-feleaf-01
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-feleaf-02-ethernet-1-1
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-1
+      lacpPortPriority: 32768
+      node: 2tier-feleaf-02
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-feleaf-01-ethernet-1-3
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-3
+      lacpPortPriority: 32768
+      node: 2tier-feleaf-01
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-feleaf-02-ethernet-1-3
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-3
+      lacpPortPriority: 32768
+      node: 2tier-feleaf-02
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-feleaf-01-ethernet-1-2
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-2
+      lacpPortPriority: 32768
+      node: 2tier-feleaf-01
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-feleaf-02-ethernet-1-2
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-2
+      lacpPortPriority: 32768
+      node: 2tier-feleaf-02
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-feleaf-01-ethernet-1-4
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-4
+      lacpPortPriority: 32768
+      node: 2tier-feleaf-01
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-feleaf-02-ethernet-1-4
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-4
+      lacpPortPriority: 32768
+      node: 2tier-feleaf-02
+  type: interface
+  description: 'edge link to 2tier-gpu-svr-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-feleaf-01-ethernet-1-31
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-31
+      lacpPortPriority: 32768
+      node: 2tier-feleaf-01
+  type: interface
+  description: 'interSwitch link to 2tier-fespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-fespine-01-ethernet-1-1
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-1
+      lacpPortPriority: 32768
+      node: 2tier-fespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-feleaf-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-feleaf-02-ethernet-1-31
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-31
+      lacpPortPriority: 32768
+      node: 2tier-feleaf-02
+  type: interface
+  description: 'interSwitch link to 2tier-fespine-01'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-fespine-01-ethernet-1-2
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: interSwitch
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-2
+      lacpPortPriority: 32768
+      node: 2tier-fespine-01
+  type: interface
+  description: 'interSwitch link to 2tier-feleaf-02'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-fespine-01-ethernet-1-31
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-31
+      lacpPortPriority: 32768
+      node: 2tier-fespine-01
+  type: interface
+  description: 'edge link to 2tier-juniper'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-feleaf-01-ethernet-1-16
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-16
+      lacpPortPriority: 32768
+      node: 2tier-feleaf-01
+  type: interface
+  description: 'edge link to 2tier-fe-svr-03'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-feleaf-01-ethernet-1-17
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-17
+      lacpPortPriority: 32768
+      node: 2tier-feleaf-01
+  type: interface
+  description: 'edge link to 2tier-fe-svr-05'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-feleaf-02-ethernet-1-16
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-16
+      lacpPortPriority: 32768
+      node: 2tier-feleaf-02
+  type: interface
+  description: 'edge link to 2tier-fe-svr-04'
+
+---
+apiVersion: interfaces.eda.nokia.com/v1alpha1
+kind: Interface
+metadata:
+  name: 2tier-feleaf-02-ethernet-1-17
+  namespace: ai-fabric-fe
+  labels:
+    eda.nokia.com/role: edge
+spec:
+  enabled: true
+
+  ethernet:
+    stormControl:
+      enabled: false
+  lldp: true
+  members:
+    - enabled: true
+      interface: ethernet-1-17
+      lacpPortPriority: 32768
+      node: 2tier-feleaf-02
+  type: interface
+  description: 'edge link to 2tier-fe-svr-06'

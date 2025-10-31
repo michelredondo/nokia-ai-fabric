@@ -1,0 +1,18 @@
+apiVersion: core.eda.nokia.com/v1
+kind: IndexAllocationPool
+metadata:
+  labels:
+    eda.nokia.com/bootstrap: 'true'
+  name: asn-pool
+  namespace: ai-fabric-fe
+spec:
+  segments:
+    - allocations:
+        - name: ai-frontend-fabric-leaf-2tier-feleaf-01
+          value: 4200000021
+        - name: ai-frontend-fabric-leaf-2tier-feleaf-02
+          value: 4200000022
+        - name: ai-frontend-fabric-spine
+          value: 4200000011
+      size: 100
+      start: 4200000000

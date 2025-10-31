@@ -1,0 +1,27 @@
+---
+apiVersion: core.eda.nokia.com/v1
+kind: IPAllocationPool
+metadata:
+  name: system0-leaf
+  namespace: ai-fabric-be
+  labels: {}
+  annotations: {}
+spec:
+  segments:
+    - subnet: 192.168.1.0/24
+      allocations: []
+      reservations: []
+---
+apiVersion: core.eda.nokia.com/v1
+kind: IPAllocationPool
+metadata:
+  name: system0-spine
+  namespace: ai-fabric-be
+  labels: {}
+  annotations: {}
+spec:
+  segments:
+    - subnet: 192.168.2.0/24
+      allocations: []
+      reservations: []
+---

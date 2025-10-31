@@ -1,0 +1,326 @@
+apiVersion: routingpolicies.eda.nokia.com/v1alpha1
+kind: CommunitySet
+metadata:
+  name: no-export-fabric
+  namespace: ai-fabric-fe
+spec:
+  members:
+    - no-export
+---
+apiVersion: routingpolicies.eda.nokia.com/v1alpha1
+kind: PrefixSet
+metadata:
+  name: frr-underlay
+  namespace: ai-fabric-fe
+spec:
+  prefix:
+    - endRange: 32
+      prefix: 10.13.58.0/24
+      startRange: 32
+---
+apiVersion: routingpolicies.eda.nokia.com/v1alpha1
+kind: Policy
+metadata:
+  name: export-bgpgroup-frr-underlay
+  namespace: ai-fabric-fe
+spec:
+  defaultAction:
+    policyResult: reject
+  statement:
+    - action:
+        bgp:
+          communitySet:
+            add:
+              - no-export-fabric
+          localPreference: 100
+      name: '5'
+    - action:
+        bgp:
+          localPreference: 100
+        policyResult: accept
+      match:
+        prefixSet: frr-underlay
+        protocol: LOCAL
+      name: '10'
+    - action:
+        bgp:
+          localPreference: 100
+        policyResult: accept
+      match:
+        protocol: BGP
+      name: '15'
+    - action:
+        bgp:
+          localPreference: 100
+        policyResult: accept
+      match:
+        protocol: AGGREGATE
+      name: '20'
+---
+apiVersion: routingpolicies.eda.nokia.com/v1alpha1
+kind: Policy
+metadata:
+  name: import-bgpgroup-frr-underlay
+  namespace: ai-fabric-fe
+spec:
+  defaultAction:
+    policyResult: reject
+  statement:
+    - action:
+        bgp:
+          localPreference: 100
+        policyResult: accept
+      match:
+        protocol: BGP
+      name: '10'
+---
+apiVersion: routing.eda.nokia.com/v1alpha1
+kind: DefaultInterface
+metadata:
+  name: interface-2tier-feleaf-01-ethernet-1-1
+  namespace: ai-fabric-fe
+spec:
+  defaultRouter: router-2tier-feleaf-01
+  interface: 2tier-feleaf-01-ethernet-1-1
+  ipMTU: 9200
+  unnumbered: IPV6
+---
+apiVersion: routing.eda.nokia.com/v1alpha1
+kind: DefaultInterface
+metadata:
+  name: interface-2tier-feleaf-01-ethernet-1-2
+  namespace: ai-fabric-fe
+spec:
+  defaultRouter: router-2tier-feleaf-01
+  interface: 2tier-feleaf-01-ethernet-1-2
+  ipMTU: 9200
+  unnumbered: IPV6
+---
+apiVersion: routing.eda.nokia.com/v1alpha1
+kind: DefaultInterface
+metadata:
+  name: interface-2tier-feleaf-01-ethernet-1-3
+  namespace: ai-fabric-fe
+spec:
+  defaultRouter: router-2tier-feleaf-01
+  interface: 2tier-feleaf-01-ethernet-1-3
+  ipMTU: 9200
+  unnumbered: IPV6
+---
+apiVersion: routing.eda.nokia.com/v1alpha1
+kind: DefaultInterface
+metadata:
+  name: interface-2tier-feleaf-01-ethernet-1-4
+  namespace: ai-fabric-fe
+spec:
+  defaultRouter: router-2tier-feleaf-01
+  interface: 2tier-feleaf-01-ethernet-1-4
+  ipMTU: 9200
+  unnumbered: IPV6
+---
+apiVersion: routing.eda.nokia.com/v1alpha1
+kind: DefaultInterface
+metadata:
+  name: interface-2tier-feleaf-02-ethernet-1-1
+  namespace: ai-fabric-fe
+spec:
+  defaultRouter: router-2tier-feleaf-02
+  interface: 2tier-feleaf-02-ethernet-1-1
+  ipMTU: 9200
+  unnumbered: IPV6
+---
+apiVersion: routing.eda.nokia.com/v1alpha1
+kind: DefaultInterface
+metadata:
+  name: interface-2tier-feleaf-02-ethernet-1-2
+  namespace: ai-fabric-fe
+spec:
+  defaultRouter: router-2tier-feleaf-02
+  interface: 2tier-feleaf-02-ethernet-1-2
+  ipMTU: 9200
+  unnumbered: IPV6
+---
+apiVersion: routing.eda.nokia.com/v1alpha1
+kind: DefaultInterface
+metadata:
+  name: interface-2tier-feleaf-02-ethernet-1-3
+  namespace: ai-fabric-fe
+spec:
+  defaultRouter: router-2tier-feleaf-02
+  interface: 2tier-feleaf-02-ethernet-1-3
+  ipMTU: 9200
+  unnumbered: IPV6
+---
+apiVersion: routing.eda.nokia.com/v1alpha1
+kind: DefaultInterface
+metadata:
+  name: interface-2tier-feleaf-02-ethernet-1-4
+  namespace: ai-fabric-fe
+spec:
+  defaultRouter: router-2tier-feleaf-02
+  interface: 2tier-feleaf-02-ethernet-1-4
+  ipMTU: 9200
+  unnumbered: IPV6
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPGroup
+metadata:
+  name: bgpgroup-frr-underlay
+  namespace: ai-fabric-fe
+spec:
+  exportPolicy:
+    - export-bgpgroup-frr-underlay
+  importPolicy:
+    - import-bgpgroup-frr-underlay
+  ipv4Unicast:
+    advertiseIPV6NextHops: true
+    enabled: true
+    receiveIPV6NextHops: true
+  ipv6Unicast:
+    enabled: true
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPPeer
+metadata:
+  name: isl-unnumbered-ipv6-2tier-feleaf-01-ethernet-1-1-2tier-gpu-svr-01-eth9
+  namespace: ai-fabric-fe
+spec:
+  dynamicNeighbor: true
+  dynamicNeighborAllowedPeerAS:
+    - 4200000031
+  group: bgpgroup-frr-underlay
+  interface: interface-2tier-feleaf-01-ethernet-1-1
+  interfaceKind: DEFAULTINTERFACE
+  peerInterface: interface-2tier-feleaf-01-ethernet-1-1
+  ipv6Unicast:
+    enabled: false
+  l2VPNEVPN:
+    enabled: false
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPPeer
+metadata:
+  name: isl-unnumbered-ipv6-2tier-feleaf-01-ethernet-1-2-2tier-gpu-svr-02-eth9
+  namespace: ai-fabric-fe
+spec:
+  dynamicNeighbor: true
+  dynamicNeighborAllowedPeerAS:
+    - 4200000032
+  group: bgpgroup-frr-underlay
+  interface: interface-2tier-feleaf-01-ethernet-1-2
+  interfaceKind: DEFAULTINTERFACE
+  peerInterface: interface-2tier-feleaf-01-ethernet-1-2
+  ipv6Unicast:
+    enabled: false
+  l2VPNEVPN:
+    enabled: false
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPPeer
+metadata:
+  name: isl-unnumbered-ipv6-2tier-feleaf-01-ethernet-1-3-2tier-gpu-svr-01-eth11
+  namespace: ai-fabric-fe
+spec:
+  dynamicNeighbor: true
+  dynamicNeighborAllowedPeerAS:
+    - 4200000031
+  group: bgpgroup-frr-underlay
+  interface: interface-2tier-feleaf-01-ethernet-1-3
+  interfaceKind: DEFAULTINTERFACE
+  peerInterface: interface-2tier-feleaf-01-ethernet-1-3
+  ipv6Unicast:
+    enabled: false
+  l2VPNEVPN:
+    enabled: false
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPPeer
+metadata:
+  name: isl-unnumbered-ipv6-2tier-feleaf-01-ethernet-1-4-2tier-gpu-svr-02-eth11
+  namespace: ai-fabric-fe
+spec:
+  dynamicNeighbor: true
+  dynamicNeighborAllowedPeerAS:
+    - 4200000032
+  group: bgpgroup-frr-underlay
+  interface: interface-2tier-feleaf-01-ethernet-1-4
+  interfaceKind: DEFAULTINTERFACE
+  peerInterface: interface-2tier-feleaf-01-ethernet-1-4
+  ipv6Unicast:
+    enabled: false
+  l2VPNEVPN:
+    enabled: false
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPPeer
+metadata:
+  name: isl-unnumbered-ipv6-2tier-feleaf-02-ethernet-1-1-2tier-gpu-svr-01-eth10
+  namespace: ai-fabric-fe
+spec:
+  dynamicNeighbor: true
+  dynamicNeighborAllowedPeerAS:
+    - 4200000031
+  group: bgpgroup-frr-underlay
+  interface: interface-2tier-feleaf-02-ethernet-1-1
+  interfaceKind: DEFAULTINTERFACE
+  peerInterface: interface-2tier-feleaf-02-ethernet-1-1
+  ipv6Unicast:
+    enabled: false
+  l2VPNEVPN:
+    enabled: false
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPPeer
+metadata:
+  name: isl-unnumbered-ipv6-2tier-feleaf-02-ethernet-1-2-2tier-gpu-svr-02-eth10
+  namespace: ai-fabric-fe
+spec:
+  dynamicNeighbor: true
+  dynamicNeighborAllowedPeerAS:
+    - 4200000032
+  group: bgpgroup-frr-underlay
+  interface: interface-2tier-feleaf-02-ethernet-1-2
+  interfaceKind: DEFAULTINTERFACE
+  peerInterface: interface-2tier-feleaf-02-ethernet-1-2
+  ipv6Unicast:
+    enabled: false
+  l2VPNEVPN:
+    enabled: false
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPPeer
+metadata:
+  name: isl-unnumbered-ipv6-2tier-feleaf-02-ethernet-1-3-2tier-gpu-svr-01-eth12
+  namespace: ai-fabric-fe
+spec:
+  dynamicNeighbor: true
+  dynamicNeighborAllowedPeerAS:
+    - 4200000031
+  group: bgpgroup-frr-underlay
+  interface: interface-2tier-feleaf-02-ethernet-1-3
+  interfaceKind: DEFAULTINTERFACE
+  peerInterface: interface-2tier-feleaf-02-ethernet-1-3
+  ipv6Unicast:
+    enabled: false
+  l2VPNEVPN:
+    enabled: false
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPPeer
+metadata:
+  name: isl-unnumbered-ipv6-2tier-feleaf-02-ethernet-1-4-2tier-gpu-svr-02-eth12
+  namespace: ai-fabric-fe
+spec:
+  dynamicNeighbor: true
+  dynamicNeighborAllowedPeerAS:
+    - 4200000032
+  group: bgpgroup-frr-underlay
+  interface: interface-2tier-feleaf-02-ethernet-1-4
+  interfaceKind: DEFAULTINTERFACE
+  peerInterface: interface-2tier-feleaf-02-ethernet-1-4
+  ipv6Unicast:
+    enabled: false
+  l2VPNEVPN:
+    enabled: false
+---
+

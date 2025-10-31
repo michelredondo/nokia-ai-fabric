@@ -1,0 +1,208 @@
+apiVersion: services.eda.nokia.com/v1
+kind: VirtualNetwork
+metadata:
+  name: in-band-networks
+  namespace: ai-fabric-fe
+spec:
+  routers:
+    - name: vnet-router-mgmt
+      spec:
+        eviPool: evi-pool
+        tunnelIndexPool: tunnel-index-pool
+        type: EVPNVXLAN
+        vniPool: vni-pool
+        vni: 101
+        evi: 101
+        exportTarget: target:4266666666:101
+        importTarget: target:4266666666:101
+    - name: vnet-router-internet
+      spec:
+        eviPool: evi-pool
+        tunnelIndexPool: tunnel-index-pool
+        type: EVPNVXLAN
+        vniPool: vni-pool
+        vni: 102
+        evi: 102
+        exportTarget: target:4266666666:102
+        importTarget: target:4266666666:102
+    - name: vnet-router-private
+      spec:
+        eviPool: evi-pool
+        tunnelIndexPool: tunnel-index-pool
+        type: EVPNVXLAN
+        vniPool: vni-pool
+        vni: 103
+        evi: 103
+        exportTarget: target:4266666666:103
+        importTarget: target:4266666666:104
+  bridgeDomains:
+    - name: vnet-bridge-domain-mgmt
+      spec:
+        eviPool: evi-pool
+        tunnelIndexPool: tunnel-index-pool
+        type: EVPNVXLAN
+        vniPool: vni-pool
+        vni: 1
+        evi: 1
+        exportTarget: target:4266666666:1
+        importTarget: target:4266666666:1
+        macLearning: true
+        macDuplicationDetection:
+          enabled: true
+    - name: vnet-bridge-domain-mgmt2
+      spec:
+        eviPool: evi-pool
+        tunnelIndexPool: tunnel-index-pool
+        type: EVPNVXLAN
+        vniPool: vni-pool
+        vni: 11
+        evi: 11
+        exportTarget: target:4266666666:11
+        importTarget: target:4266666666:11
+        macLearning: true
+        macDuplicationDetection:
+          enabled: true
+    - name: vnet-bridge-domain-internet
+      spec:
+        eviPool: evi-pool
+        tunnelIndexPool: tunnel-index-pool
+        type: EVPNVXLAN
+        vniPool: vni-pool
+        vni: 2
+        evi: 2
+        exportTarget: target:4266666666:2
+        importTarget: target:4266666666:2
+        macLearning: true
+        macDuplicationDetection:
+          enabled: true
+    - name: vnet-bridge-domain-private
+      spec:
+        eviPool: evi-pool
+        tunnelIndexPool: tunnel-index-pool
+        type: EVPNVXLAN
+        vniPool: vni-pool
+        vni: 3
+        evi: 3
+        exportTarget: target:4266666666:3
+        importTarget: target:4266666666:3
+        macLearning: true
+        macDuplicationDetection:
+          enabled: true
+  vlans:
+    - name: vnet-vlan-1
+      spec:
+        bridgeDomain: vnet-bridge-domain-mgmt
+        interfaceSelector:
+          - eda.nokia.com/vrf-mgmt
+        uplink:
+          uplinkVLANID: pool
+        vlanID: '1'
+    - name: vnet-vlan-11
+      spec:
+        bridgeDomain: vnet-bridge-domain-mgmt2
+        interfaceSelector:
+          - eda.nokia.com/vrf-mgmt2
+        uplink:
+          uplinkVLANID: pool
+        vlanID: '11'
+    - name: vnet-vlan-2
+      spec:
+        bridgeDomain: vnet-bridge-domain-internet
+        interfaceSelector:
+          - eda.nokia.com/vrf-internet
+        uplink:
+          uplinkVLANID: pool
+        vlanID: '2'
+    - name: vnet-vlan-3
+      spec:
+        bridgeDomain: vnet-bridge-domain-private
+        interfaceSelector:
+          - eda.nokia.com/vrf-private
+        uplink:
+          uplinkVLANID: pool
+        vlanID: '3'
+  irbInterfaces:
+    - name: vnet-irb-mgmt
+      spec:
+        arpTimeout: 14400
+        bridgeDomain: vnet-bridge-domain-mgmt
+        evpnRouteAdvertisementType:
+          arpDynamic: true
+          arpStatic: true
+          ndDynamic: true
+          ndStatic: true
+        hostRoutePopulate:
+          dynamic: true
+          evpn: true
+          static: true
+        ipAddresses:
+          - ipv4Address:
+              ipPrefix: 10.1.1.254/24
+              primary: true
+        ipMTU: 1500
+        ipv4Parameters: {}
+        learnUnsolicited: BOTH
+        router: vnet-router-mgmt
+    - name: vnet-irb-mgmt2
+      spec:
+        arpTimeout: 14400
+        bridgeDomain: vnet-bridge-domain-mgmt2
+        evpnRouteAdvertisementType:
+          arpDynamic: true
+          arpStatic: true
+          ndDynamic: true
+          ndStatic: true
+        hostRoutePopulate:
+          dynamic: true
+          evpn: true
+          static: true
+        ipAddresses:
+          - ipv4Address:
+              ipPrefix: 10.1.2.254/24
+              primary: true
+        ipMTU: 1500
+        ipv4Parameters: {}
+        learnUnsolicited: BOTH
+        router: vnet-router-mgmt
+    - name: vnet-irb-internet
+      spec:
+        arpTimeout: 14400
+        bridgeDomain: vnet-bridge-domain-internet
+        evpnRouteAdvertisementType:
+          arpDynamic: true
+          arpStatic: true
+          ndDynamic: true
+          ndStatic: true
+        hostRoutePopulate:
+          dynamic: true
+          evpn: true
+          static: true
+        ipAddresses:
+          - ipv4Address:
+              ipPrefix: 10.2.1.254/24
+              primary: true
+        ipMTU: 1500
+        ipv4Parameters: {}
+        learnUnsolicited: BOTH
+        router: vnet-router-internet
+    - name: vnet-irb-private
+      spec:
+        arpTimeout: 14400
+        bridgeDomain: vnet-bridge-domain-private
+        evpnRouteAdvertisementType:
+          arpDynamic: true
+          arpStatic: true
+          ndDynamic: true
+          ndStatic: true
+        hostRoutePopulate:
+          dynamic: true
+          evpn: true
+          static: true
+        ipAddresses:
+          - ipv4Address:
+              ipPrefix: 10.3.1.254/24
+              primary: true
+        ipMTU: 1500
+        ipv4Parameters: {}
+        learnUnsolicited: BOTH
+        router: vnet-router-private

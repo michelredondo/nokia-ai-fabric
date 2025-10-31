@@ -1,0 +1,46 @@
+apiVersion: v1
+items:
+- apiVersion: config.eda.nokia.com/v1alpha1
+  kind: Configlet
+  metadata:
+    name: max-path
+    namespace: ai-fabric-fe
+  spec:
+    configs:
+    - config: |
+        {
+          "allow-multiple-as": true,
+          "ebgp": {
+            "maximum-paths": 4
+          },
+          "ibgp": {
+            "maximum-paths": 4
+          }
+        }
+      operation: Create
+      path: .network-instance{.name=="default"}.protocols.bgp.afi-safi{.afi-safi-name=="ipv6-unicast"}.multipath
+    - config: |
+        {
+          "allow-multiple-as": true,
+          "ebgp": {
+            "maximum-paths": 4
+          },
+          "ibgp": {
+            "maximum-paths": 4
+          }
+        }
+      operation: Create
+      path: .network-instance{.name=="default"}.protocols.bgp.afi-safi{.afi-safi-name=="ipv4-unicast"}.multipath
+    endpoints:
+    - 2tier-feleaf-01
+    - 2tier-feleaf-02
+    operatingSystem: srl
+    priority: 100
+    version: 25.7.2
+  status:
+    endpoints:
+    - 2tier-feleaf-02
+    - 2tier-feleaf-01
+kind: List
+metadata:
+  resourceVersion: ""

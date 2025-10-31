@@ -1,0 +1,20 @@
+apiVersion: core.eda.nokia.com/v1
+kind: NodeSecurityProfile
+metadata:
+  name: managed-tls
+  namespace: ai-fabric-fe
+spec:
+  nodeSelector:
+    - eda.nokia.com/security-profile=managed,containerlab=managedSrl
+    - eda.nokia.com/security-profile=managed,containerlab=managedSros
+    - eda.nokia.com/security-profile=managed,containerlab=managedEos
+  tls:
+    csrParams:
+      certificateValidity: 2160h
+      city: Sunnyvale
+      country: US
+      csrSuite: CSRSUITE_X509_KEY_TYPE_RSA_2048_SIGNATURE_ALGORITHM_SHA_2_256
+      org: NI
+      orgUnit: EDA
+      state: California
+    issuerRef: eda-node-issuer

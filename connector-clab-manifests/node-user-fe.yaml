@@ -1,0 +1,59 @@
+apiVersion: core.eda.nokia.com/v1
+kind: NodeUser
+metadata:
+  name: admin
+  namespace: ai-fabric-fe
+spec:
+  username: admin
+  password: NokiaSrl1!
+  groupBindings:
+    - groups:
+        - sudo
+      nodeSelector:
+        - containerlab=managedSrl
+  sshPublicKeys:
+  
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCpaMONMnY+gcqiTRAW9F23n7mhqwHxm/n1FdrzH0BrEAEQAPoVKuBhRDIuonjOlCkUvhB9OfrsKfZ11k74E+CQOrx1NJjxk80m5WAvRIwK966uRkqiGntrQ3IQU68j9oM88iHwq5rbFeedqy5kOd5eYpLMVk8CQWhYvGdGKBtUOvHEUyHpEPpDF7M/lYy5nbX6uNhzCLGEtcJrj1p/Y5RgWWlVVFqe0Bf69A3NP+Yi54CGbCP3JG1nZx1yPGqcOOwNiNT/kNiUKg69d7+k9bUAPB2scLnE8D70Yu6kdyPbAmlu0KeTD8kxRPRJmCP0aUIbEzvxJCXbqmScqYxn4zH8byqHiZAm8RtWPX75kKp7oN3uKGVXGfMBe9xbtmPJzqLRwQ+pUOkfhIn5zJXW0Wog5s8n787wbFy6Yof/PO+nB7bf+c0rHO0KPTYUwRy1Qc27aoVMSSQNV64Iua7qnarnLY+dfIDjDd7WAUGAMRs2nHFcubSF328GSRPcZf2zOG0=
+  
+    - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAqJL5KRdiSM2uridJmVZ2hJEx347gu4FKW/0icoJvuv6FBcHXBcUIcBjsXJRtU8wLWNw+InGuwcKq+10mPjcGLbQkgNcONhPR3N3hhG/5QlWrpm+uG+EyjmtGA9oDO9dgiL73+pSXxL7C7ZaW3vp/0Wn0h8Dv4yEir77mQVPPi6ezMQIa1bGOO/qUeITBaTbf4zVwF929oR4qDagrbHkyU75/rDz7/GoQx3DbN5WLo2dWhOgsAYVBkFptmJWrnARfy6nG9OYt8fIM8xS1AQzHIGMZbiXnIDxiVK5YomGZee73WsinyS7DX4zGNIp4danVTiwT18ap5cckoNwa+zcpnw==
+  
+---
+apiVersion: core.eda.nokia.com/v1
+kind: NodeUser
+metadata:
+  name: admin-sros
+  namespace: ai-fabric-fe
+spec:
+  username: admin
+  password: NokiaSros1!
+  groupBindings:
+    - groups:
+        - sudo
+      nodeSelector:
+        - containerlab=managedSros
+  sshPublicKeys:
+  
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCpaMONMnY+gcqiTRAW9F23n7mhqwHxm/n1FdrzH0BrEAEQAPoVKuBhRDIuonjOlCkUvhB9OfrsKfZ11k74E+CQOrx1NJjxk80m5WAvRIwK966uRkqiGntrQ3IQU68j9oM88iHwq5rbFeedqy5kOd5eYpLMVk8CQWhYvGdGKBtUOvHEUyHpEPpDF7M/lYy5nbX6uNhzCLGEtcJrj1p/Y5RgWWlVVFqe0Bf69A3NP+Yi54CGbCP3JG1nZx1yPGqcOOwNiNT/kNiUKg69d7+k9bUAPB2scLnE8D70Yu6kdyPbAmlu0KeTD8kxRPRJmCP0aUIbEzvxJCXbqmScqYxn4zH8byqHiZAm8RtWPX75kKp7oN3uKGVXGfMBe9xbtmPJzqLRwQ+pUOkfhIn5zJXW0Wog5s8n787wbFy6Yof/PO+nB7bf+c0rHO0KPTYUwRy1Qc27aoVMSSQNV64Iua7qnarnLY+dfIDjDd7WAUGAMRs2nHFcubSF328GSRPcZf2zOG0=
+  
+    - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAqJL5KRdiSM2uridJmVZ2hJEx347gu4FKW/0icoJvuv6FBcHXBcUIcBjsXJRtU8wLWNw+InGuwcKq+10mPjcGLbQkgNcONhPR3N3hhG/5QlWrpm+uG+EyjmtGA9oDO9dgiL73+pSXxL7C7ZaW3vp/0Wn0h8Dv4yEir77mQVPPi6ezMQIa1bGOO/qUeITBaTbf4zVwF929oR4qDagrbHkyU75/rDz7/GoQx3DbN5WLo2dWhOgsAYVBkFptmJWrnARfy6nG9OYt8fIM8xS1AQzHIGMZbiXnIDxiVK5YomGZee73WsinyS7DX4zGNIp4danVTiwT18ap5cckoNwa+zcpnw==
+  
+---
+apiVersion: core.eda.nokia.com/v1
+kind: NodeUser
+metadata:
+  name: admin-ceos
+  namespace: ai-fabric-fe
+spec:
+  username: admin
+  password: admin
+  groupBindings:
+    - groups:
+        - sudo
+      nodeSelector:
+        - containerlab=managedEos
+  sshPublicKeys:
+  
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCpaMONMnY+gcqiTRAW9F23n7mhqwHxm/n1FdrzH0BrEAEQAPoVKuBhRDIuonjOlCkUvhB9OfrsKfZ11k74E+CQOrx1NJjxk80m5WAvRIwK966uRkqiGntrQ3IQU68j9oM88iHwq5rbFeedqy5kOd5eYpLMVk8CQWhYvGdGKBtUOvHEUyHpEPpDF7M/lYy5nbX6uNhzCLGEtcJrj1p/Y5RgWWlVVFqe0Bf69A3NP+Yi54CGbCP3JG1nZx1yPGqcOOwNiNT/kNiUKg69d7+k9bUAPB2scLnE8D70Yu6kdyPbAmlu0KeTD8kxRPRJmCP0aUIbEzvxJCXbqmScqYxn4zH8byqHiZAm8RtWPX75kKp7oN3uKGVXGfMBe9xbtmPJzqLRwQ+pUOkfhIn5zJXW0Wog5s8n787wbFy6Yof/PO+nB7bf+c0rHO0KPTYUwRy1Qc27aoVMSSQNV64Iua7qnarnLY+dfIDjDd7WAUGAMRs2nHFcubSF328GSRPcZf2zOG0=
+  
+    - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAqJL5KRdiSM2uridJmVZ2hJEx347gu4FKW/0icoJvuv6FBcHXBcUIcBjsXJRtU8wLWNw+InGuwcKq+10mPjcGLbQkgNcONhPR3N3hhG/5QlWrpm+uG+EyjmtGA9oDO9dgiL73+pSXxL7C7ZaW3vp/0Wn0h8Dv4yEir77mQVPPi6ezMQIa1bGOO/qUeITBaTbf4zVwF929oR4qDagrbHkyU75/rDz7/GoQx3DbN5WLo2dWhOgsAYVBkFptmJWrnARfy6nG9OYt8fIM8xS1AQzHIGMZbiXnIDxiVK5YomGZee73WsinyS7DX4zGNIp4danVTiwT18ap5cckoNwa+zcpnw==
+  

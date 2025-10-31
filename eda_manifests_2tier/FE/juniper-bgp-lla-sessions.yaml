@@ -1,0 +1,105 @@
+apiVersion: routingpolicies.eda.nokia.com/v1alpha1
+kind: PrefixSet
+metadata:
+  name: juniper-underlay
+  namespace: ai-fabric-fe
+spec:
+  prefix:
+    - endRange: 32
+      prefix: 10.13.58.0/24
+      startRange: 32
+---
+apiVersion: routingpolicies.eda.nokia.com/v1alpha1
+kind: Policy
+metadata:
+  name: export-bgpgroup-juniper-underlay
+  namespace: ai-fabric-fe
+spec:
+  defaultAction:
+    policyResult: reject
+  statement:
+    - action:
+        bgp:
+          localPreference: 100
+        policyResult: accept
+      match:
+        prefixSet: juniper-underlay
+        protocol: LOCAL
+      name: '10'
+    - action:
+        bgp:
+          localPreference: 100
+        policyResult: accept
+      match:
+        protocol: BGP
+      name: '15'
+    - action:
+        bgp:
+          localPreference: 100
+        policyResult: accept
+      match:
+        protocol: AGGREGATE
+      name: '20'
+---
+apiVersion: routingpolicies.eda.nokia.com/v1alpha1
+kind: Policy
+metadata:
+  name: import-bgpgroup-juniper-underlay
+  namespace: ai-fabric-fe
+spec:
+  defaultAction:
+    policyResult: reject
+  statement:
+    - action:
+        bgp:
+          localPreference: 100
+        policyResult: accept
+      match:
+        protocol: BGP
+      name: '10'
+---
+apiVersion: routing.eda.nokia.com/v1alpha1
+kind: DefaultInterface
+metadata:
+  namespace: ai-fabric-fe
+  name: interface-2tier-fespine-01-ethernet-1-31
+spec:
+  defaultRouter: router-2tier-fespine-01
+  vlanID: 1
+  interface: 2tier-fespine-01-ethernet-1-31
+  ipMTU: 9200
+  unnumbered: IPV6
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPGroup
+metadata:
+  name: bgpgroup-juniper-underlay
+  namespace: ai-fabric-fe
+spec:
+  exportPolicy:
+    - export-bgpgroup-juniper-underlay
+  importPolicy:
+    - import-bgpgroup-juniper-underlay
+  ipv4Unicast:
+    advertiseIPV6NextHops: true
+    enabled: true
+    receiveIPV6NextHops: true
+  ipv6Unicast:
+    enabled: true
+---
+apiVersion: protocols.eda.nokia.com/v1
+kind: DefaultBGPPeer
+metadata:
+  name: isl-unnumbered-ipv6-2tier-fespine-01-ethernet-1-31-juniper-ge-0-0-0
+  namespace: ai-fabric-fe
+spec:
+  dynamicNeighbor: true
+  dynamicNeighborAllowedPeerAS:
+    - 4200000041
+  group: bgpgroup-juniper-underlay
+  interface: interface-2tier-fespine-01-ethernet-1-31
+  interfaceKind: DEFAULTINTERFACE
+  peerInterface: interface-2tier-fespine-01-ethernet-1-31
+  l2VPNEVPN:
+    enabled: false
+---
