@@ -14,8 +14,7 @@ topology:
       image: quay.io/frrouting/frr:10.1.3
       type: linux
     juniper_vjunosswitch:
-      #image: juniper_vjunos-switch:24.4R1.9
-      image: registry.srlinux.dev/pub/juniper_vjunos-switch:24.4R1.9
+      image: juniper_vjunos-switch:24.4R1.9
 
   nodes:
     # 3xIXR H5 switches are members of AI Backend Fabric
