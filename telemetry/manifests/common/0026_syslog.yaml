@@ -1,0 +1,71 @@
+apiVersion: config.eda.nokia.com/v1alpha1
+kind: Configlet
+metadata:
+  name: syslog-config
+  namespace: ai-fabric-be
+spec:
+  configs:
+  - config: |-
+      {
+          "logging": {
+              "network-instance": "mgmt",
+              "remote-server": [
+                  {
+                      "host": "172.18.255.3",
+                      "transport": "udp",
+                      "remote-port": 1514,
+                      "facility": [
+                          {
+                              "facility-name": "local6",
+                              "priority": {
+                                  "match-above": "informational"
+                              }
+                          }
+                      ]
+                  }
+              ]
+          }
+      }
+    operation: Update
+    path: .system
+  endpointSelector:
+  - eda.nokia.com/role=leaf
+  - eda.nokia.com/role=spine
+  operatingSystem: srl
+  priority: 0
+---
+apiVersion: config.eda.nokia.com/v1alpha1
+kind: Configlet
+metadata:
+  name: syslog-config
+  namespace: ai-fabric-fe
+spec:
+  configs:
+  - config: |-
+      {
+          "logging": {
+              "network-instance": "mgmt",
+              "remote-server": [
+                  {
+                      "host": "172.18.255.3",
+                      "transport": "udp",
+                      "remote-port": 1514,
+                      "facility": [
+                          {
+                              "facility-name": "local6",
+                              "priority": {
+                                  "match-above": "informational"
+                              }
+                          }
+                      ]
+                  }
+              ]
+          }
+      }
+    operation: Update
+    path: .system
+  endpointSelector:
+  - eda.nokia.com/role=leaf
+  - eda.nokia.com/role=spine
+  operatingSystem: srl
+  priority: 0

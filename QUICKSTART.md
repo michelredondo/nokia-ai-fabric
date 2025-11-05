@@ -199,3 +199,159 @@ edactl delete namespace ai-fabric-be
 edactl delete namespace ai-fabric-fe
 clab destroy -t ai-fabric-2tier.yaml --cleanup
 ```
+
+
+## 🛰️ Telemetry (Optional)
+
+### How to Install the Telemetry Dashboard
+
+> **Note:**
+> The following scripts and approach are based on:
+> [https://github.com/eda-labs/eda-telemetry-lab.git](https://github.com/eda-labs/eda-telemetry-lab.git)
+
+---
+
+### ✅ Requirements
+
+- **EDA version:** `25.8.2`
+- **kubectl**
+  (You may copy from the EDA playground clone project: `~/playground/tools/`)
+- **helm**
+  (You may copy from the EDA playground clone project: `~/playground/tools/`)
+- **Internet access** to `ghcr.io` images
+- **Pre-installed EDA backend and frontend objects** (mainly namespaces)
+
+---
+
+### 🧩 Verify EDA Installation
+
+Before proceeding with the telemetry lab deployment, ensure you have a working EDA installation.
+You can verify it by running:
+
+```bash
+kubectl -n eda-system get engineconfig engine-config \
+-o jsonpath='{.status.run-status}{"\n"}'
+```
+## ⚙️ Installation Steps
+
+1. Change directory to the telemetry folder:
+   ```bash
+   cd ./telemetry
+   ```
+2. Execute the initialization script:
+   ```bash
+   EDA_URL=https://test.eda.com:9443 ./init.sh
+   ```
+3. Wait for successful completion of the deployment process.
+
+4. Once completed, access the Grafana and Prometheus dashboards using the following URLs:
+
+  - **Grafana:**
+  https://test.eda.com:9443/core/httpproxy/v1/grafana/d/Telemetry_Playground/
+
+  - **Prometheus:**
+  https://test.eda.com:9443/core/httpproxy/v1/prometheus/query
+
+5.- End.
+
+## ⚙️ Removing the Telemetry Stack
+   ```bash
+   helm uninstall telemetry-stack -n eda-telemetry
+   ```
+
+# How to Create Your Own Grafana Container Imagei(optional)
+
+If you need to make changes to your Grafana dashboard and want to automate the process, follow the steps below                                            to build and deploy your customized Grafana container image.
+
+---
+
+## 1. Change Directory to the Image Folder
+```bash
+cd ./image
+```
+
+---
+
+## 2. Add Your Grafana Dashboard JSON Model
+Copy and paste your Grafana dashboard JSON model file (from **Dashboard → Settings → JSON Model**) into:
+```
+./image/files/st.json
+```
+
+---
+
+## 3. Build a New Grafana Container Image
+Create a new Docker image with your desired tag:
+```bash
+docker build -t grafana/grafana:test .
+```
+
+---
+
+## 4. Keep the Image Locally or Push It to a Registry
+
+### Option A: Local (Kind Cluster)
+If you are using **Kind**, you may need to load the image into your Kubernetes cluster:
+```bash
+kind load docker-image grafana/grafana:test --name=eda-demo
+```
+
+### Option B: GitHub Container Registry
+If you prefer to push the image to GitHub’s registry, run:
+```bash
+docker tag grafana/grafana:test ghcr.io/guillermomm/grafana/grafana:12.0.2
+docker push ghcr.io/guillermomm/grafana/grafana:12.0.2
+```
+
+---
+
+## 5. Update the Helm Deployment Image
+Modify the Grafana deployment file:
+```
+.telemetry/charts/telemetry-stack/templates/deployment.yaml
+```
+
+Update the image section as shown below:
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  labels:
+    app: telemetry-stack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      securityContext:
+        fsGroup: 472
+        runAsUser: 472
+        runAsGroup: 472
+      containers:
+        - name: grafana
+          # image: grafana/grafana:test
+          image: ghcr.io/guillermomm/grafana/grafana:12.0.2
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+```
+
+---
+
+## 6. Reinstall the Telemetry Stack
+Uninstall and reinstall your telemetry stack to apply the changes:
+```bash
+helm uninstall telemetry-stack -n eda-telemetry
+EDA_URL=https://test.eda.com:9443 ./init.sh
+```
+
+---
+
+## 7. Done!
+Your custom Grafana container image should now be running with your updated dashboard configuration.
+
+

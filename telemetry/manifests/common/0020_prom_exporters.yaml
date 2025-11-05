@@ -1,0 +1,202 @@
+apiVersion: prom.eda.nokia.com/v1alpha1
+kind: Export
+metadata:
+  name: apps
+  namespace: eda-system
+spec:
+  exports:
+    - path: .namespace.node.srl.system.app-management.application
+      metricName:
+        regex: namespace_(.+)
+        replacement: $1
+
+---
+apiVersion: prom.eda.nokia.com/v1alpha1
+kind: Export
+metadata:
+  name: bgp-stats
+  namespace: eda-system
+spec:
+  exports:
+    - path: .namespace.node.srl.network-instance.protocols.bgp.statistics
+      metricName:
+        regex: namespace_(.+)
+        replacement: $1
+
+---
+apiVersion: prom.eda.nokia.com/v1alpha1
+kind: Export
+metadata:
+  name: cpu
+  namespace: eda-system
+spec:
+  exports:
+    - path: .namespace.node.srl.platform.control.cpu.total
+      metricName:
+        regex: namespace_(.+)
+        replacement: $1
+
+---
+apiVersion: prom.eda.nokia.com/v1alpha1
+kind: Export
+metadata:
+  name: default-bgp-group-status
+  namespace: eda-system
+spec:
+  exports:
+    - path: >-
+        .namespace.resources.cr.protocols_eda_nokia_com.v1.defaultbgpgroup
+      fields:
+        - status.operationalState
+        - status.numPeers
+        - status.numPeersOperDown
+      metricName:
+        regex: namespace_(.+)
+        replacement: $1
+
+---
+apiVersion: prom.eda.nokia.com/v1alpha1
+kind: Export
+metadata:
+  name: default-router-status
+  namespace: eda-system
+spec:
+  exports:
+    - path: >-
+        .namespace.resources.cr.routing_eda_nokia_com.v1alpha1.defaultrouter
+      fields:
+        - status.health
+        - status.operationalState
+      metricName:
+        regex: namespace_(.+)
+        replacement: $1
+
+---
+apiVersion: prom.eda.nokia.com/v1alpha1
+kind: Export
+metadata:
+  name: interface
+  namespace: eda-system
+spec:
+  exports:
+    - path: .namespace.node.srl.interface
+      mappings:
+        # admin state mappings
+        - source: enable
+          destination: "1"
+        - source: disable
+          destination: "0"
+        # oper state mappings
+        - source: up
+          destination: "1"
+        - source: down
+          destination: "0"
+      metricName:
+        regex: namespace_(.+)
+        replacement: $1
+
+---
+apiVersion: prom.eda.nokia.com/v1alpha1
+kind: Export
+metadata:
+  name: interface-traffic-rate
+  namespace: eda-system
+spec:
+  exports:
+    - path: .namespace.node.srl.interface.traffic-rate
+      metricName:
+        regex: namespace_(.+)
+        replacement: $1
+
+---
+apiVersion: prom.eda.nokia.com/v1alpha1
+kind: Export
+metadata:
+  name: memory
+  namespace: eda-system
+spec:
+  exports:
+    - path: .namespace.node.srl.platform.control.memory
+      metricName:
+        regex: namespace_(.+)
+        replacement: $1
+
+---
+apiVersion: prom.eda.nokia.com/v1alpha1
+kind: Export
+metadata:
+  name: network-instance
+  namespace: eda-system
+spec:
+  exports:
+    - path: .namespace.node.srl.network-instance
+      mappings:
+        - destination: "1"
+          source: up
+        - destination: "0"
+          source: down
+      metricName:
+        regex: namespace_(.+)
+        replacement: $1
+
+---
+apiVersion: prom.eda.nokia.com/v1alpha1
+kind: Export
+metadata:
+  name: ipv4-statistics
+  namespace: eda-system
+spec:
+  exports:
+    - path: .namespace.node.srl.network-instance.route-table.ipv4-unicast.statistics
+      metricName:
+        regex: namespace_(.+)
+        replacement: $1
+
+---
+apiVersion: prom.eda.nokia.com/v1alpha1
+kind: Export
+metadata:
+  name: fabric-status
+  namespace: eda-system
+spec:
+  exports:
+    - path: >-
+        .namespace.resources.cr.fabrics_eda_nokia_com.v1alpha1.fabric
+      fields:
+        - status.health
+        - status.operationalState
+      metricName:
+        regex: namespace_(.+)
+        replacement: $1
+      mappings:
+        - source: up
+          destination: "1"
+        - source: down
+          destination: "0"
+        - source: degraded
+          destination: "2"
+
+---
+apiVersion: prom.eda.nokia.com/v1alpha1
+kind: Export
+metadata:
+  name: vnet-status
+  namespace: eda-system
+spec:
+  exports:
+    - path: >-
+        .namespace.resources.cr.services_eda_nokia_com.v1.virtualnetwork
+      fields:
+        - status.operationalState
+      metricName:
+        regex: namespace_(.+)
+        replacement: $1
+      mappings:
+        - source: up
+          destination: "1"
+        - source: down
+          destination: "0"
+        - source: degraded
+          destination: "2"
+        - source: unknown
+          destination: "3"

@@ -1,0 +1,2971 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "prometheus"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "panels": [],
+      "title": "DC Fabric",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "Fabric's health score",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "scaleDistribution": {
+              "type": "linear"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 10,
+        "x": 0,
+        "y": 1
+      },
+      "id": 55,
+      "options": {
+        "calculate": false,
+        "cellGap": 1,
+        "color": {
+          "exponent": 0.5,
+          "fill": "dark-orange",
+          "max": 100,
+          "min": 50,
+          "mode": "scheme",
+          "reverse": true,
+          "scale": "exponential",
+          "scheme": "RdYlGn",
+          "steps": 43
+        },
+        "exemplars": {
+          "color": "green"
+        },
+        "filterValues": {
+          "le": 1e-9
+        },
+        "legend": {
+          "show": false
+        },
+        "rowsFrame": {
+          "layout": "auto"
+        },
+        "tooltip": {
+          "mode": "single",
+          "showColorScale": false,
+          "yHistogram": false
+        },
+        "yAxis": {
+          "axisPlacement": "left",
+          "reverse": false
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "resources_cr_fabrics_eda_nokia_com_v1alpha1_fabric_status_health{namespace_name='$namespace'}",
+          "instant": false,
+          "legendFormat": " ",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Fabric Health",
+      "type": "heatmap"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 14,
+        "x": 10,
+        "y": 1
+      },
+      "id": 39,
+      "interval": "1s",
+      "options": {
+        "animationControlEnabled": true,
+        "animationsEnabled": true,
+        "debuggingCtr": {
+          "colorsCtr": 1,
+          "dataCtr": 1,
+          "displaySvgCtr": 0,
+          "mappingsCtr": 1,
+          "timingsCtr": 0
+        },
+        "highlighterEnabled": true,
+        "highlighterSelection": "",
+        "panZoomEnabled": false,
+        "panelConfig": "---\nanchors:\n  thresholds-operstate: &thresholds-operstate\n    - color: \"#FF3154\" # red\n      level: 0\n    - color: \"#4BDD33\" # green\n      level: 1\n  thresholds-traffic: &thresholds-traffic\n    - color: \"#bec8d2\" # grey\n      level: 0\n    - color: \"#4BDD33\" # green\n      level: 200000    # 200 Kbps = 300,000 bps\n    - color: \"#FFFF00\" # yellow\n      level: 500000    # 0.5 Mbps = 500000  bps\n    - color: \"#FF8000\" # orange\n      level: 1000000   # 1 Mbps = 1,000,000 bps\n    - color: \"#FF3154\" # red\n      level: 2000000   # 2 Mbps = 2,000,000 bps\n  label-config: &label-config\n    separator: replace\n    units: bps\n    decimalPoints: 1\n\ncellIdPreamble: cell-\ncells:\n  spine1:ethernet-1/1:leaf1:ethernet-1/49:\n    dataRef: oper-state:spine1:ethernet-1/1\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:spine1:ethernet-1/1:leaf1:ethernet-1/49:\n    dataRef: spine1:ethernet-1/1:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  spine1:ethernet-1/2:leaf2:ethernet-1/49:\n    dataRef: oper-state:spine1:ethernet-1/2\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:spine1:ethernet-1/2:leaf2:ethernet-1/49:\n    dataRef: spine1:ethernet-1/2:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  spine1:ethernet-1/3:leaf3:ethernet-1/49:\n    dataRef: oper-state:spine1:ethernet-1/3\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:spine1:ethernet-1/3:leaf3:ethernet-1/49:\n    dataRef: spine1:ethernet-1/3:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  spine1:ethernet-1/4:leaf4:ethernet-1/49:\n    dataRef: oper-state:spine1:ethernet-1/4\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:spine1:ethernet-1/4:leaf4:ethernet-1/49:\n    dataRef: spine1:ethernet-1/4:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  spine2:ethernet-1/1:leaf1:ethernet-1/50:\n    dataRef: oper-state:spine2:ethernet-1/1\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:spine2:ethernet-1/1:leaf1:ethernet-1/50:\n    dataRef: spine2:ethernet-1/1:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  spine2:ethernet-1/2:leaf2:ethernet-1/50:\n    dataRef: oper-state:spine2:ethernet-1/2\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:spine2:ethernet-1/2:leaf2:ethernet-1/50:\n    dataRef: spine2:ethernet-1/2:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  spine2:ethernet-1/3:leaf3:ethernet-1/50:\n    dataRef: oper-state:spine2:ethernet-1/3\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:spine2:ethernet-1/3:leaf3:ethernet-1/50:\n    dataRef: spine2:ethernet-1/3:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  spine2:ethernet-1/4:leaf4:ethernet-1/50:\n    dataRef: oper-state:spine2:ethernet-1/4\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:spine2:ethernet-1/4:leaf4:ethernet-1/50:\n    dataRef: spine2:ethernet-1/4:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf1:ethernet-1/49:spine1:ethernet-1/1:\n    dataRef: oper-state:leaf1:ethernet-1/49\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf1:ethernet-1/49:spine1:ethernet-1/1:\n    dataRef: leaf1:ethernet-1/49:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf1:ethernet-1/50:spine2:ethernet-1/1:\n    dataRef: oper-state:leaf1:ethernet-1/50\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf1:ethernet-1/50:spine2:ethernet-1/1:\n    dataRef: leaf1:ethernet-1/50:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf1:ethernet-1/1:client1:eth1:\n    dataRef: oper-state:leaf1:ethernet-1/1\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf1:ethernet-1/1:client1:eth1:\n    dataRef: leaf1:ethernet-1/1:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf1:ethernet-1/2:client2:eth1:\n    dataRef: oper-state:leaf1:ethernet-1/2\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf1:ethernet-1/2:client2:eth1:\n    dataRef: leaf1:ethernet-1/2:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf2:ethernet-1/49:spine1:ethernet-1/2:\n    dataRef: oper-state:leaf2:ethernet-1/49\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf2:ethernet-1/49:spine1:ethernet-1/2:\n    dataRef: leaf2:ethernet-1/49:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf2:ethernet-1/50:spine2:ethernet-1/2:\n    dataRef: oper-state:leaf2:ethernet-1/50\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf2:ethernet-1/50:spine2:ethernet-1/2:\n    dataRef: leaf2:ethernet-1/50:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf2:ethernet-1/1:client1:eth2:\n    dataRef: oper-state:leaf2:ethernet-1/1\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf2:ethernet-1/1:client1:eth2:\n    dataRef: leaf2:ethernet-1/1:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf2:ethernet-1/2:client2:eth2:\n    dataRef: oper-state:leaf2:ethernet-1/2\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf2:ethernet-1/2:client2:eth2:\n    dataRef: leaf2:ethernet-1/2:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf3:ethernet-1/49:spine1:ethernet-1/3:\n    dataRef: oper-state:leaf3:ethernet-1/49\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf3:ethernet-1/49:spine1:ethernet-1/3:\n    dataRef: leaf3:ethernet-1/49:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf3:ethernet-1/50:spine2:ethernet-1/3:\n    dataRef: oper-state:leaf3:ethernet-1/50\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf3:ethernet-1/50:spine2:ethernet-1/3:\n    dataRef: leaf3:ethernet-1/50:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf3:ethernet-1/1:client3:eth1:\n    dataRef: oper-state:leaf3:ethernet-1/1\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf3:ethernet-1/1:client3:eth1:\n    dataRef: leaf3:ethernet-1/1:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf3:ethernet-1/2:client4:eth1:\n    dataRef: oper-state:leaf3:ethernet-1/2\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf3:ethernet-1/2:client4:eth1:\n    dataRef: leaf3:ethernet-1/2:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf4:ethernet-1/49:spine1:ethernet-1/4:\n    dataRef: oper-state:leaf4:ethernet-1/49\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf4:ethernet-1/49:spine1:ethernet-1/4:\n    dataRef: leaf4:ethernet-1/49:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf4:ethernet-1/50:spine2:ethernet-1/4:\n    dataRef: oper-state:leaf4:ethernet-1/50\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf4:ethernet-1/50:spine2:ethernet-1/4:\n    dataRef: leaf4:ethernet-1/50:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf4:ethernet-1/1:client3:eth2:\n    dataRef: oper-state:leaf4:ethernet-1/1\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf4:ethernet-1/1:client3:eth2:\n    dataRef: leaf4:ethernet-1/1:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  leaf4:ethernet-1/2:client4:eth2:\n    dataRef: oper-state:leaf4:ethernet-1/2\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:leaf4:ethernet-1/2:client4:eth2:\n    dataRef: leaf4:ethernet-1/2:out\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  client1:eth1:leaf1:ethernet-1/1:\n    dataRef: oper-state:client1:eth1\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:client1:eth1:leaf1:ethernet-1/1:\n    dataRef: leaf1:ethernet-1/1:in\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  client1:eth2:leaf2:ethernet-1/1:\n    dataRef: oper-state:client1:eth2\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:client1:eth2:leaf2:ethernet-1/1:\n    dataRef: leaf2:ethernet-1/1:in\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  client2:eth1:leaf1:ethernet-1/2:\n    dataRef: oper-state:client2:eth1\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:client2:eth1:leaf1:ethernet-1/2:\n    dataRef: leaf1:ethernet-1/2:in\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  client2:eth2:leaf2:ethernet-1/2:\n    dataRef: oper-state:client2:eth2\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:client2:eth2:leaf2:ethernet-1/2:\n    dataRef: leaf2:ethernet-1/2:in\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  client3:eth1:leaf3:ethernet-1/1:\n    dataRef: oper-state:client3:eth1\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:client3:eth1:leaf3:ethernet-1/1:\n    dataRef: leaf3:ethernet-1/1:in\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  client3:eth2:leaf4:ethernet-1/1:\n    dataRef: oper-state:client3:eth2\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:client3:eth2:leaf4:ethernet-1/1:\n    dataRef: leaf4:ethernet-1/1:in\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  client4:eth1:leaf3:ethernet-1/2:\n    dataRef: oper-state:client4:eth1\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:client4:eth1:leaf3:ethernet-1/2:\n    dataRef: leaf3:ethernet-1/2:in\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic\n  client4:eth2:leaf4:ethernet-1/2:\n    dataRef: oper-state:client4:eth2\n    fillColor:\n      thresholds: *thresholds-operstate\n  link_id:client4:eth2:leaf4:ethernet-1/2:\n    dataRef: leaf4:ethernet-1/2:in\n    label: *label-config\n    strokeColor:\n      thresholds: *thresholds-traffic",
+        "siteConfig": "",
+        "svg": "https://raw.githubusercontent.com/eda-labs/eda-telemetry-lab/refs/heads/main/eda-telemetry-lab.svg",
+        "testDataEnabled": false,
+        "timeSliderEnabled": false,
+        "timeSliderMode": "local"
+      },
+      "pluginVersion": "1.18.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "node_srl_interface_oper_state{namespace_name='$namespace'}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "interval": "1s",
+          "legendFormat": "oper-state:{{node_name}}:{{interface_name}}",
+          "range": false,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "last_over_time(node_srl_interface_traffic_rate_out_bps{namespace_name='$namespace'}[20s])",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "interval": "1s",
+          "legendFormat": "{{node_name}}:{{interface_name}}:out",
+          "range": false,
+          "refId": "B",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "last_over_time(node_srl_interface_traffic_rate_in_bps{namespace_name='$namespace'}[20s])",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "interval": "1s",
+          "legendFormat": "{{node_name}}:{{interface_name}}:in",
+          "range": false,
+          "refId": "C",
+          "useBackend": false
+        }
+      ],
+      "title": "Network Telemetry",
+      "type": "andrewbmchugh-flow-panel"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "Operational state of the services",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "fieldMinMax": false,
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "DOWN"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "UP"
+                },
+                "2": {
+                  "color": "orange",
+                  "index": 2,
+                  "text": "DEGRADED"
+                },
+                "3": {
+                  "color": "#808080",
+                  "index": 3,
+                  "text": "UNKNOWN"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 10,
+        "x": 0,
+        "y": 4
+      },
+      "id": 57,
+      "options": {
+        "alignValue": "center",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "always",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "resources_cr_services_eda_nokia_com_v1_virtualnetwork_status_operationalState",
+          "instant": false,
+          "legendFormat": " {{virtualnetwork_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Services",
+      "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "red"
+              },
+              {
+                "color": "#EAB839",
+                "value": 50
+              },
+              {
+                "color": "green",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 8
+      },
+      "id": 49,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "resources_cr_protocols_eda_nokia_com_v1_defaultbgpgroup_status_numPeers{namespace_name='$namespace'} - resources_cr_protocols_eda_nokia_com_v1_defaultbgpgroup_status_numPeersOperDown\n{namespace_name='$namespace'}",
+          "instant": false,
+          "legendFormat": "Oper Up",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "resources_cr_protocols_eda_nokia_com_v1_defaultbgpgroup_status_numPeers{namespace_name='$namespace'}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Total Peers",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "BGP Peers",
+      "transformations": [
+        {
+          "id": "configFromData",
+          "options": {
+            "configRefId": "B",
+            "mappings": [
+              {
+                "fieldName": "Total Peers",
+                "handlerKey": "max",
+                "reducerId": "lastNotNull"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "1h average uptime measured as a %",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 100,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 5,
+        "y": 8
+      },
+      "id": 59,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "avg(\n  (node_srl_interface_oper_state{node_name=~\"leaf.+\",interface_name=~\"ethernet-1/(1|2|49|50)\",namespace_name=\"$namespace\"} == bool 1)\n* on (node_name, interface_name)\n  (node_srl_interface_admin_state{node_name=~\"leaf.+\",interface_name=~\"ethernet-1/(1|2|49|50)\",namespace_name=\"$namespace\"} == bool 1)\n) * 100",
+          "legendFormat": "health %",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Interfaces Health",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "thresholdsStyle": {
+              "mode": "color",
+              "thresholds": []
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 2,
+        "x": 0,
+        "y": 12
+      },
+      "id": 53,
+      "options": {
+        "alertCustomMessage": "",
+        "alwaysVisibleFilter": false,
+        "autoScroll": false,
+        "browserTabNamePattern": "",
+        "collapsedByDefault": false,
+        "customValue": false,
+        "displayMode": "button",
+        "emptyValue": false,
+        "favorites": {
+          "enabled": false,
+          "storage": "browser"
+        },
+        "filter": false,
+        "groupSelection": false,
+        "header": false,
+        "isMinimizeForTable": false,
+        "isMinimizeViewShowCustomIcon": false,
+        "isPinTabsEnabled": false,
+        "isUseLocalTime": false,
+        "minimizeOutputFormat": "text",
+        "minimizeViewCustomIcon": "",
+        "minimizeViewNativeIcon": "gf-movepane-right",
+        "padding": 10,
+        "persistent": false,
+        "requestLatency": "low",
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "selectedValues": {
+          "maxCount": 0,
+          "showSelected": false
+        },
+        "showGroupTotal": false,
+        "showLabel": false,
+        "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
+        "statusSort": false,
+        "sticky": false,
+        "tabsInOrder": true,
+        "variable": "NE_top",
+        "wordBreak": "normal"
+      },
+      "pluginVersion": "4.1.0",
+      "targets": [
+        {
+          "refId": "A"
+        }
+      ],
+      "title": "Node Selection",
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 3000000,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 8,
+        "x": 2,
+        "y": 12
+      },
+      "id": 22,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "node_srl_interface_traffic_rate_in_bps{node_name=~'$NE_top', namespace_name='$namespace'}",
+          "instant": false,
+          "legendFormat": "{{node_name}}:{{interface_name}}:in",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "node_srl_interface_traffic_rate_out_bps{node_name=~'$NE_top', namespace_name='$namespace'}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{node_name}}:{{interface_name}}:out",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Nodes Throughput",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 3000000,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 38,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 14,
+        "x": 10,
+        "y": 19
+      },
+      "id": 56,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(node_srl_interface_traffic_rate_in_bps)",
+          "instant": false,
+          "legendFormat": "in",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(node_srl_interface_traffic_rate_out_bps)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "out",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Fabric Throughput",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "red"
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "#EAB839",
+                "value": 50
+              },
+              {
+                "color": "green",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "id": 48,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {}
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "resources_cr_routing_eda_nokia_com_v1alpha1_defaultrouter_status_health{namespace_name='$namespace'}",
+          "instant": false,
+          "legendFormat": "{{defaultrouter_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Default VRF Health",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "router-(.*?)",
+            "renamePattern": "$1"
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "id": 41,
+      "panels": [],
+      "title": "EDA Logs",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": []
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "major"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "warning"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 0,
+        "y": 29
+      },
+      "id": 42,
+      "options": {
+        "displayLabels": [
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true,
+          "values": []
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "{component=\"kafka-alarms\", namespace_name=\"$namespace\"} | json",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Alarms",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "replace": true,
+            "source": "Line"
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "severity"
+              ],
+              "reducer": "count"
+            }
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Count": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "aggregate"
+              },
+              "severity": {
+                "aggregations": [],
+                "operation": "groupby"
+              }
+            }
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "barWidthFactor": 0.8,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 0,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 7,
+        "x": 5,
+        "y": 29
+      },
+      "id": 43,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "count_over_time({component=\"kafka-deviations\", namespace_name=\"$namespace\"} | json | keep spec_nodeEndpoint [1m]  )",
+          "legendFormat": "",
+          "queryType": "range",
+          "refId": "A",
+          "step": ""
+        }
+      ],
+      "title": "Deviations over time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "barWidthFactor": 0.8,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 0,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "fieldMinMax": false,
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 29
+      },
+      "id": 44,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "count_over_time({component=\"kafka-alarms\", namespace_name=\"$namespace\"} | json| keep type [1m])",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Alarms over time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 35
+      },
+      "id": 40,
+      "options": {
+        "dedupStrategy": "none",
+        "enableInfiniteScrolling": false,
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": true,
+        "sortOrder": "Ascending",
+        "wrapLogMessage": false
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "direction": "forward",
+          "editorMode": "code",
+          "expr": "{component=\"kafka-alarms\", namespace_name=\"$namespace\"} | json | line_format \"{{if eq .cleared \\\"true\\\"}}-- CLEARED -- {{end}}Severity: {{.severity}} Name: {{.alarm_name}} Description: {{.description}}\"",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Alarms",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 45
+      },
+      "id": 45,
+      "options": {
+        "dedupStrategy": "none",
+        "enableInfiniteScrolling": false,
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": true,
+        "sortOrder": "Ascending",
+        "wrapLogMessage": false
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "{component=\"kafka-deviations\", namespace_name=\"$namespace\"} | json | line_format \"Deviation detected on {{.spec_nodeEndpoint}} {{.spec_path}}\"",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Deviations",
+      "type": "logs"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 53
+      },
+      "id": 24,
+      "panels": [],
+      "title": "$NE",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "thresholdsStyle": {
+              "mode": "color",
+              "thresholds": []
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 0,
+        "y": 54
+      },
+      "id": 47,
+      "options": {
+        "alertCustomMessage": "",
+        "alwaysVisibleFilter": false,
+        "autoScroll": false,
+        "browserTabNamePattern": "",
+        "collapsedByDefault": false,
+        "customValue": false,
+        "displayMode": "minimize",
+        "emptyValue": false,
+        "favorites": {
+          "enabled": false,
+          "storage": "browser"
+        },
+        "filter": false,
+        "groupSelection": false,
+        "header": true,
+        "isMinimizeForTable": false,
+        "isMinimizeViewShowCustomIcon": false,
+        "isPinTabsEnabled": false,
+        "isUseLocalTime": false,
+        "minimizeOutputFormat": "text",
+        "minimizeViewCustomIcon": "",
+        "minimizeViewNativeIcon": "gf-movepane-right",
+        "padding": 10,
+        "persistent": false,
+        "requestLatency": "low",
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "selectedValues": {
+          "maxCount": 0,
+          "showSelected": false
+        },
+        "showGroupTotal": false,
+        "showLabel": false,
+        "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
+        "statusSort": false,
+        "sticky": false,
+        "tabsInOrder": true,
+        "variable": "NE",
+        "wordBreak": "normal"
+      },
+      "pluginVersion": "4.1.0",
+      "targets": [
+        {
+          "refId": "A"
+        }
+      ],
+      "title": "Node",
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 2,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": 3600000,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbits"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 6,
+        "y": 54
+      },
+      "id": 28,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_srl_platform_control_memory_free{node_name=\"$NE\", namespace_name='$namespace'}",
+          "hide": false,
+          "legendFormat": "Free ",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_srl_platform_control_memory_utilization{node_name=\"$NE\", namespace_name='$namespace'}",
+          "hide": false,
+          "legendFormat": "Utilization",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_srl_platform_control_memory_reserved{node_name=\"$NE\", namespace_name='$namespace'}",
+          "hide": false,
+          "legendFormat": "Reserved",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_srl_platform_control_memory_physical{node_name=\"$NE\", namespace_name='$namespace'}",
+          "hide": false,
+          "legendFormat": "Physical",
+          "range": true,
+          "refId": "D"
+        }
+      ],
+      "title": "Memory",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 3000000,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": 3600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbits"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 16,
+        "w": 12,
+        "x": 12,
+        "y": 54
+      },
+      "id": 25,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_srl_interface_traffic_rate_in_bps{node_name=\"$NE\", namespace_name='$namespace'}",
+          "instant": false,
+          "legendFormat": "{{interface_name}}:IN",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_srl_interface_traffic_rate_out_bps{node_name=\"$NE\", namespace_name='$namespace'}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{interface_name}}:OUT",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Throughput ",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-yellow",
+            "mode": "thresholds"
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "dark-blue"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 57
+      },
+      "id": 10,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_srl_network_instance_protocols_bgp_statistics_up_peers{network_instance_name=\"default\",node_name=\"$NE\", namespace_name='$namespace'}",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Up Peers",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_srl_network_instance_protocols_bgp_statistics_total_peers{network_instance_name=\"default\",node_name=\"$NE\", namespace_name='$namespace'}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Total Peers",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "network_instance_protocols_bgp_statistics_disabled_peers{network_instance_name=\"default\",source=\"$NE\", namespace_name='$namespace'}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Disabled Peers",
+          "refId": "C"
+        }
+      ],
+      "title": "BGP Peer stats",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "": {
+                  "text": ""
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 16,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-blue"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 62
+      },
+      "id": 11,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_srl_network_instance_protocols_bgp_statistics_total_active_routes{network_instance_name=\"default\",node_name=\"$NE\", namespace_name='$namespace'}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Total Active Routes",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_srl_network_instance_protocols_bgp_statistics_total_received_routes{network_instance_name=\"default\",node_name=\"$NE\", namespace_name='$namespace'}",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Total Received Routes",
+          "refId": "B"
+        }
+      ],
+      "title": "BGP Route Stats",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 6,
+        "y": 62
+      },
+      "id": 34,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 0,
+        "showHeader": true
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "node_srl_system_app_management_application_pid{node_name='$NE', namespace_name='$namespace'}",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{application_name}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Running SR Linux applications",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "instance": true,
+              "job": true,
+              "namespace_name": true,
+              "node_name": true,
+              "source": true,
+              "subscription_name": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Value": "PID",
+              "application_name": "App name"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 6,
+        "x": 0,
+        "y": 67
+      },
+      "id": 8,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_srl_network_instance_route_table_ipv4_unicast_statistics_active_routes{network_instance_name=\"default\",node_name=\"$NE\"}",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "IPv4 Active Routes",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_srl_network_instance_route_table_ipv4_unicast_statistics_total_routes{network_instance_name=\"default\",node_name=\"$NE\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "IPv4 Total Routes",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_srl_network_instance_route_table_ipv4_unicast_statistics_active_routes_with_ecmp{network_instance_name=\"default\",node_name=\"$NE\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "IPv4 Active ECMP Routes",
+          "refId": "C"
+        }
+      ],
+      "title": "Routing Stats",
+      "transformations": [
+        {
+          "id": "configFromData",
+          "options": {
+            "applyTo": {
+              "id": "byName",
+              "options": "IPv4 Active Routes"
+            },
+            "configRefId": "B",
+            "mappings": [
+              {
+                "fieldName": "IPv4 Total Routes",
+                "handlerKey": "max"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": 3600000,
+            "lineWidth": 0,
+            "spanNulls": true
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "dark-red",
+                  "index": 1,
+                  "text": "DOWN"
+                },
+                "1": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "UP"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 6,
+        "y": 70
+      },
+      "id": 32,
+      "options": {
+        "alignValue": "center",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "always",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "node_srl_network_instance_oper_state{node_name=\"$NE\", namespace_name='$namespace'}",
+          "instant": false,
+          "legendFormat": "{{ network_instance_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Services",
+      "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 56,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 0
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red"
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 16,
+        "w": 12,
+        "x": 12,
+        "y": 70
+      },
+      "id": 58,
+      "interval": "5s",
+      "options": {
+        "colWidth": 0.9,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "rowHeight": 0.8,
+        "showValue": "never",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "node_srl_interface_oper_state{node_name=\"$NE\", namespace_name=\"$namespace\"}\n  * on(interface_name, node_name, namespace_name)\n    (node_srl_interface_admin_state{node_name=\"$NE\", namespace_name=\"$namespace\"} == 1)",
+          "legendFormat": "{{interface_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Port Oper State",
+      "type": "status-history"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 23,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 78
+      },
+      "id": 30,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "node_srl_platform_control_cpu_total_instant{node_name=\"$NE\", namespace_name='$namespace'}",
+          "legendFormat": "Total",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "CPU Utilization",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 86
+      },
+      "id": 35,
+      "panels": [],
+      "title": "Syslog $NE",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "thresholdsStyle": {
+              "mode": "color",
+              "thresholds": []
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 87
+      },
+      "id": 52,
+      "options": {
+        "alertCustomMessage": "",
+        "alwaysVisibleFilter": false,
+        "autoScroll": false,
+        "browserTabNamePattern": "",
+        "collapsedByDefault": false,
+        "customValue": false,
+        "displayMode": "minimize",
+        "emptyValue": false,
+        "favorites": {
+          "enabled": false,
+          "storage": "browser"
+        },
+        "filter": false,
+        "groupSelection": false,
+        "header": true,
+        "isMinimizeForTable": false,
+        "isMinimizeViewShowCustomIcon": false,
+        "isPinTabsEnabled": false,
+        "isUseLocalTime": false,
+        "minimizeOutputFormat": "text",
+        "minimizeViewCustomIcon": "",
+        "minimizeViewNativeIcon": "gf-movepane-right",
+        "padding": 10,
+        "persistent": false,
+        "requestLatency": "low",
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "selectedValues": {
+          "maxCount": 0,
+          "showSelected": false
+        },
+        "showGroupTotal": false,
+        "showLabel": false,
+        "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
+        "statusSort": false,
+        "sticky": false,
+        "tabsInOrder": true,
+        "variable": "NE",
+        "wordBreak": "normal"
+      },
+      "pluginVersion": "4.1.0",
+      "targets": [
+        {
+          "refId": "A"
+        }
+      ],
+      "title": "Node",
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 14,
+        "x": 3,
+        "y": 87
+      },
+      "id": 37,
+      "options": {
+        "dedupStrategy": "none",
+        "enableInfiniteScrolling": false,
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": true,
+        "sortOrder": "Ascending",
+        "wrapLogMessage": true
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "{source=\"$NE\", application=~\"$syslog_app\"}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Log:",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 7,
+        "x": 17,
+        "y": 87
+      },
+      "id": 51,
+      "options": {
+        "displayLabels": [
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by (application) (count_over_time({source=\"$NE\", application=~\"$syslog_app\"}[$__range]))",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Total logs $NE",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "thresholdsStyle": {
+              "mode": "color",
+              "thresholds": []
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 3,
+        "x": 0,
+        "y": 90
+      },
+      "id": 54,
+      "options": {
+        "alertCustomMessage": "",
+        "alwaysVisibleFilter": false,
+        "autoScroll": false,
+        "browserTabNamePattern": "",
+        "collapsedByDefault": false,
+        "customValue": false,
+        "displayMode": "button",
+        "emptyValue": false,
+        "favorites": {
+          "enabled": false,
+          "storage": "browser"
+        },
+        "filter": false,
+        "groupSelection": false,
+        "header": true,
+        "isMinimizeForTable": false,
+        "isMinimizeViewShowCustomIcon": false,
+        "isPinTabsEnabled": false,
+        "isUseLocalTime": false,
+        "minimizeOutputFormat": "text",
+        "minimizeViewCustomIcon": "",
+        "minimizeViewNativeIcon": "gf-movepane-right",
+        "padding": 10,
+        "persistent": false,
+        "requestLatency": "low",
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "selectedValues": {
+          "maxCount": 0,
+          "showSelected": false
+        },
+        "showGroupTotal": false,
+        "showLabel": false,
+        "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
+        "statusSort": false,
+        "sticky": false,
+        "tabsInOrder": true,
+        "variable": "syslog_app",
+        "wordBreak": "normal"
+      },
+      "pluginVersion": "4.1.0",
+      "targets": [
+        {
+          "refId": "A"
+        }
+      ],
+      "title": "Syslog App",
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.9,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 0,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 100
+      },
+      "id": 38,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by (level) (count_over_time({source=\"$NE\", application=~\"$syslog_app\"} | logfmt [1m]))",
+          "legendFormat": "{{level}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Log volume:",
+      "type": "timeseries"
+    }
+  ],
+  "preload": false,
+  "refresh": "5s",
+  "schemaVersion": 41,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "leaf1",
+          "value": "leaf1"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(node_name)",
+        "hide": 2,
+        "includeAll": false,
+        "name": "NE",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(node_name)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "mgmt",
+          "value": "mgmt"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(network_instance_name)",
+        "hide": 2,
+        "includeAll": false,
+        "name": "Services",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(network_instance_name)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "sr_aaa_mgr",
+          "value": "sr_aaa_mgr"
+        },
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "definition": "",
+        "hide": 2,
+        "includeAll": false,
+        "name": "Logs",
+        "options": [],
+        "query": {
+          "label": "application",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "",
+          "type": 1
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "hide": 2,
+        "includeAll": false,
+        "name": "cleared_status",
+        "options": [
+          {
+            "selected": false,
+            "text": "true",
+            "value": "true"
+          },
+          {
+            "selected": false,
+            "text": "false",
+            "value": "false"
+          }
+        ],
+        "query": "true, false",
+        "type": "custom"
+      },
+      {
+        "current": {
+          "text": [
+            "leaf1"
+          ],
+          "value": [
+            "leaf1"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(node_name)",
+        "hide": 2,
+        "includeAll": false,
+        "multi": true,
+        "name": "NE_top",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(node_name)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "eda-telemetry",
+          "value": "eda-telemetry"
+        },
+        "hide": 2,
+        "label": "namespace",
+        "name": "namespace",
+        "query": "eda-telemetry",
+        "skipUrlSync": true,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": [
+            "sr_aaa_mgr"
+          ],
+          "value": [
+            "sr_aaa_mgr"
+          ]
+        },
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "definition": "",
+        "description": "Syslog Applications",
+        "hide": 2,
+        "includeAll": false,
+        "multi": true,
+        "name": "syslog_app",
+        "options": [],
+        "query": {
+          "label": "application",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "",
+          "type": 1
+        },
+        "refresh": 2,
+        "regex": "",
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Telemetry Playground",
+  "uid": "Telemetry_Playground",
+  "version": 2
+}

@@ -1,0 +1,26 @@
+{{- if .Values.prometheus.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "telemetry-stack.fullname" . }}-prometheus
+  labels:
+    {{- include "telemetry-stack.labels" . | nindent 4 }}
+    app.kubernetes.io/component: prometheus
+  {{- if .Values.prometheus.persistence.annotations }}
+  annotations:
+    {{- toYaml .Values.prometheus.persistence.annotations | nindent 4 }}
+  {{- end }}
+spec:
+  accessModes:
+    - {{ .Values.prometheus.persistence.accessMode }}
+  {{- if .Values.prometheus.persistence.storageClass }}
+  {{- if (eq "-" .Values.prometheus.persistence.storageClass) }}
+  storageClassName: ""
+  {{- else }}
+  storageClassName: {{ .Values.prometheus.persistence.storageClass }}
+  {{- end }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.prometheus.persistence.size }}
+{{- end }}
