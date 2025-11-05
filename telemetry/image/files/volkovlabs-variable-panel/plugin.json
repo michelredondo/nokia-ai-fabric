@@ -1,0 +1,44 @@
+{
+  "$schema": "https://raw.githubusercontent.com/grafana/grafana/main/docs/sources/developers/plugins/plugin.schema.json",
+  "dependencies": {
+    "grafanaDependency": ">=11.0.0",
+    "plugins": []
+  },
+  "id": "volkovlabs-variable-panel",
+  "info": {
+    "author": {
+      "name": "Volkov Labs",
+      "url": "https://volkovlabs.io"
+    },
+    "description": "Enhances dashboards with movable, standalone filter panels for dynamic control.",
+    "keywords": ["variable"],
+    "links": [
+      {
+        "name": "Documentation",
+        "url": "https://volkovlabs.io/plugins/business-variable/"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/volkovlabs/business-variable"
+      },
+      {
+        "name": "Sponsor",
+        "url": "https://volkovlabs.io/pricing/"
+      }
+    ],
+    "logos": {
+      "large": "img/logo.svg",
+      "small": "img/logo.svg"
+    },
+    "screenshots": [
+      {
+        "name": "Panel",
+        "path": "img/dashboard.png"
+      }
+    ],
+    "updated": "2025-07-29",
+    "version": "4.1.0"
+  },
+  "name": "Business Variable",
+  "type": "panel"
+}

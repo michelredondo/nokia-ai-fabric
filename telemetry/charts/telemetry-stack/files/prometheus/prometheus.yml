@@ -1,0 +1,13 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+
+  - job_name: 'eda-exporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['eda-api.eda-system.svc']
+    metrics_path: /core/httpproxy/v1/prometheus-exporter/metrics
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true

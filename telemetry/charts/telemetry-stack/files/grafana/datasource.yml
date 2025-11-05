@@ -1,0 +1,10 @@
+# config file version
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    url: http://prometheus.eda-telemetry.svc:9090
+  - name: Loki
+    type: loki
+    url: http://loki.eda-telemetry.svc:3100

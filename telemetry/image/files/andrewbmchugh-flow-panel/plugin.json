@@ -1,0 +1,44 @@
+{
+  "$schema": "https://raw.githubusercontent.com/grafana/grafana/main/docs/sources/developers/plugins/plugin.schema.json",
+  "type": "panel",
+  "name": "Flow",
+  "id": "andrewbmchugh-flow-panel",
+  "info": {
+    "keywords": [
+      "panel",
+      "flow",
+      "workflow",
+      "flowchart",
+      "draw.io",
+      "diagram",
+      "network",
+      "svg"
+    ],
+    "description": "Svg flowchart visualization",
+    "author": {
+      "name": "Andrewbmchugh"
+    },
+    "logos": {
+      "small": "img/logo.png",
+      "large": "img/logo.png"
+    },
+    "links": [
+      {"name": "Website", "url": "https://github.com/andymchugh/andrewbmchugh-flow-panel"},
+      {"name": "License", "url": "https://github.com/andymchugh/andrewbmchugh-flow-panel/blob/main/LICENSE"},
+      {"name": "YAML Definitions", "url": "https://github.com/andymchugh/andrewbmchugh-flow-panel/tree/main/yaml_defs"},
+      {"name": "Example SVGs and YAML", "url": "https://github.com/andymchugh/andrewbmchugh-flow-panel/tree/main/examples"},
+      {"name": "Provisioned Dashboards and Data", "url": "https://github.com/andymchugh/andrewbmchugh-flow-panel/tree/main/provisioning"}
+    ],
+    "screenshots": [
+      {"name": "Getting Started", "path": "img/example1.png"},
+      {"name": "Middleware Bus", "path": "img/example2.png"},
+      {"name": "Thread Highlighting", "path": "img/threadHighlighting.gif"}
+    ],
+    "version": "1.19.0",
+    "updated": "2025-10-05"
+  },
+  "dependencies": {
+    "grafanaDependency": ">=10.0.0",
+    "plugins": []
+  }
+}
