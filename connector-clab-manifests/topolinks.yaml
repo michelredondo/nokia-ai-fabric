@@ -323,327 +323,7 @@ kind: TopoLink
 metadata:
   labels:
     eda.nokia.com/role: edge
-  name: 2tier-beleaf-01-e1-1-2tier-gpu-svr-01-eth1
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-1
-        interfaceResource: 2tier-beleaf-01-ethernet-1-1
-        node: 2tier-beleaf-01
-      remote:
-        interface: eth1
-        interfaceResource: 2tier-gpu-svr-01-eth1
-        node: 2tier-gpu-svr-01
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-01-e1-2-2tier-gpu-svr-01-eth2
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-2
-        interfaceResource: 2tier-beleaf-01-ethernet-1-2
-        node: 2tier-beleaf-01
-      remote:
-        interface: eth2
-        interfaceResource: 2tier-gpu-svr-01-eth2
-        node: 2tier-gpu-svr-01
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-01-e1-3-2tier-gpu-svr-01-eth3
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-3
-        interfaceResource: 2tier-beleaf-01-ethernet-1-3
-        node: 2tier-beleaf-01
-      remote:
-        interface: eth3
-        interfaceResource: 2tier-gpu-svr-01-eth3
-        node: 2tier-gpu-svr-01
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-01-e1-4-2tier-gpu-svr-01-eth4
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-4
-        interfaceResource: 2tier-beleaf-01-ethernet-1-4
-        node: 2tier-beleaf-01
-      remote:
-        interface: eth4
-        interfaceResource: 2tier-gpu-svr-01-eth4
-        node: 2tier-gpu-svr-01
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-01-e1-5-2tier-gpu-svr-02-eth1
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-5
-        interfaceResource: 2tier-beleaf-01-ethernet-1-5
-        node: 2tier-beleaf-01
-      remote:
-        interface: eth1
-        interfaceResource: 2tier-gpu-svr-02-eth1
-        node: 2tier-gpu-svr-02
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-01-e1-6-2tier-gpu-svr-02-eth2
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-6
-        interfaceResource: 2tier-beleaf-01-ethernet-1-6
-        node: 2tier-beleaf-01
-      remote:
-        interface: eth2
-        interfaceResource: 2tier-gpu-svr-02-eth2
-        node: 2tier-gpu-svr-02
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-01-e1-7-2tier-gpu-svr-02-eth3
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-7
-        interfaceResource: 2tier-beleaf-01-ethernet-1-7
-        node: 2tier-beleaf-01
-      remote:
-        interface: eth3
-        interfaceResource: 2tier-gpu-svr-02-eth3
-        node: 2tier-gpu-svr-02
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-01-e1-8-2tier-gpu-svr-02-eth4
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-8
-        interfaceResource: 2tier-beleaf-01-ethernet-1-8
-        node: 2tier-beleaf-01
-      remote:
-        interface: eth4
-        interfaceResource: 2tier-gpu-svr-02-eth4
-        node: 2tier-gpu-svr-02
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-02-e1-1-2tier-gpu-svr-01-eth5
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-1
-        interfaceResource: 2tier-beleaf-02-ethernet-1-1
-        node: 2tier-beleaf-02
-      remote:
-        interface: eth5
-        interfaceResource: 2tier-gpu-svr-01-eth5
-        node: 2tier-gpu-svr-01
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-02-e1-2-2tier-gpu-svr-01-eth6
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-2
-        interfaceResource: 2tier-beleaf-02-ethernet-1-2
-        node: 2tier-beleaf-02
-      remote:
-        interface: eth6
-        interfaceResource: 2tier-gpu-svr-01-eth6
-        node: 2tier-gpu-svr-01
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-02-e1-3-2tier-gpu-svr-01-eth7
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-3
-        interfaceResource: 2tier-beleaf-02-ethernet-1-3
-        node: 2tier-beleaf-02
-      remote:
-        interface: eth7
-        interfaceResource: 2tier-gpu-svr-01-eth7
-        node: 2tier-gpu-svr-01
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-02-e1-4-2tier-gpu-svr-01-eth8
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-4
-        interfaceResource: 2tier-beleaf-02-ethernet-1-4
-        node: 2tier-beleaf-02
-      remote:
-        interface: eth8
-        interfaceResource: 2tier-gpu-svr-01-eth8
-        node: 2tier-gpu-svr-01
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-02-e1-5-2tier-gpu-svr-02-eth5
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-5
-        interfaceResource: 2tier-beleaf-02-ethernet-1-5
-        node: 2tier-beleaf-02
-      remote:
-        interface: eth5
-        interfaceResource: 2tier-gpu-svr-02-eth5
-        node: 2tier-gpu-svr-02
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-02-e1-6-2tier-gpu-svr-02-eth6
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-6
-        interfaceResource: 2tier-beleaf-02-ethernet-1-6
-        node: 2tier-beleaf-02
-      remote:
-        interface: eth6
-        interfaceResource: 2tier-gpu-svr-02-eth6
-        node: 2tier-gpu-svr-02
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-02-e1-7-2tier-gpu-svr-02-eth7
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-7
-        interfaceResource: 2tier-beleaf-02-ethernet-1-7
-        node: 2tier-beleaf-02
-      remote:
-        interface: eth7
-        interfaceResource: 2tier-gpu-svr-02-eth7
-        node: 2tier-gpu-svr-02
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-beleaf-02-e1-8-2tier-gpu-svr-02-eth8
-  namespace: ai-fabric-be
-spec:
-  links:
-    - local:
-        interface: ethernet-1-8
-        interfaceResource: 2tier-beleaf-02-ethernet-1-8
-        node: 2tier-beleaf-02
-      remote:
-        interface: eth8
-        interfaceResource: 2tier-gpu-svr-02-eth8
-        node: 2tier-gpu-svr-02
-      type: edge
-
----
-apiVersion: core.eda.nokia.com/v1
-kind: TopoLink
-metadata:
-  labels:
-    eda.nokia.com/role: edge
-  name: 2tier-feleaf-01-e1-1-2tier-gpu-svr-01-eth9
+  name: 2tier-feleaf-01-e1-1-2tier-gpu-svr-01-eth17
   namespace: ai-fabric-fe
 spec:
   links:
@@ -652,8 +332,8 @@ spec:
         interfaceResource: 2tier-feleaf-01-ethernet-1-1
         node: 2tier-feleaf-01
       remote:
-        interface: eth9
-        interfaceResource: 2tier-gpu-svr-01-eth9
+        interface: eth17
+        interfaceResource: 2tier-gpu-svr-01-eth17
         node: 2tier-gpu-svr-01
       type: edge
 
@@ -663,7 +343,7 @@ kind: TopoLink
 metadata:
   labels:
     eda.nokia.com/role: edge
-  name: 2tier-feleaf-02-e1-1-2tier-gpu-svr-01-eth10
+  name: 2tier-feleaf-02-e1-1-2tier-gpu-svr-01-eth18
   namespace: ai-fabric-fe
 spec:
   links:
@@ -672,8 +352,8 @@ spec:
         interfaceResource: 2tier-feleaf-02-ethernet-1-1
         node: 2tier-feleaf-02
       remote:
-        interface: eth10
-        interfaceResource: 2tier-gpu-svr-01-eth10
+        interface: eth18
+        interfaceResource: 2tier-gpu-svr-01-eth18
         node: 2tier-gpu-svr-01
       type: edge
 
@@ -683,7 +363,7 @@ kind: TopoLink
 metadata:
   labels:
     eda.nokia.com/role: edge
-  name: 2tier-feleaf-01-e1-3-2tier-gpu-svr-01-eth11
+  name: 2tier-feleaf-01-e1-3-2tier-gpu-svr-01-eth19
   namespace: ai-fabric-fe
 spec:
   links:
@@ -692,8 +372,8 @@ spec:
         interfaceResource: 2tier-feleaf-01-ethernet-1-3
         node: 2tier-feleaf-01
       remote:
-        interface: eth11
-        interfaceResource: 2tier-gpu-svr-01-eth11
+        interface: eth19
+        interfaceResource: 2tier-gpu-svr-01-eth19
         node: 2tier-gpu-svr-01
       type: edge
 
@@ -703,7 +383,7 @@ kind: TopoLink
 metadata:
   labels:
     eda.nokia.com/role: edge
-  name: 2tier-feleaf-02-e1-3-2tier-gpu-svr-01-eth12
+  name: 2tier-feleaf-02-e1-3-2tier-gpu-svr-01-eth20
   namespace: ai-fabric-fe
 spec:
   links:
@@ -712,8 +392,8 @@ spec:
         interfaceResource: 2tier-feleaf-02-ethernet-1-3
         node: 2tier-feleaf-02
       remote:
-        interface: eth12
-        interfaceResource: 2tier-gpu-svr-01-eth12
+        interface: eth20
+        interfaceResource: 2tier-gpu-svr-01-eth20
         node: 2tier-gpu-svr-01
       type: edge
 
@@ -723,7 +403,7 @@ kind: TopoLink
 metadata:
   labels:
     eda.nokia.com/role: edge
-  name: 2tier-feleaf-01-e1-2-2tier-gpu-svr-02-eth9
+  name: 2tier-feleaf-01-e1-2-2tier-gpu-svr-02-eth17
   namespace: ai-fabric-fe
 spec:
   links:
@@ -732,8 +412,8 @@ spec:
         interfaceResource: 2tier-feleaf-01-ethernet-1-2
         node: 2tier-feleaf-01
       remote:
-        interface: eth9
-        interfaceResource: 2tier-gpu-svr-02-eth9
+        interface: eth17
+        interfaceResource: 2tier-gpu-svr-02-eth17
         node: 2tier-gpu-svr-02
       type: edge
 
@@ -743,7 +423,7 @@ kind: TopoLink
 metadata:
   labels:
     eda.nokia.com/role: edge
-  name: 2tier-feleaf-02-e1-2-2tier-gpu-svr-02-eth10
+  name: 2tier-feleaf-02-e1-2-2tier-gpu-svr-02-eth18
   namespace: ai-fabric-fe
 spec:
   links:
@@ -752,8 +432,8 @@ spec:
         interfaceResource: 2tier-feleaf-02-ethernet-1-2
         node: 2tier-feleaf-02
       remote:
-        interface: eth10
-        interfaceResource: 2tier-gpu-svr-02-eth10
+        interface: eth18
+        interfaceResource: 2tier-gpu-svr-02-eth18
         node: 2tier-gpu-svr-02
       type: edge
 
@@ -763,7 +443,7 @@ kind: TopoLink
 metadata:
   labels:
     eda.nokia.com/role: edge
-  name: 2tier-feleaf-01-e1-4-2tier-gpu-svr-02-eth11
+  name: 2tier-feleaf-01-e1-4-2tier-gpu-svr-02-eth19
   namespace: ai-fabric-fe
 spec:
   links:
@@ -772,8 +452,8 @@ spec:
         interfaceResource: 2tier-feleaf-01-ethernet-1-4
         node: 2tier-feleaf-01
       remote:
-        interface: eth11
-        interfaceResource: 2tier-gpu-svr-02-eth11
+        interface: eth19
+        interfaceResource: 2tier-gpu-svr-02-eth19
         node: 2tier-gpu-svr-02
       type: edge
 
@@ -783,7 +463,7 @@ kind: TopoLink
 metadata:
   labels:
     eda.nokia.com/role: edge
-  name: 2tier-feleaf-02-e1-4-2tier-gpu-svr-02-eth12
+  name: 2tier-feleaf-02-e1-4-2tier-gpu-svr-02-eth20
   namespace: ai-fabric-fe
 spec:
   links:
@@ -792,8 +472,8 @@ spec:
         interfaceResource: 2tier-feleaf-02-ethernet-1-4
         node: 2tier-feleaf-02
       remote:
-        interface: eth12
-        interfaceResource: 2tier-gpu-svr-02-eth12
+        interface: eth20
+        interfaceResource: 2tier-gpu-svr-02-eth20
         node: 2tier-gpu-svr-02
       type: edge
 
@@ -954,4 +634,612 @@ spec:
         interface: eth1
         interfaceResource: 2tier-fe-svr-06-eth1
         node: 2tier-fe-svr-06
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-1-1-2tier-gpu-svr-01-eth1
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-1-1
+        interfaceResource: 2tier-beleaf-01-ethernet-1-1-1
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth1
+        interfaceResource: 2tier-gpu-svr-01-eth1
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-1-2-2tier-gpu-svr-01-eth2
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-1-2
+        interfaceResource: 2tier-beleaf-01-ethernet-1-1-2
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth2
+        interfaceResource: 2tier-gpu-svr-01-eth2
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-2-1-2tier-gpu-svr-01-eth3
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-2-1
+        interfaceResource: 2tier-beleaf-01-ethernet-1-2-1
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth3
+        interfaceResource: 2tier-gpu-svr-01-eth3
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-2-2-2tier-gpu-svr-01-eth4
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-2-2
+        interfaceResource: 2tier-beleaf-01-ethernet-1-2-2
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth4
+        interfaceResource: 2tier-gpu-svr-01-eth4
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-3-1-2tier-gpu-svr-01-eth5
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-3-1
+        interfaceResource: 2tier-beleaf-01-ethernet-1-3-1
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth5
+        interfaceResource: 2tier-gpu-svr-01-eth5
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-3-2-2tier-gpu-svr-01-eth6
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-3-2
+        interfaceResource: 2tier-beleaf-01-ethernet-1-3-2
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth6
+        interfaceResource: 2tier-gpu-svr-01-eth6
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-4-1-2tier-gpu-svr-01-eth7
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-4-1
+        interfaceResource: 2tier-beleaf-01-ethernet-1-4-1
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth7
+        interfaceResource: 2tier-gpu-svr-01-eth7
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-4-2-2tier-gpu-svr-01-eth8
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-4-2
+        interfaceResource: 2tier-beleaf-01-ethernet-1-4-2
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth8
+        interfaceResource: 2tier-gpu-svr-01-eth8
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-5-1-2tier-gpu-svr-02-eth1
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-5-1
+        interfaceResource: 2tier-beleaf-01-ethernet-1-5-1
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth1
+        interfaceResource: 2tier-gpu-svr-02-eth1
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-5-2-2tier-gpu-svr-02-eth2
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-5-2
+        interfaceResource: 2tier-beleaf-01-ethernet-1-5-2
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth2
+        interfaceResource: 2tier-gpu-svr-02-eth2
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-6-1-2tier-gpu-svr-02-eth3
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-6-1
+        interfaceResource: 2tier-beleaf-01-ethernet-1-6-1
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth3
+        interfaceResource: 2tier-gpu-svr-02-eth3
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-6-2-2tier-gpu-svr-02-eth4
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-6-2
+        interfaceResource: 2tier-beleaf-01-ethernet-1-6-2
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth4
+        interfaceResource: 2tier-gpu-svr-02-eth4
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-7-1-2tier-gpu-svr-02-eth5
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-7-1
+        interfaceResource: 2tier-beleaf-01-ethernet-1-7-1
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth5
+        interfaceResource: 2tier-gpu-svr-02-eth5
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-7-2-2tier-gpu-svr-02-eth6
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-7-2
+        interfaceResource: 2tier-beleaf-01-ethernet-1-7-2
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth6
+        interfaceResource: 2tier-gpu-svr-02-eth6
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-8-1-2tier-gpu-svr-02-eth7
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-8-1
+        interfaceResource: 2tier-beleaf-01-ethernet-1-8-1
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth7
+        interfaceResource: 2tier-gpu-svr-02-eth7
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-01-e1-8-2-2tier-gpu-svr-02-eth8
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-8-2
+        interfaceResource: 2tier-beleaf-01-ethernet-1-8-2
+        node: 2tier-beleaf-01
+      remote:
+        interface: eth8
+        interfaceResource: 2tier-gpu-svr-02-eth8
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-1-1-2tier-gpu-svr-01-eth9
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-1-1
+        interfaceResource: 2tier-beleaf-02-ethernet-1-1-1
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth9
+        interfaceResource: 2tier-gpu-svr-01-eth9
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-1-2-2tier-gpu-svr-01-eth10
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-1-2
+        interfaceResource: 2tier-beleaf-02-ethernet-1-1-2
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth10
+        interfaceResource: 2tier-gpu-svr-01-eth10
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-2-1-2tier-gpu-svr-01-eth11
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-2-1
+        interfaceResource: 2tier-beleaf-02-ethernet-1-2-1
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth11
+        interfaceResource: 2tier-gpu-svr-01-eth11
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-2-2-2tier-gpu-svr-01-eth12
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-2-2
+        interfaceResource: 2tier-beleaf-02-ethernet-1-2-2
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth12
+        interfaceResource: 2tier-gpu-svr-01-eth12
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-3-1-2tier-gpu-svr-01-eth13
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-3-1
+        interfaceResource: 2tier-beleaf-02-ethernet-1-3-1
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth13
+        interfaceResource: 2tier-gpu-svr-01-eth13
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-3-2-2tier-gpu-svr-01-eth14
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-3-2
+        interfaceResource: 2tier-beleaf-02-ethernet-1-3-2
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth14
+        interfaceResource: 2tier-gpu-svr-01-eth14
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-4-1-2tier-gpu-svr-01-eth15
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-4-1
+        interfaceResource: 2tier-beleaf-02-ethernet-1-4-1
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth15
+        interfaceResource: 2tier-gpu-svr-01-eth15
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-4-2-2tier-gpu-svr-01-eth16
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-4-2
+        interfaceResource: 2tier-beleaf-02-ethernet-1-4-2
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth16
+        interfaceResource: 2tier-gpu-svr-01-eth16
+        node: 2tier-gpu-svr-01
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-5-1-2tier-gpu-svr-02-eth9
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-5-1
+        interfaceResource: 2tier-beleaf-02-ethernet-1-5-1
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth9
+        interfaceResource: 2tier-gpu-svr-02-eth9
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-5-2-2tier-gpu-svr-02-eth10
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-5-2
+        interfaceResource: 2tier-beleaf-02-ethernet-1-5-2
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth10
+        interfaceResource: 2tier-gpu-svr-02-eth10
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-6-1-2tier-gpu-svr-02-eth11
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-6-1
+        interfaceResource: 2tier-beleaf-02-ethernet-1-6-1
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth11
+        interfaceResource: 2tier-gpu-svr-02-eth11
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-6-2-2tier-gpu-svr-02-eth12
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-6-2
+        interfaceResource: 2tier-beleaf-02-ethernet-1-6-2
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth12
+        interfaceResource: 2tier-gpu-svr-02-eth12
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-7-1-2tier-gpu-svr-02-eth13
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-7-1
+        interfaceResource: 2tier-beleaf-02-ethernet-1-7-1
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth13
+        interfaceResource: 2tier-gpu-svr-02-eth13
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-7-2-2tier-gpu-svr-02-eth14
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-7-2
+        interfaceResource: 2tier-beleaf-02-ethernet-1-7-2
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth14
+        interfaceResource: 2tier-gpu-svr-02-eth14
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-8-1-2tier-gpu-svr-02-eth15
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-8-1
+        interfaceResource: 2tier-beleaf-02-ethernet-1-8-1
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth15
+        interfaceResource: 2tier-gpu-svr-02-eth15
+        node: 2tier-gpu-svr-02
+      type: edge
+---
+apiVersion: core.eda.nokia.com/v1
+kind: TopoLink
+metadata:
+  labels:
+    eda.nokia.com/role: edge
+  name: 2tier-beleaf-02-e1-8-2-2tier-gpu-svr-02-eth16
+  namespace: ai-fabric-be
+spec:
+  links:
+    - local:
+        interface: ethernet-1-8-2
+        interfaceResource: 2tier-beleaf-02-ethernet-1-8-2
+        node: 2tier-beleaf-02
+      remote:
+        interface: eth16
+        interfaceResource: 2tier-gpu-svr-02-eth16
+        node: 2tier-gpu-svr-02
       type: edge

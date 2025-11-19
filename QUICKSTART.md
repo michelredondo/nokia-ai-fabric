@@ -48,7 +48,9 @@ This quickstart summarizes the deployment of a 2-tier AI Fabric with both Fronte
    - `kubectl apply -f eda_manifests_2tier/BE/index-allocation-pools.yaml`
    - `kubectl apply -f eda_manifests_2tier/BE/forwarding-classes.yaml`
    - `kubectl apply -f eda_manifests_2tier/BE/queues.yaml`
-   
+   - `kubectl apply -f eda_manifests_2tier/BE/policy-deployment-edge.yaml`
+   - `kubectl apply -f eda_manifests_2tier/BE/topology-groupings.yaml`
+
 8. Apply Backend AI Fabric Rail-only manifest:
 
    - `kubectl apply -f eda_manifests_2tier/BE/ai-fabric-rail-optimized.yaml`
@@ -91,26 +93,43 @@ EDA defines the Backend IPv6 addresing scheme using this rule:
 ```bash
 fd00:{stripe_id}:{leafnode_index}:{slot_num}:{connector_num}:{intf_num}::1/96
 ```
-which translates into this backend IPv6 addresing in GPU nodes: 
+In this lab we are replicating B300 server topology, which has 8 Backend NICs, each configured as 2x400GbE. This translates into this backend IPv6 addresing in GPU nodes: 
 
 ```bash
-server1-GPU0: fd00:1:1:1:0:1:0:2/96 -> BE-Leaf1
-server1-GPU1: fd00:1:1:1:0:2:0:2/96 -> BE-Leaf1
-server1-GPU2: fd00:1:1:1:0:3:0:2/96 -> BE-Leaf1
-server1-GPU3: fd00:1:1:1:0:4:0:2/96 -> BE-Leaf1
-server1-GPU4: fd00:1:2:1:0:1:0:2/96 -> BE-Leaf2
-server1-GPU5: fd00:1:2:1:0:2:0:2/96 -> BE-Leaf2
-server1-GPU6: fd00:1:2:1:0:3:0:2/96 -> BE-Leaf2
-server1-GPU7: fd00:1:2:1:0:4:0:2/96 -> BE-Leaf2
+server1-GPU0-port1: fd00:1:1:1:1:1:0:2/96 -> BE-Leaf1
+server1-GPU0-port2: fd00:1:1:1:1:2:0:2/96 -> BE-Leaf1
+server1-GPU1-port1: fd00:1:1:1:2:1:0:2/96 -> BE-Leaf1
+server1-GPU1-port2: fd00:1:1:1:2:2:0:2/96 -> BE-Leaf1
+server1-GPU2-port1: fd00:1:1:1:3:1:0:2/96 -> BE-Leaf1
+server1-GPU2-port2: fd00:1:1:1:3:2:0:2/96 -> BE-Leaf1
+server1-GPU3-port1: fd00:1:1:1:4:1:0:2/96 -> BE-Leaf1
+server1-GPU3-port2: fd00:1:1:1:4:2:0:2/96 -> BE-Leaf1
+server1-GPU4-port1: fd00:1:2:1:1:1:0:2/96 -> BE-Leaf2
+server1-GPU4-port2: fd00:1:2:1:1:2:0:2/96 -> BE-Leaf2
+server1-GPU5-port1: fd00:1:2:1:2:1:0:2/96 -> BE-Leaf2
+server1-GPU5-port2: fd00:1:2:1:2:2:0:2/96 -> BE-Leaf2
+server1-GPU6-port1: fd00:1:2:1:3:1:0:2/96 -> BE-Leaf2
+server1-GPU6-port2: fd00:1:2:1:3:2:0:2/96 -> BE-Leaf2
+server1-GPU7-port1: fd00:1:2:1:4:1:0:2/96 -> BE-Leaf2
+server1-GPU7-port2: fd00:1:2:1:4:2:0:2/96 -> BE-Leaf2
 
-server2-GPU0: fd00:1:1:1:0:5:0:2/96 -> BE-Leaf1
-server2-GPU1: fd00:1:1:1:0:6:0:2/96 -> BE-Leaf1
-server2-GPU2: fd00:1:1:1:0:7:0:2/96 -> BE-Leaf1
-server2-GPU3: fd00:1:1:1:0:8:0:2/96 -> BE-Leaf1
-server2-GPU4: fd00:1:2:1:0:5:0:2/96 -> BE-Leaf2
-server2-GPU5: fd00:1:2:1:0:6:0:2/96 -> BE-Leaf2
-server2-GPU6: fd00:1:2:1:0:7:0:2/96 -> BE-Leaf2
-server2-GPU7: fd00:1:2:1:0:8:0:2/96 -> BE-Leaf2
+server2-GPU0-port1: fd00:1:1:1:5:1:0:2/96 -> BE-Leaf1
+server2-GPU0-port2: fd00:1:1:1:5:2:0:2/96 -> BE-Leaf1
+server2-GPU1-port1: fd00:1:1:1:6:1:0:2/96 -> BE-Leaf1
+server2-GPU1-port2: fd00:1:1:1:6:2:0:2/96 -> BE-Leaf1
+server2-GPU2-port1: fd00:1:1:1:7:1:0:2/96 -> BE-Leaf1
+server2-GPU2-port2: fd00:1:1:1:7:2:0:2/96 -> BE-Leaf1
+server2-GPU3-port1: fd00:1:1:1:8:1:0:2/96 -> BE-Leaf1
+server2-GPU3-port2: fd00:1:1:1:8:2:0:2/96 -> BE-Leaf1
+server2-GPU4-port1: fd00:1:2:1:5:1:0:2/96 -> BE-Leaf2
+server2-GPU4-port2: fd00:1:2:1:5:2:0:2/96 -> BE-Leaf2
+server2-GPU5-port1: fd00:1:2:1:6:1:0:2/96 -> BE-Leaf2
+server2-GPU5-port2: fd00:1:2:1:6:2:0:2/96 -> BE-Leaf2
+server2-GPU6-port1: fd00:1:2:1:7:1:0:2/96 -> BE-Leaf2
+server2-GPU6-port2: fd00:1:2:1:7:2:0:2/96 -> BE-Leaf2
+server2-GPU7-port1: fd00:1:2:1:8:1:0:2/96 -> BE-Leaf2
+server2-GPU7-port2: fd00:1:2:1:8:2:0:2/96 -> BE-Leaf2
+
 ```
 The backend topology defined in `eda_manifests_2tier/BE/ai-fabric-rail-optimized.yaml` enforces isolation, allowing connectivity only among GPUs within the same rank:
 
@@ -119,20 +138,29 @@ The backend topology defined in `eda_manifests_2tier/BE/ai-fabric-rail-optimized
 Note that in this lab, backend traffic isolation is not enforced at the kernel level, so intra-server GPU communication will always function. However, we can verify that server1-GPU0 only connects to server2-GPU0:
 
 ```bash
-# ping from server1-GPU0 from to server2-GPU0
-docker exec -it 2tier-gpu-svr-01 ping fd00:1:1:1:0:5:0:2 -I  fd00:1:1:1:0:1:0:2 -c1
-PING fd00:1:1:1:0:5:0:2 (fd00:1:1:1:0:5:0:2) from fd00:1:1:1:0:1:0:2: 56 data bytes
-64 bytes from fd00:1:1:1:0:5:0:2: seq=0 ttl=63 time=0.323 ms
+# ping from server1-GPU0-port1 to server2-GPU0-port1
+docker exec -it 2tier-gpu-svr-01 ping fd00:1:1:1:5:1:0:2 -I  fd00:1:1:1:1:1:0:2 -c1
+PING fd00:1:1:1:5:1:0:2 (fd00:1:1:1:5:1:0:2) from fd00:1:1:1:1:1:0:2: 56 data bytes
+64 bytes from fd00:1:1:1:5:1:0:2: seq=0 ttl=63 time=14.730 ms
 
---- fd00:1:1:1:0:5:0:2 ping statistics ---
+--- fd00:1:1:1:5:1:0:2 ping statistics ---
 1 packets transmitted, 1 packets received, 0% packet loss
-round-trip min/avg/max = 0.323/0.323/0.323 ms
+round-trip min/avg/max = 14.730/14.730/14.730 ms
 
-# ping from server1-GPU0 from to server2-GPU1
-docker exec -it 2tier-gpu-svr-01 ping fd00:1:1:1:0:6:0:2 -I  fd00:1:1:1:0:1:0:2 -c1
-PING fd00:1:1:1:0:6:0:2 (fd00:1:1:1:0:6:0:2) from fd00:1:1:1:0:1:0:2: 56 data bytes
+# ping from server1-GPU0-port1 to server2-GPU0-port2
+docker exec -it 2tier-gpu-svr-01 ping fd00:1:1:1:5:2:0:2 -I  fd00:1:1:1:1:1:0:2 -c1
+PING fd00:1:1:1:5:2:0:2 (fd00:1:1:1:5:2:0:2) from fd00:1:1:1:1:1:0:2: 56 data bytes
+64 bytes from fd00:1:1:1:5:2:0:2: seq=0 ttl=63 time=0.401 ms
 
---- fd00:1:1:1:0:6:0:2 ping statistics ---
+--- fd00:1:1:1:5:2:0:2 ping statistics ---
+1 packets transmitted, 1 packets received, 0% packet loss
+round-trip min/avg/max = 0.401/0.401/0.401 ms
+
+# ping from server1-GPU0-port1  to server2-GPU1-port1
+docker exec -it 2tier-gpu-svr-01 ping fd00:1:1:1:6:1:0:2 -I  fd00:1:1:1:1:1:0:2 -c1
+PING fd00:1:1:1:6:1:0:2 (fd00:1:1:1:6:1:0:2) from fd00:1:1:1:1:1:0:2: 56 data bytes
+
+--- fd00:1:1:1:6:1:0:2 ping statistics ---
 1 packets transmitted, 0 packets received, 100% packet loss
 ```
 

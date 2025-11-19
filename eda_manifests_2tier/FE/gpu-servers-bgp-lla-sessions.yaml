@@ -182,7 +182,7 @@ spec:
 apiVersion: protocols.eda.nokia.com/v1
 kind: DefaultBGPPeer
 metadata:
-  name: isl-unnumbered-ipv6-2tier-feleaf-01-ethernet-1-1-2tier-gpu-svr-01-eth9
+  name: isl-unnumbered-ipv6-2tier-feleaf-01-ethernet-1-1-2tier-gpu-svr-01-eth17
   namespace: ai-fabric-fe
 spec:
   dynamicNeighbor: true
@@ -200,7 +200,7 @@ spec:
 apiVersion: protocols.eda.nokia.com/v1
 kind: DefaultBGPPeer
 metadata:
-  name: isl-unnumbered-ipv6-2tier-feleaf-01-ethernet-1-2-2tier-gpu-svr-02-eth9
+  name: isl-unnumbered-ipv6-2tier-feleaf-01-ethernet-1-2-2tier-gpu-svr-02-eth17
   namespace: ai-fabric-fe
 spec:
   dynamicNeighbor: true
@@ -218,7 +218,7 @@ spec:
 apiVersion: protocols.eda.nokia.com/v1
 kind: DefaultBGPPeer
 metadata:
-  name: isl-unnumbered-ipv6-2tier-feleaf-01-ethernet-1-3-2tier-gpu-svr-01-eth11
+  name: isl-unnumbered-ipv6-2tier-feleaf-01-ethernet-1-3-2tier-gpu-svr-01-eth19
   namespace: ai-fabric-fe
 spec:
   dynamicNeighbor: true
@@ -236,7 +236,7 @@ spec:
 apiVersion: protocols.eda.nokia.com/v1
 kind: DefaultBGPPeer
 metadata:
-  name: isl-unnumbered-ipv6-2tier-feleaf-01-ethernet-1-4-2tier-gpu-svr-02-eth11
+  name: isl-unnumbered-ipv6-2tier-feleaf-01-ethernet-1-4-2tier-gpu-svr-02-eth19
   namespace: ai-fabric-fe
 spec:
   dynamicNeighbor: true
@@ -254,7 +254,7 @@ spec:
 apiVersion: protocols.eda.nokia.com/v1
 kind: DefaultBGPPeer
 metadata:
-  name: isl-unnumbered-ipv6-2tier-feleaf-02-ethernet-1-1-2tier-gpu-svr-01-eth10
+  name: isl-unnumbered-ipv6-2tier-feleaf-02-ethernet-1-1-2tier-gpu-svr-01-eth18
   namespace: ai-fabric-fe
 spec:
   dynamicNeighbor: true
@@ -272,7 +272,7 @@ spec:
 apiVersion: protocols.eda.nokia.com/v1
 kind: DefaultBGPPeer
 metadata:
-  name: isl-unnumbered-ipv6-2tier-feleaf-02-ethernet-1-2-2tier-gpu-svr-02-eth10
+  name: isl-unnumbered-ipv6-2tier-feleaf-02-ethernet-1-2-2tier-gpu-svr-02-eth18
   namespace: ai-fabric-fe
 spec:
   dynamicNeighbor: true
@@ -290,7 +290,7 @@ spec:
 apiVersion: protocols.eda.nokia.com/v1
 kind: DefaultBGPPeer
 metadata:
-  name: isl-unnumbered-ipv6-2tier-feleaf-02-ethernet-1-3-2tier-gpu-svr-01-eth12
+  name: isl-unnumbered-ipv6-2tier-feleaf-02-ethernet-1-3-2tier-gpu-svr-01-eth20
   namespace: ai-fabric-fe
 spec:
   dynamicNeighbor: true
@@ -308,7 +308,7 @@ spec:
 apiVersion: protocols.eda.nokia.com/v1
 kind: DefaultBGPPeer
 metadata:
-  name: isl-unnumbered-ipv6-2tier-feleaf-02-ethernet-1-4-2tier-gpu-svr-02-eth12
+  name: isl-unnumbered-ipv6-2tier-feleaf-02-ethernet-1-4-2tier-gpu-svr-02-eth20
   namespace: ai-fabric-fe
 spec:
   dynamicNeighbor: true
