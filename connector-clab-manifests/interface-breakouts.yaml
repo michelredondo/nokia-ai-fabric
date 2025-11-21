@@ -1,7 +1,7 @@
 apiVersion: interfaces.eda.nokia.com/v1alpha1
 kind: Breakout
 metadata:
-  name: breakout-2x400G
+  name: breakout-2x400g
   namespace: ai-fabric-be
 spec:
   channels: 2

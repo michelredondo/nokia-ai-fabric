@@ -234,4 +234,4 @@ spec:
   - 2tier-beleaf-02
   operatingSystem: srl
   priority: 100
-  version: 25.7.2
+  version: 25.10.1

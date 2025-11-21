@@ -8,7 +8,7 @@ mgmt:
 topology:
   kinds:
     nokia_srlinux:
-      image: ghcr.io/nokia/srlinux:25.7.2
+      image: ghcr.io/nokia/srlinux:25.10.1
       type: ixr-h5-64o
     linux:
       image: quay.io/frrouting/frr:10.1.3
@@ -30,7 +30,7 @@ topology:
         graph-group: Backend Data Center Spines
         graph-level: "2"
         graph-groupLabelPos: top-center
-      image: ghcr.io/nokia/srlinux:25.7.2
+      image: ghcr.io/nokia/srlinux:25.10.1
       type: ixr-h5-64o
 
     2tier-beleaf-01:
@@ -45,7 +45,7 @@ topology:
         graph-group: Backend Data Center Stripe-01
         graph-level: "2"
         graph-groupLabelPos: top-center
-      image: ghcr.io/nokia/srlinux:25.7.2
+      image: ghcr.io/nokia/srlinux:25.10.1
       type: ixr-h5-64o
 
     2tier-beleaf-02:
@@ -60,7 +60,7 @@ topology:
         graph-group: Backend Data Center Stripe-01
         graph-level: "2"
         graph-groupLabelPos: top-center
-      image: ghcr.io/nokia/srlinux:25.7.2
+      image: ghcr.io/nokia/srlinux:25.10.1
       type: ixr-h5-64o
 
     # 3xIXR D3L switches are members of FE Fabric
@@ -76,7 +76,7 @@ topology:
         graph-group: GPU Servers
         graph-level: "4"
         graph-groupLabelPos: bottom-center
-      image: ghcr.io/nokia/srlinux:25.7.2
+      image: ghcr.io/nokia/srlinux:25.10.1
       type: ixr-d3l
 
     2tier-feleaf-02:
@@ -91,7 +91,7 @@ topology:
         graph-group: GPU Servers
         graph-level: "4"
         graph-groupLabelPos: bottom-center
-      image: ghcr.io/nokia/srlinux:25.7.2
+      image: ghcr.io/nokia/srlinux:25.10.1
       type: ixr-d3l
 
     2tier-fespine-01:
@@ -106,7 +106,7 @@ topology:
         graph-group: GPU Servers
         graph-level: "4"
         graph-groupLabelPos: bottom-center
-      image: ghcr.io/nokia/srlinux:25.7.2
+      image: ghcr.io/nokia/srlinux:25.10.1
       type: ixr-d3l
 
     # 1x juniper switch to test interop

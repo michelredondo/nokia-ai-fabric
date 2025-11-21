@@ -36,7 +36,7 @@ items:
     - 2tier-feleaf-02
     operatingSystem: srl
     priority: 100
-    version: 25.7.2
+    version: 25.10.1
   status:
     endpoints:
     - 2tier-feleaf-02
