@@ -1,0 +1,109 @@
+apiVersion: config.eda.nokia.com/v1alpha1
+kind: Configlet
+metadata:
+  name: interfaces-mtu
+  namespace: ai-fabric-be
+spec:
+  configs:
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/1/1"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/1/2"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/2/1"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/2/2"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/3/1"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/3/2"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/4/1"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/4/2"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/5/1"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/5/2"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/6/1"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/6/2"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/7/1"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/7/2"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/8/1"}.subinterface{.index==1}
+  - config: |
+      {
+        "ip-mtu": 9194
+      }
+    operation: Create
+    path: .interface{.name=="ethernet-1/8/2"}.subinterface{.index==1}
+  endpoints:
+  - 2tier-beleaf-01
+  - 2tier-beleaf-02
+  operatingSystem: srl
+  priority: 100
+  version: 25.10.1

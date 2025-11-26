@@ -1,0 +1,19 @@
+apiVersion: config.eda.nokia.com/v1alpha1
+kind: Configlet
+metadata:
+  name: ip-mtu
+  namespace: ai-fabric-be
+spec:
+  configs:
+  - config: |
+      {
+        "default-ip-mtu": 9194
+      }
+    operation: Create
+    path: .system.mtu
+  endpoints:
+  - 2tier-beleaf-01
+  - 2tier-beleaf-02
+  operatingSystem: srl
+  priority: 100
+  version: 25.10.1
