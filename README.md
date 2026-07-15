@@ -25,7 +25,7 @@ A Containerlab based emulation of a Nokia AI fabric network using SR Linux. The 
 - **Storage Servers:** 2 (`storage-svr-01`–`storage-svr-02`) — Linux FRR 10.1.3 containers
 - **Internet Server:** 1 (`internet-svr-01`) — Linux FRR 10.1.3 container
 
-## Services
+## Frontend Services
 
 The topology simulates two tenants. Each tenant contains three GPU servers:
 
