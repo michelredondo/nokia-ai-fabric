@@ -1,0 +1,429 @@
+name: ai-fabric
+prefix: ""
+
+mgmt:
+  network: mgmt-net
+  ipv4-subnet: 192.168.100.0/24
+
+topology:
+  kinds:
+    nokia_srlinux:
+      image: ghcr.io/nokia/srlinux:26.3.2
+    linux:
+      image: quay.io/frrouting/frr:10.1.3
+      type: linux
+
+  nodes:
+    # 3xIXR H5 switches are members of AI Backend Fabric
+    bespine-01:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.10
+      type: ixr-h5-64o
+
+    beleaf-01:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.11
+      type: ixr-h5-64o
+
+    beleaf-02:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.12
+      type: ixr-h5-64o
+
+    ## 6xH5 Leaf + 2xD5 Border Leaf + 2xH5 Spines switches are members of FE Fabric
+    ## 6xD5 temporarily until 26.7.2 is released
+
+    # Compute Leaf
+    feleaf-01:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.21
+      #type: ixr-h5-64o
+      type: ixr-d5
+      startup-config: ./configs/feleaf-01.cfg
+    feleaf-02:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.22
+      #type: ixr-h5-64o
+      type: ixr-d5
+      startup-config: ./configs/feleaf-02.cfg
+    feleaf-03:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.23
+      #type: ixr-h5-64o
+      type: ixr-d5
+      startup-config: ./configs/feleaf-03.cfg
+    feleaf-04:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.24
+      #type: ixr-h5-64o
+      type: ixr-d5
+      startup-config: ./configs/feleaf-04.cfg
+    feleaf-05:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.25
+      #type: ixr-h5-64o
+      type: ixr-d5
+      startup-config: ./configs/feleaf-05.cfg
+    feleaf-06:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.26
+      #type: ixr-h5-64o
+      type: ixr-d5
+      startup-config: ./configs/feleaf-06.cfg
+    # Border  
+    febleaf-07:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.27
+      type: ixr-d5
+      startup-config: ./configs/febleaf-07.cfg
+    febleaf-08:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.28
+      type: ixr-d5
+      startup-config: ./configs/febleaf-08.cfg
+    # Spine
+    fespine-01:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.31
+      type: ixr-h5-64o
+      startup-config: ./configs/fespine-01.cfg
+    fespine-02:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.32
+      type: ixr-h5-64o
+      startup-config: ./configs/fespine-02.cfg
+
+    # 6 x GPU Servers 
+    gpu-svr-01:
+      kind: linux
+      mgmt-ipv4: 192.168.100.41
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+        - server-base-configs/gpu-svr-01-frr.conf:/etc/frr/frr.conf
+      exec:
+        - bash /config/gpu-svr-01.sh
+
+    gpu-svr-02:
+      kind: linux
+      mgmt-ipv4: 192.168.100.42
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+        - server-base-configs/gpu-svr-02-frr.conf:/etc/frr/frr.conf
+      exec:
+        - bash /config/gpu-svr-02.sh
+
+    gpu-svr-03:
+      kind: linux
+      mgmt-ipv4: 192.168.100.43
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+        - server-base-configs/gpu-svr-03-frr.conf:/etc/frr/frr.conf
+      exec:
+        - bash /config/gpu-svr-03.sh
+
+    gpu-svr-04:
+      kind: linux
+      mgmt-ipv4: 192.168.100.44
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+        - server-base-configs/gpu-svr-04-frr.conf:/etc/frr/frr.conf
+      exec:
+        - bash /config/gpu-svr-04.sh
+
+    gpu-svr-05:
+      kind: linux
+      mgmt-ipv4: 192.168.100.45
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+        - server-base-configs/gpu-svr-05-frr.conf:/etc/frr/frr.conf
+      exec:
+        - bash /config/gpu-svr-05.sh
+    gpu-svr-06:
+      kind: linux
+      mgmt-ipv4: 192.168.100.46
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+        - server-base-configs/gpu-svr-06-frr.conf:/etc/frr/frr.conf
+      exec:
+        - bash /config/gpu-svr-06.sh
+
+    # 2 x Storage Servers in Frontend Network
+    storage-svr-01:
+      kind: linux
+      mgmt-ipv4: 192.168.100.51
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+      exec:
+        - bash /config/storage-svr-01.sh
+    
+    storage-svr-02:
+      kind: linux
+      mgmt-ipv4: 192.168.100.52
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+      exec:
+        - bash /config/storage-svr-02.sh
+
+    # 1 x Internet server
+    internet-svr-01:
+      kind: linux
+      mgmt-ipv4: 192.168.100.61
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+        - server-base-configs/internet-svr-01-frr.conf:/etc/frr/frr.conf
+      exec:
+        - bash /config/internet-svr-01.sh
+
+  links:
+    # BE Spine to Leaf 01/02
+    - endpoints: [ bespine-01:ethernet-1/1, beleaf-01:ethernet-1/33 ]
+    - endpoints: [ bespine-01:ethernet-1/2, beleaf-01:ethernet-1/34 ]
+    - endpoints: [ bespine-01:ethernet-1/3, beleaf-01:ethernet-1/35 ]
+    - endpoints: [ bespine-01:ethernet-1/4, beleaf-01:ethernet-1/36 ]
+    - endpoints: [ bespine-01:ethernet-1/5, beleaf-01:ethernet-1/37 ]
+    - endpoints: [ bespine-01:ethernet-1/6, beleaf-01:ethernet-1/38 ]
+    - endpoints: [ bespine-01:ethernet-1/7, beleaf-01:ethernet-1/39 ]
+    - endpoints: [ bespine-01:ethernet-1/8, beleaf-01:ethernet-1/40 ]
+
+    - endpoints: [ bespine-01:ethernet-1/33, beleaf-02:ethernet-1/33 ]
+    - endpoints: [ bespine-01:ethernet-1/34, beleaf-02:ethernet-1/34 ]
+    - endpoints: [ bespine-01:ethernet-1/35, beleaf-02:ethernet-1/35 ]
+    - endpoints: [ bespine-01:ethernet-1/36, beleaf-02:ethernet-1/36 ]
+    - endpoints: [ bespine-01:ethernet-1/37, beleaf-02:ethernet-1/37 ]
+    - endpoints: [ bespine-01:ethernet-1/38, beleaf-02:ethernet-1/38 ]
+    - endpoints: [ bespine-01:ethernet-1/39, beleaf-02:ethernet-1/39 ]
+    - endpoints: [ bespine-01:ethernet-1/40, beleaf-02:ethernet-1/40 ]
+
+    # BE Leaf 01 to GPU Servers
+    - endpoints: [ beleaf-01:ethernet-1/1/1, gpu-svr-01:eth1 ]
+    - endpoints: [ beleaf-01:ethernet-1/1/2, gpu-svr-01:eth2 ]
+    - endpoints: [ beleaf-01:ethernet-1/2/1, gpu-svr-01:eth3 ]
+    - endpoints: [ beleaf-01:ethernet-1/2/2, gpu-svr-01:eth4 ]
+    - endpoints: [ beleaf-01:ethernet-1/3/1, gpu-svr-01:eth5 ]
+    - endpoints: [ beleaf-01:ethernet-1/3/2, gpu-svr-01:eth6 ]
+    - endpoints: [ beleaf-01:ethernet-1/4/1, gpu-svr-01:eth7 ]
+    - endpoints: [ beleaf-01:ethernet-1/4/2, gpu-svr-01:eth8 ]
+
+    - endpoints: [ beleaf-01:ethernet-1/5/1, gpu-svr-02:eth1 ]
+    - endpoints: [ beleaf-01:ethernet-1/5/2, gpu-svr-02:eth2 ]
+    - endpoints: [ beleaf-01:ethernet-1/6/1, gpu-svr-02:eth3 ]
+    - endpoints: [ beleaf-01:ethernet-1/6/2, gpu-svr-02:eth4 ]
+    - endpoints: [ beleaf-01:ethernet-1/7/1, gpu-svr-02:eth5 ]
+    - endpoints: [ beleaf-01:ethernet-1/7/2, gpu-svr-02:eth6 ]
+    - endpoints: [ beleaf-01:ethernet-1/8/1, gpu-svr-02:eth7 ]
+    - endpoints: [ beleaf-01:ethernet-1/8/2, gpu-svr-02:eth8 ]
+
+    - endpoints: [ beleaf-01:ethernet-1/9/1, gpu-svr-03:eth1 ]
+    - endpoints: [ beleaf-01:ethernet-1/9/2, gpu-svr-03:eth2 ]
+    - endpoints: [ beleaf-01:ethernet-1/10/1, gpu-svr-03:eth3 ]
+    - endpoints: [ beleaf-01:ethernet-1/10/2, gpu-svr-03:eth4 ]
+    - endpoints: [ beleaf-01:ethernet-1/11/1, gpu-svr-03:eth5 ]
+    - endpoints: [ beleaf-01:ethernet-1/11/2, gpu-svr-03:eth6 ]
+    - endpoints: [ beleaf-01:ethernet-1/12/1, gpu-svr-03:eth7 ]
+    - endpoints: [ beleaf-01:ethernet-1/12/2, gpu-svr-03:eth8 ]
+    
+    - endpoints: [ beleaf-01:ethernet-1/13/1, gpu-svr-04:eth1 ]
+    - endpoints: [ beleaf-01:ethernet-1/13/2, gpu-svr-04:eth2 ]
+    - endpoints: [ beleaf-01:ethernet-1/14/1, gpu-svr-04:eth3 ]
+    - endpoints: [ beleaf-01:ethernet-1/14/2, gpu-svr-04:eth4 ]
+    - endpoints: [ beleaf-01:ethernet-1/15/1, gpu-svr-04:eth5 ]
+    - endpoints: [ beleaf-01:ethernet-1/15/2, gpu-svr-04:eth6 ]
+    - endpoints: [ beleaf-01:ethernet-1/16/1, gpu-svr-04:eth7 ]
+    - endpoints: [ beleaf-01:ethernet-1/16/2, gpu-svr-04:eth8 ]
+    
+    - endpoints: [ beleaf-01:ethernet-1/17/1, gpu-svr-05:eth1 ]
+    - endpoints: [ beleaf-01:ethernet-1/17/2, gpu-svr-05:eth2 ]
+    - endpoints: [ beleaf-01:ethernet-1/18/1, gpu-svr-05:eth3 ]
+    - endpoints: [ beleaf-01:ethernet-1/18/2, gpu-svr-05:eth4 ]
+    - endpoints: [ beleaf-01:ethernet-1/19/1, gpu-svr-05:eth5 ]
+    - endpoints: [ beleaf-01:ethernet-1/19/2, gpu-svr-05:eth6 ]
+    - endpoints: [ beleaf-01:ethernet-1/20/1, gpu-svr-05:eth7 ]
+    - endpoints: [ beleaf-01:ethernet-1/20/2, gpu-svr-05:eth8 ]
+    
+    - endpoints: [ beleaf-01:ethernet-1/21/1, gpu-svr-06:eth1 ]
+    - endpoints: [ beleaf-01:ethernet-1/21/2, gpu-svr-06:eth2 ]
+    - endpoints: [ beleaf-01:ethernet-1/22/1, gpu-svr-06:eth3 ]
+    - endpoints: [ beleaf-01:ethernet-1/22/2, gpu-svr-06:eth4 ]
+    - endpoints: [ beleaf-01:ethernet-1/23/1, gpu-svr-06:eth5 ]
+    - endpoints: [ beleaf-01:ethernet-1/23/2, gpu-svr-06:eth6 ]
+    - endpoints: [ beleaf-01:ethernet-1/24/1, gpu-svr-06:eth7 ]
+    - endpoints: [ beleaf-01:ethernet-1/24/2, gpu-svr-06:eth8 ]
+
+    # BE Leaf 02 to GPU Servers
+    - endpoints: [ beleaf-02:ethernet-1/1/1, gpu-svr-01:eth9 ]
+    - endpoints: [ beleaf-02:ethernet-1/1/2, gpu-svr-01:eth10 ]
+    - endpoints: [ beleaf-02:ethernet-1/2/1, gpu-svr-01:eth11 ]
+    - endpoints: [ beleaf-02:ethernet-1/2/2, gpu-svr-01:eth12 ]
+    - endpoints: [ beleaf-02:ethernet-1/3/1, gpu-svr-01:eth13 ]
+    - endpoints: [ beleaf-02:ethernet-1/3/2, gpu-svr-01:eth14 ]
+    - endpoints: [ beleaf-02:ethernet-1/4/1, gpu-svr-01:eth15 ]
+    - endpoints: [ beleaf-02:ethernet-1/4/2, gpu-svr-01:eth16 ]
+
+    - endpoints: [ beleaf-02:ethernet-1/5/1, gpu-svr-02:eth9 ]
+    - endpoints: [ beleaf-02:ethernet-1/5/2, gpu-svr-02:eth10 ]
+    - endpoints: [ beleaf-02:ethernet-1/6/1, gpu-svr-02:eth11 ]
+    - endpoints: [ beleaf-02:ethernet-1/6/2, gpu-svr-02:eth12 ]
+    - endpoints: [ beleaf-02:ethernet-1/7/1, gpu-svr-02:eth13 ]
+    - endpoints: [ beleaf-02:ethernet-1/7/2, gpu-svr-02:eth14 ]
+    - endpoints: [ beleaf-02:ethernet-1/8/1, gpu-svr-02:eth15 ]
+    - endpoints: [ beleaf-02:ethernet-1/8/2, gpu-svr-02:eth16 ]
+
+    - endpoints: [ beleaf-02:ethernet-1/9/1,  gpu-svr-03:eth9 ]
+    - endpoints: [ beleaf-02:ethernet-1/9/2,  gpu-svr-03:eth10 ]
+    - endpoints: [ beleaf-02:ethernet-1/10/1, gpu-svr-03:eth11 ]
+    - endpoints: [ beleaf-02:ethernet-1/10/2, gpu-svr-03:eth12 ]
+    - endpoints: [ beleaf-02:ethernet-1/11/1, gpu-svr-03:eth13 ]
+    - endpoints: [ beleaf-02:ethernet-1/11/2, gpu-svr-03:eth14 ]
+    - endpoints: [ beleaf-02:ethernet-1/12/1, gpu-svr-03:eth15 ]
+    - endpoints: [ beleaf-02:ethernet-1/12/2, gpu-svr-03:eth16 ]
+    
+    - endpoints: [ beleaf-02:ethernet-1/13/1, gpu-svr-04:eth9 ]
+    - endpoints: [ beleaf-02:ethernet-1/13/2, gpu-svr-04:eth10 ]
+    - endpoints: [ beleaf-02:ethernet-1/14/1, gpu-svr-04:eth11 ]
+    - endpoints: [ beleaf-02:ethernet-1/14/2, gpu-svr-04:eth12 ]
+    - endpoints: [ beleaf-02:ethernet-1/15/1, gpu-svr-04:eth13 ]
+    - endpoints: [ beleaf-02:ethernet-1/15/2, gpu-svr-04:eth14 ]
+    - endpoints: [ beleaf-02:ethernet-1/16/1, gpu-svr-04:eth15 ]
+    - endpoints: [ beleaf-02:ethernet-1/16/2, gpu-svr-04:eth16 ]
+
+    - endpoints: [ beleaf-02:ethernet-1/17/1, gpu-svr-05:eth9 ]
+    - endpoints: [ beleaf-02:ethernet-1/17/2, gpu-svr-05:eth10 ]
+    - endpoints: [ beleaf-02:ethernet-1/18/1, gpu-svr-05:eth11 ]
+    - endpoints: [ beleaf-02:ethernet-1/18/2, gpu-svr-05:eth12 ]
+    - endpoints: [ beleaf-02:ethernet-1/19/1, gpu-svr-05:eth13 ]
+    - endpoints: [ beleaf-02:ethernet-1/19/2, gpu-svr-05:eth14 ]
+    - endpoints: [ beleaf-02:ethernet-1/20/1, gpu-svr-05:eth15 ]
+    - endpoints: [ beleaf-02:ethernet-1/20/2, gpu-svr-05:eth16 ]
+    
+    - endpoints: [ beleaf-02:ethernet-1/21/1, gpu-svr-06:eth9 ]
+    - endpoints: [ beleaf-02:ethernet-1/21/2, gpu-svr-06:eth10 ]
+    - endpoints: [ beleaf-02:ethernet-1/22/1, gpu-svr-06:eth11 ]
+    - endpoints: [ beleaf-02:ethernet-1/22/2, gpu-svr-06:eth12 ]
+    - endpoints: [ beleaf-02:ethernet-1/23/1, gpu-svr-06:eth13 ]
+    - endpoints: [ beleaf-02:ethernet-1/23/2, gpu-svr-06:eth14 ]
+    - endpoints: [ beleaf-02:ethernet-1/24/1, gpu-svr-06:eth15 ]
+    - endpoints: [ beleaf-02:ethernet-1/24/2, gpu-svr-06:eth16 ]
+
+    ## GPU servers GPUvlan+Storage+Internet
+    # GPU Server1 FE connections
+    - endpoints: [ feleaf-01:ethernet-1/1/1, gpu-svr-01:eth17 ]
+    - endpoints: [ feleaf-02:ethernet-1/1/1, gpu-svr-01:eth18 ]   
+    # GPU Server2 FE connections    
+    - endpoints: [ feleaf-01:ethernet-1/2/1, gpu-svr-02:eth17 ]
+    - endpoints: [ feleaf-02:ethernet-1/2/1, gpu-svr-02:eth18 ]   
+    # GPU Server3 FE connections
+    - endpoints: [ feleaf-03:ethernet-1/1/1, gpu-svr-03:eth17 ]
+    - endpoints: [ feleaf-04:ethernet-1/1/1, gpu-svr-03:eth18 ]   
+    # GPU Server4 FE connections    
+    - endpoints: [ feleaf-03:ethernet-1/2/1, gpu-svr-04:eth17 ]
+    - endpoints: [ feleaf-04:ethernet-1/2/1, gpu-svr-04:eth18 ]  
+    # GPU Server5 FE connections
+    - endpoints: [ feleaf-05:ethernet-1/1/1, gpu-svr-05:eth17 ]
+    - endpoints: [ feleaf-06:ethernet-1/1/1, gpu-svr-05:eth18 ]   
+    # GPU Server6 FE connections    
+    - endpoints: [ feleaf-05:ethernet-1/2/1, gpu-svr-06:eth17 ]
+    - endpoints: [ feleaf-06:ethernet-1/2/1, gpu-svr-06:eth18 ] 
+
+    # FE Nokia Fabric
+    # ISLs Spine1
+    - endpoints: [ feleaf-01:ethernet-1/17, fespine-01:ethernet-1/1 ]
+    - endpoints: [ feleaf-02:ethernet-1/17, fespine-01:ethernet-1/2 ]
+    - endpoints: [ feleaf-03:ethernet-1/17, fespine-01:ethernet-1/3 ]
+    - endpoints: [ feleaf-04:ethernet-1/17, fespine-01:ethernet-1/4 ]
+    - endpoints: [ feleaf-05:ethernet-1/17, fespine-01:ethernet-1/5 ]
+    - endpoints: [ feleaf-06:ethernet-1/17, fespine-01:ethernet-1/6 ]
+    - endpoints: [ febleaf-07:ethernet-1/17, fespine-01:ethernet-1/57 ]
+    - endpoints: [ febleaf-08:ethernet-1/17, fespine-01:ethernet-1/58 ]
+
+    - endpoints: [ feleaf-01:ethernet-1/18, fespine-01:ethernet-1/7 ]
+    - endpoints: [ feleaf-02:ethernet-1/18, fespine-01:ethernet-1/8 ]
+    - endpoints: [ feleaf-03:ethernet-1/18, fespine-01:ethernet-1/9 ]
+    - endpoints: [ feleaf-04:ethernet-1/18, fespine-01:ethernet-1/10 ]
+    - endpoints: [ feleaf-05:ethernet-1/18, fespine-01:ethernet-1/11 ]
+    - endpoints: [ feleaf-06:ethernet-1/18, fespine-01:ethernet-1/12 ]
+    - endpoints: [ febleaf-07:ethernet-1/18, fespine-01:ethernet-1/59 ]
+    - endpoints: [ febleaf-08:ethernet-1/18, fespine-01:ethernet-1/60 ]
+
+    - endpoints: [ feleaf-01:ethernet-1/19, fespine-01:ethernet-1/13 ]
+    - endpoints: [ feleaf-02:ethernet-1/19, fespine-01:ethernet-1/14 ]
+    - endpoints: [ feleaf-03:ethernet-1/19, fespine-01:ethernet-1/15 ]
+    - endpoints: [ feleaf-04:ethernet-1/19, fespine-01:ethernet-1/16 ]
+    - endpoints: [ feleaf-05:ethernet-1/19, fespine-01:ethernet-1/17 ]
+    - endpoints: [ feleaf-06:ethernet-1/19, fespine-01:ethernet-1/18 ]
+    - endpoints: [ febleaf-07:ethernet-1/19, fespine-01:ethernet-1/61 ]
+    - endpoints: [ febleaf-08:ethernet-1/19, fespine-01:ethernet-1/62 ]
+
+    - endpoints: [ feleaf-01:ethernet-1/20, fespine-01:ethernet-1/19 ]
+    - endpoints: [ feleaf-02:ethernet-1/20, fespine-01:ethernet-1/20 ]
+    - endpoints: [ feleaf-03:ethernet-1/20, fespine-01:ethernet-1/21 ]
+    - endpoints: [ feleaf-04:ethernet-1/20, fespine-01:ethernet-1/22 ]
+    - endpoints: [ feleaf-05:ethernet-1/20, fespine-01:ethernet-1/23 ]
+    - endpoints: [ feleaf-06:ethernet-1/20, fespine-01:ethernet-1/24 ]
+    - endpoints: [ febleaf-07:ethernet-1/20, fespine-01:ethernet-1/63 ]
+    - endpoints: [ febleaf-08:ethernet-1/20, fespine-01:ethernet-1/64 ]
+
+    # ISLs Spine2
+    - endpoints: [ feleaf-01:ethernet-1/21, fespine-02:ethernet-1/1 ]
+    - endpoints: [ feleaf-02:ethernet-1/21, fespine-02:ethernet-1/2 ]
+    - endpoints: [ feleaf-03:ethernet-1/21, fespine-02:ethernet-1/3 ]
+    - endpoints: [ feleaf-04:ethernet-1/21, fespine-02:ethernet-1/4 ]
+    - endpoints: [ feleaf-05:ethernet-1/21, fespine-02:ethernet-1/5 ]
+    - endpoints: [ feleaf-06:ethernet-1/21, fespine-02:ethernet-1/6 ]
+    - endpoints: [ febleaf-07:ethernet-1/21, fespine-02:ethernet-1/57 ]
+    - endpoints: [ febleaf-08:ethernet-1/21, fespine-02:ethernet-1/58 ]
+
+    - endpoints: [ feleaf-01:ethernet-1/22, fespine-02:ethernet-1/7 ]
+    - endpoints: [ feleaf-02:ethernet-1/22, fespine-02:ethernet-1/8 ]
+    - endpoints: [ feleaf-03:ethernet-1/22, fespine-02:ethernet-1/9 ]
+    - endpoints: [ feleaf-04:ethernet-1/22, fespine-02:ethernet-1/10 ]
+    - endpoints: [ feleaf-05:ethernet-1/22, fespine-02:ethernet-1/11 ]
+    - endpoints: [ feleaf-06:ethernet-1/22, fespine-02:ethernet-1/12 ]
+    - endpoints: [ febleaf-07:ethernet-1/22, fespine-02:ethernet-1/59 ]
+    - endpoints: [ febleaf-08:ethernet-1/22, fespine-02:ethernet-1/60 ]
+
+    - endpoints: [ feleaf-01:ethernet-1/23, fespine-02:ethernet-1/13 ]
+    - endpoints: [ feleaf-02:ethernet-1/23, fespine-02:ethernet-1/14 ]
+    - endpoints: [ feleaf-03:ethernet-1/23, fespine-02:ethernet-1/15 ]
+    - endpoints: [ feleaf-04:ethernet-1/23, fespine-02:ethernet-1/16 ]
+    - endpoints: [ feleaf-05:ethernet-1/23, fespine-02:ethernet-1/17 ]
+    - endpoints: [ feleaf-06:ethernet-1/23, fespine-02:ethernet-1/18 ]
+    - endpoints: [ febleaf-07:ethernet-1/23, fespine-02:ethernet-1/61 ]
+    - endpoints: [ febleaf-08:ethernet-1/23, fespine-02:ethernet-1/62 ]
+
+    - endpoints: [ feleaf-01:ethernet-1/24, fespine-02:ethernet-1/19 ]
+    - endpoints: [ feleaf-02:ethernet-1/24, fespine-02:ethernet-1/20 ]
+    - endpoints: [ feleaf-03:ethernet-1/24, fespine-02:ethernet-1/21 ]
+    - endpoints: [ feleaf-04:ethernet-1/24, fespine-02:ethernet-1/22 ]
+    - endpoints: [ feleaf-05:ethernet-1/24, fespine-02:ethernet-1/23 ]
+    - endpoints: [ feleaf-06:ethernet-1/24, fespine-02:ethernet-1/24 ]
+    - endpoints: [ febleaf-07:ethernet-1/24, fespine-02:ethernet-1/63 ]
+    - endpoints: [ febleaf-08:ethernet-1/24, fespine-02:ethernet-1/64 ]
+
+    # Storage servers connected to FE Nokia Fabric
+    - endpoints: [ feleaf-01:ethernet-1/16, storage-svr-01:eth1 ]
+    - endpoints: [ feleaf-02:ethernet-1/16, storage-svr-01:eth2 ]
+
+    - endpoints: [ feleaf-03:ethernet-1/16, storage-svr-02:eth1 ]
+    - endpoints: [ feleaf-04:ethernet-1/16, storage-svr-02:eth2 ]
+
+    # FRR connected to Border Leaf, internet simulation
+    - endpoints: [ febleaf-07:ethernet-1/1, internet-svr-01:eth1 ]
+    - endpoints: [ febleaf-08:ethernet-1/1, internet-svr-01:eth2 ]
