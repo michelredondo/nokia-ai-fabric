@@ -10,6 +10,8 @@ A Containerlab based emulation of a Nokia AI fabric network using SR Linux. The 
 
 ## Topology
 
+![Topology](images/ai-fabric-srl-topo.svg)
+
 ### Backend Fabric
 
 - **BE Leaf nodes:** 2 (`beleaf-01`–`beleaf-02`) — Nokia SR Linux (IXR-H5)
