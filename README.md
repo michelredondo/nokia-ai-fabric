@@ -20,7 +20,7 @@ A Containerlab based emulation of a Nokia AI fabric network using SR Linux. The 
 
 ### Frontend Fabric
 
-- **FE Leaf nodes:** 6 (`feleaf-01`–`feleaf-06`) — Nokia SR Linux (IXR-D5)
+- **FE Leaf nodes:** 6 (`feleaf-01`–`feleaf-06`) — Nokia SR Linux (IXR-H5)
 - **FE Border Leaf nodes:** 2 (`febleaf-07`–`febleaf-08`) — Nokia SR Linux (IXR-D5)
 - **FE Spine nodes:** 2 (`fespine-01`–`fespine-02`) — Nokia SR Linux (IXR-H5)
 - **GPU Servers:** 6 (`gpu-svr-01`–`gpu-svr-06`) — Linux FRR 10.1.3 containers

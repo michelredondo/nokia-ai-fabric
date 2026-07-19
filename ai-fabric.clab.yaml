@@ -8,7 +8,7 @@ mgmt:
 topology:
   kinds:
     nokia_srlinux:
-      image: ghcr.io/nokia/srlinux:26.3.2
+      image: ghcr.io/nokia/srlinux:26.7.1
     linux:
       image: quay.io/frrouting/frr:10.1.3
       type: linux
@@ -31,44 +31,43 @@ topology:
       type: ixr-h5-64o
 
     ## 6xH5 Leaf + 2xD5 Border Leaf + 2xH5 Spines switches are members of FE Fabric
-    ## 6xD5 temporarily until 26.7.2 is released
 
     # Compute Leaf
     feleaf-01:
       kind: nokia_srlinux
       mgmt-ipv4: 192.168.100.21
-      #type: ixr-h5-64o
-      type: ixr-d5
+      type: ixr-h5-64o
+      #type: ixr-d5
       startup-config: ./configs/feleaf-01.cfg
     feleaf-02:
       kind: nokia_srlinux
       mgmt-ipv4: 192.168.100.22
-      #type: ixr-h5-64o
-      type: ixr-d5
+      type: ixr-h5-64o
+      #type: ixr-d5
       startup-config: ./configs/feleaf-02.cfg
     feleaf-03:
       kind: nokia_srlinux
       mgmt-ipv4: 192.168.100.23
-      #type: ixr-h5-64o
-      type: ixr-d5
+      type: ixr-h5-64o
+      #type: ixr-d5
       startup-config: ./configs/feleaf-03.cfg
     feleaf-04:
       kind: nokia_srlinux
       mgmt-ipv4: 192.168.100.24
-      #type: ixr-h5-64o
-      type: ixr-d5
+      type: ixr-h5-64o
+      #type: ixr-d5
       startup-config: ./configs/feleaf-04.cfg
     feleaf-05:
       kind: nokia_srlinux
       mgmt-ipv4: 192.168.100.25
-      #type: ixr-h5-64o
-      type: ixr-d5
+      type: ixr-h5-64o
+      #type: ixr-d5
       startup-config: ./configs/feleaf-05.cfg
     feleaf-06:
       kind: nokia_srlinux
       mgmt-ipv4: 192.168.100.26
-      #type: ixr-h5-64o
-      type: ixr-d5
+      type: ixr-h5-64o
+      #type: ixr-d5
       startup-config: ./configs/feleaf-06.cfg
     # Border  
     febleaf-07:
