@@ -161,3 +161,11 @@ ip link add link bond0 name bond0.30 type vlan id 30
 ip link set bond0.30 up
 ip  addr add 172.16.1.1/24 dev bond0.30
 ip route add 172.16.0.0/12 via 172.16.1.253
+
+# PXE (service disabled by default)
+# use this to test:
+# ip link set dev eth17 nomaster
+# ip link set dev eth18 nomaster
+# ip link set dev eth17 up
+# ip link set dev eth18 up
+# ip addr add 100.127.255.1/24 dev eth17

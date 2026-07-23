@@ -36,37 +36,37 @@ topology:
     feleaf-01:
       kind: nokia_srlinux
       mgmt-ipv4: 192.168.100.21
-      type: ixr-h5-64o
+      type: ixr-h5-32d
       #type: ixr-d5
       startup-config: ./configs/feleaf-01.cfg
     feleaf-02:
       kind: nokia_srlinux
       mgmt-ipv4: 192.168.100.22
-      type: ixr-h5-64o
+      type: ixr-h5-32d
       #type: ixr-d5
       startup-config: ./configs/feleaf-02.cfg
     feleaf-03:
       kind: nokia_srlinux
       mgmt-ipv4: 192.168.100.23
-      type: ixr-h5-64o
+      type: ixr-h5-32d
       #type: ixr-d5
       startup-config: ./configs/feleaf-03.cfg
     feleaf-04:
       kind: nokia_srlinux
       mgmt-ipv4: 192.168.100.24
-      type: ixr-h5-64o
+      type: ixr-h5-32d
       #type: ixr-d5
       startup-config: ./configs/feleaf-04.cfg
     feleaf-05:
       kind: nokia_srlinux
       mgmt-ipv4: 192.168.100.25
-      type: ixr-h5-64o
+      type: ixr-h5-32d
       #type: ixr-d5
       startup-config: ./configs/feleaf-05.cfg
     feleaf-06:
       kind: nokia_srlinux
       mgmt-ipv4: 192.168.100.26
-      type: ixr-h5-64o
+      type: ixr-h5-32d
       #type: ixr-d5
       startup-config: ./configs/feleaf-06.cfg
     # Border  
@@ -178,6 +178,17 @@ topology:
         - server-base-configs:/config
       exec:
         - bash /config/storage-svr-02.sh
+
+    # 1x PXE Boot Server in Frontend Network
+    pxe-svr-01:
+      kind: linux
+      mgmt-ipv4: 192.168.100.53
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+      exec:
+        - bash /config/pxe-svr-01.sh
 
     # 1 x Internet server
     internet-svr-01:
@@ -422,6 +433,9 @@ topology:
 
     - endpoints: [ feleaf-03:ethernet-1/16, storage-svr-02:eth1 ]
     - endpoints: [ feleaf-04:ethernet-1/16, storage-svr-02:eth2 ]
+
+    # PXE-boot server
+    - endpoints: [ feleaf-05:ethernet-1/16, pxe-svr-01:eth1 ]
 
     # FRR connected to Border Leaf, internet simulation
     - endpoints: [ febleaf-07:ethernet-1/1, internet-svr-01:eth1 ]
