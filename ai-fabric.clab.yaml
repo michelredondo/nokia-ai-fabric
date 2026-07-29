@@ -166,6 +166,7 @@ topology:
         - server-base-configs/hostname.sh:/hostname.sh
         - server-base-configs/daemons:/etc/frr/daemons
         - server-base-configs:/config
+        - server-base-configs/storage-svr-01-frr.conf:/etc/frr/frr.conf
       exec:
         - bash /config/storage-svr-01.sh
     
@@ -176,6 +177,7 @@ topology:
         - server-base-configs/hostname.sh:/hostname.sh
         - server-base-configs/daemons:/etc/frr/daemons
         - server-base-configs:/config
+        - server-base-configs/storage-svr-02-frr.conf:/etc/frr/frr.conf
       exec:
         - bash /config/storage-svr-02.sh
 
