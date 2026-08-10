@@ -80,6 +80,20 @@ topology:
       mgmt-ipv4: 192.168.100.28
       type: ixr-d5
       startup-config: ./configs/febleaf-08.cfg
+
+    febleaf-09:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.29
+      type: ixr-x4
+      license: license-srl-26.key
+      startup-config: ./configs/febleaf-09.cfg
+    febleaf-10:
+      kind: nokia_srlinux
+      mgmt-ipv4: 192.168.100.30
+      type: ixr-x4
+      license: license-srl-26.key
+      startup-config: ./configs/febleaf-10.cfg    
+    
     # Spine
     fespine-01:
       kind: nokia_srlinux
@@ -203,6 +217,18 @@ topology:
         - server-base-configs/internet-svr-01-frr.conf:/etc/frr/frr.conf
       exec:
         - bash /config/internet-svr-01.sh
+
+    # 1 x test server
+    test-svr-01:
+      kind: linux
+      mgmt-ipv4: 192.168.100.71
+      binds:
+        - server-base-configs/hostname.sh:/hostname.sh
+        - server-base-configs/daemons:/etc/frr/daemons
+        - server-base-configs:/config
+        - server-base-configs/test-svr-01-frr.conf:/etc/frr/frr.conf
+      exec:
+        - bash /config/test-svr-01.sh
 
   links:
     # BE Spine to Leaf 01/02
@@ -364,6 +390,8 @@ topology:
     - endpoints: [ feleaf-06:ethernet-1/17, fespine-01:ethernet-1/6 ]
     - endpoints: [ febleaf-07:ethernet-1/17, fespine-01:ethernet-1/57 ]
     - endpoints: [ febleaf-08:ethernet-1/17, fespine-01:ethernet-1/58 ]
+    - endpoints: [ febleaf-09:ethernet-1/17, fespine-01:ethernet-1/49 ]
+    - endpoints: [ febleaf-10:ethernet-1/17, fespine-01:ethernet-1/50 ]
 
     - endpoints: [ feleaf-01:ethernet-1/18, fespine-01:ethernet-1/7 ]
     - endpoints: [ feleaf-02:ethernet-1/18, fespine-01:ethernet-1/8 ]
@@ -373,6 +401,8 @@ topology:
     - endpoints: [ feleaf-06:ethernet-1/18, fespine-01:ethernet-1/12 ]
     - endpoints: [ febleaf-07:ethernet-1/18, fespine-01:ethernet-1/59 ]
     - endpoints: [ febleaf-08:ethernet-1/18, fespine-01:ethernet-1/60 ]
+    - endpoints: [ febleaf-09:ethernet-1/18, fespine-01:ethernet-1/51 ]
+    - endpoints: [ febleaf-10:ethernet-1/18, fespine-01:ethernet-1/52 ]
 
     - endpoints: [ feleaf-01:ethernet-1/19, fespine-01:ethernet-1/13 ]
     - endpoints: [ feleaf-02:ethernet-1/19, fespine-01:ethernet-1/14 ]
@@ -382,6 +412,8 @@ topology:
     - endpoints: [ feleaf-06:ethernet-1/19, fespine-01:ethernet-1/18 ]
     - endpoints: [ febleaf-07:ethernet-1/19, fespine-01:ethernet-1/61 ]
     - endpoints: [ febleaf-08:ethernet-1/19, fespine-01:ethernet-1/62 ]
+    - endpoints: [ febleaf-09:ethernet-1/19, fespine-01:ethernet-1/53 ]
+    - endpoints: [ febleaf-10:ethernet-1/19, fespine-01:ethernet-1/54 ]
 
     - endpoints: [ feleaf-01:ethernet-1/20, fespine-01:ethernet-1/19 ]
     - endpoints: [ feleaf-02:ethernet-1/20, fespine-01:ethernet-1/20 ]
@@ -391,6 +423,8 @@ topology:
     - endpoints: [ feleaf-06:ethernet-1/20, fespine-01:ethernet-1/24 ]
     - endpoints: [ febleaf-07:ethernet-1/20, fespine-01:ethernet-1/63 ]
     - endpoints: [ febleaf-08:ethernet-1/20, fespine-01:ethernet-1/64 ]
+    - endpoints: [ febleaf-09:ethernet-1/20, fespine-01:ethernet-1/55 ]
+    - endpoints: [ febleaf-10:ethernet-1/20, fespine-01:ethernet-1/56 ]
 
     # ISLs Spine2
     - endpoints: [ feleaf-01:ethernet-1/21, fespine-02:ethernet-1/1 ]
@@ -401,6 +435,8 @@ topology:
     - endpoints: [ feleaf-06:ethernet-1/21, fespine-02:ethernet-1/6 ]
     - endpoints: [ febleaf-07:ethernet-1/21, fespine-02:ethernet-1/57 ]
     - endpoints: [ febleaf-08:ethernet-1/21, fespine-02:ethernet-1/58 ]
+    - endpoints: [ febleaf-09:ethernet-1/21, fespine-02:ethernet-1/49 ]
+    - endpoints: [ febleaf-10:ethernet-1/21, fespine-02:ethernet-1/50 ]
 
     - endpoints: [ feleaf-01:ethernet-1/22, fespine-02:ethernet-1/7 ]
     - endpoints: [ feleaf-02:ethernet-1/22, fespine-02:ethernet-1/8 ]
@@ -410,6 +446,8 @@ topology:
     - endpoints: [ feleaf-06:ethernet-1/22, fespine-02:ethernet-1/12 ]
     - endpoints: [ febleaf-07:ethernet-1/22, fespine-02:ethernet-1/59 ]
     - endpoints: [ febleaf-08:ethernet-1/22, fespine-02:ethernet-1/60 ]
+    - endpoints: [ febleaf-09:ethernet-1/22, fespine-02:ethernet-1/51 ]
+    - endpoints: [ febleaf-10:ethernet-1/22, fespine-02:ethernet-1/52 ]
 
     - endpoints: [ feleaf-01:ethernet-1/23, fespine-02:ethernet-1/13 ]
     - endpoints: [ feleaf-02:ethernet-1/23, fespine-02:ethernet-1/14 ]
@@ -419,6 +457,8 @@ topology:
     - endpoints: [ feleaf-06:ethernet-1/23, fespine-02:ethernet-1/18 ]
     - endpoints: [ febleaf-07:ethernet-1/23, fespine-02:ethernet-1/61 ]
     - endpoints: [ febleaf-08:ethernet-1/23, fespine-02:ethernet-1/62 ]
+    - endpoints: [ febleaf-09:ethernet-1/23, fespine-02:ethernet-1/53 ]
+    - endpoints: [ febleaf-10:ethernet-1/23, fespine-02:ethernet-1/54 ]
 
     - endpoints: [ feleaf-01:ethernet-1/24, fespine-02:ethernet-1/19 ]
     - endpoints: [ feleaf-02:ethernet-1/24, fespine-02:ethernet-1/20 ]
@@ -428,6 +468,8 @@ topology:
     - endpoints: [ feleaf-06:ethernet-1/24, fespine-02:ethernet-1/24 ]
     - endpoints: [ febleaf-07:ethernet-1/24, fespine-02:ethernet-1/63 ]
     - endpoints: [ febleaf-08:ethernet-1/24, fespine-02:ethernet-1/64 ]
+    - endpoints: [ febleaf-09:ethernet-1/24, fespine-02:ethernet-1/55 ]
+    - endpoints: [ febleaf-10:ethernet-1/24, fespine-02:ethernet-1/56 ]
 
     # Storage servers connected to FE Nokia Fabric
     - endpoints: [ feleaf-01:ethernet-1/16, storage-svr-01:eth1 ]
@@ -442,3 +484,7 @@ topology:
     # FRR connected to Border Leaf, internet simulation
     - endpoints: [ febleaf-07:ethernet-1/1, internet-svr-01:eth1 ]
     - endpoints: [ febleaf-08:ethernet-1/1, internet-svr-01:eth2 ]
+
+    # Test server to Border Leaf9&10, test L3 MH
+    - endpoints: [ febleaf-09:ethernet-1/1, test-svr-01:eth1 ]
+    - endpoints: [ febleaf-10:ethernet-1/1, test-svr-01:eth2 ]
