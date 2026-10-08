@@ -22,8 +22,9 @@ A Containerlab based emulation of a Nokia AI fabric network using SR Linux. The 
 
 - **FE Leaf nodes:** 6 (`feleaf-01`–`feleaf-06`) — Nokia SR Linux (IXR-H5-32)
 - **FE Border Leaf nodes:** 2 (`febleaf-07`–`febleaf-08`) — Nokia SR Linux (IXR-D5)
+- **FE Border Leaf nodes (IXR-X4):** 2 (`febleaf-09`–`febleaf-10`) — Nokia SR Linux (IXR-X4)
 - **FE Spine nodes:** 2 (`fespine-01`–`fespine-02`) — Nokia SR Linux (IXR-H5-64)
-- **GPU Servers:** 6 (`gpu-svr-01`–`gpu-svr-06`) — Linux FRR 10.1.3 containers
+- **GPU Servers:** 7 (`gpu-svr-01`–`gpu-svr-06`-`test-svr-01`) — Linux FRR 10.1.3 containers
 - **Storage Servers:** 2 (`storage-svr-01`–`storage-svr-02`) — Linux FRR 10.1.3 containers
 - **Internet Server:** 1 (`internet-svr-01`) — Linux FRR 10.1.3 container
 - **PXE-BOOT Server:** 1 (`pxe-svr-01`) — Linux FRR 10.1.3 container
@@ -32,10 +33,10 @@ A Containerlab based emulation of a Nokia AI fabric network using SR Linux. The 
 
 The topology simulates two tenants. Each tenant contains three GPU servers:
 
-- **TENANT A:** `gpu-svr-01`, `gpu-svr-03`, `gpu-svr-05`
+- **TENANT A:** `gpu-svr-01`, `gpu-svr-03`, `gpu-svr-05`, `test-svr-01 (L3-MH)`
 - **TENANT B:** `gpu-svr-02`, `gpu-svr-04`, `gpu-svr-06`
 
-Each server is dual-homed to a pair of leaf switches using an EVPN Ethernet Segment (ES) for active-active multihoming.
+Each server is dual-homed to a pair of leaf switches using an EVPN Ethernet Segment (ES) for active-active multihoming. `test-svr-01` uses L3-MH as per approach 2 in draft-ietf-bess-evpn-l3mh-proto.
 
 Four VRFs are provided:
 
